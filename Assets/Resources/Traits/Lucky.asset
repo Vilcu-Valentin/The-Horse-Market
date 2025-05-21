@@ -12,20 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Lucky
   m_EditorClassIdentifier: 
-  DisplayName: 
-  Description: 
+  DisplayName: Lucky
+  Description: A very lucky horse indeed
   Icon: {fileID: 0}
   IsNegative: 0
-  UpgradeMult: 1
-  DowngradeMult: 1
+  UpgradeMult: 1.5
+  DowngradeMult: 0.5
   TierVolatility: 0
-  BaseInheritChance: 0.25
-  MutationChance: 0
-  TrainingMult: 1
-  TrainingSpeed: 1
+  BaseInheritChance: 0.2
+  MutationChance: 0.01
+  TrainingMult: 1.25
+  TrainingSpeed: 0.75
   canFailTraining: 0
-  StatCapMods: []
-  StartingStas: []
-  CompetitionBuffPct: 0
-  PriceScalar: 1
-  Venerable: 0
+  StatCapMods:
+  - Stat: 0
+    Delta: 10
+  - Stat: 1
+    Delta: 10
+  - Stat: 2
+    Delta: 10
+  - Stat: 3
+    Delta: 10
+  StartingStas:
+  - Stat: 0
+    Delta: 5
+  - Stat: 1
+    Delta: 5
+  - Stat: 2
+    Delta: 5
+  - Stat: 3
+    Delta: 5
+  StartingBonusRandomness: 0.15
+  CompetitionBuffPct: 5
+  PriceScalar: 1.5
+  Venerable: 1.25
