@@ -23,10 +23,11 @@ public sealed class TraitDef : ScriptableObject
     [Tooltip("false - it will only move one tier up/down, true - it will randomly(weighted) move between 1-3 tiers")]
     public bool TierVolatility = false;
 
+    [Header("Traits Inheritence")]
     [Tooltip("How reliably this trait is inherited if ONE parent owns it")]
     [Range(0f, 1f)] public float BaseInheritChance = 0.25f;
-    [Tooltip("Spontaneous mutation chance if _no_ parent has the trait")]
-    [Range(0f, 1f)] public float MutationChance = 0.00f;
+    [Tooltip("Multiplier changes the base mutation chance for a new trait to apper (0 - neutral)")]
+    public float MutationMultiplier = 1f;
 
     [Header("Training")]
     [Tooltip("Multiplier on XP gain during training (<1 = worse, >1 = better)")]
@@ -51,6 +52,15 @@ public sealed class TraitDef : ScriptableObject
     public float PriceScalar = 1f; // such as for Champion or Venerable
     [Tooltip("Gains a higher premium price based on the current stats. 1 - no multiplier")]
     [Range(1f, 3f)]public float Venerable = 1f;
+
+    [Header("Conflicts")]
+    [Tooltip("The traits in this list cannot appear on a horse that has the current trait.")]
+    public List<TraitDef> conflictedTraits;
+
+    public bool IsConflict(TraitDef other)
+    {
+        return conflictedTraits.Contains(other);
+    }
 }
 
 [Serializable]

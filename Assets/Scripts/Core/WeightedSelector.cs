@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WeightedSelector<T>
+public static class WeightedSelector<T>
 {
     /// <summary>
     /// Input a weigthes list (dictionary) of items and returns the selected item based on chance

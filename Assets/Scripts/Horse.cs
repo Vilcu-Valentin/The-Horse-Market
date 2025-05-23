@@ -40,10 +40,10 @@ public class Horse
         Tier  = tier;
         Visual = visual;
         _traits = traits;
-        BuildStats(tier, traits, visual);
+        BuildStats(tier, traits);
     }
 
-    private void BuildStats(TierDef tier, List<TraitDef> traits, VisualDef visual)
+    private void BuildStats(TierDef tier, List<TraitDef> traits)
     {
         List<Stat> max = new List<Stat>();
         List<Stat> current = new List<Stat>(); 

@@ -18,16 +18,11 @@ public class Master : MonoBehaviour
     private float initialNumber;
     private float currentNumber;
 
-    public void SetNumber(float value)
-    {
-        initialNumber = currentNumber;
-        desiredNumber = value;
-    }
-
     public void AddToNumber(float value)
     {
         initialNumber = currentNumber;
         desiredNumber += value;
+        desiredNumber = Mathf.Max(desiredNumber, 0);
     }
 
     // Start is called before the first frame update
@@ -63,7 +58,7 @@ public class Master : MonoBehaviour
             coinCounter.text = currentNumber.ToString("#,##" + "0");
         }
 
-        emeralds = Mathf.Max(0,(int)desiredNumber);
+        emeralds = (int)desiredNumber;
         Debug.Log(emeralds);
     }
 }
