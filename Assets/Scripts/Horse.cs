@@ -62,13 +62,13 @@ public class Horse
                 .Sum(m => m.Modifier);
             maxS = (int)Math.Round(maxS * totalMod);
 
-            max.Add(new Stat { _Stat = s, Value = maxS });
+            max.Add(new Stat { _Stat = s, Value = Mathf.Max(1, maxS) });
 
             currS += traits.Sum(t => t.StartingStats
                                   .Where(m => m.Stat == s)
                                   .Sum(m => (int)Math.Round(m.Delta * t.StartingBonusRandomness)));
 
-            current.Add(new Stat { _Stat = s, Value = currS });
+            current.Add(new Stat { _Stat = s, Value = Mathf.Max(1, currS) });
         }
 
         Current = current.ToArray();
