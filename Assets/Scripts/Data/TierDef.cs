@@ -10,20 +10,12 @@ public class TierDef : ScriptableObject
     public Color UIColour = Color.white; // for shop & UI ribbons
     [Min(1)] public float BasePriceMultiplier = 1f;
 
-    [Header("Base Stat Caps")]
-    [Min(1)] public int SpeedCap = 10;
-    [Min(1)] public int StaminaCap = 10;
-    [Min(1)] public int JumpHeightCap = 10;
-    [Min(1)] public int StrengthCap = 10;
+    [Min(1)] public int StatCap = 10;
 
-    public int GetCap(StatType s) => s switch
+    public int GetCap()
     {
-        StatType.Speed => SpeedCap,
-        StatType.Stamina => StaminaCap,
-        StatType.JumpHeight => JumpHeightCap,
-        StatType.Strength => StrengthCap,
-        _ => 0
-    };
+        return StatCap;
+    }
 
     [Header("Baseline Breeding Odds")]
     [Range(0, 1)] public float UpgradeChance = 0.30f;

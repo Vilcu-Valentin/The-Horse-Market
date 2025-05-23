@@ -63,7 +63,7 @@ public class Master : MonoBehaviour
             coinCounter.text = currentNumber.ToString("#,##" + "0");
         }
 
-        emeralds = (int)desiredNumber;
+        emeralds = Mathf.Max(0,(int)desiredNumber);
         Debug.Log(emeralds);
     }
 }

@@ -8,7 +8,8 @@ public class VisualDef : ScriptableObject
 {
     public HorseColor horseColor;
     public Sprite sprite2D;
-    //Rarity
+    [Tooltip("The lower this number, the rarer they are")]
+    public int rarityTickets;
 
     [Tooltip("Scalar on market price (1 = neutral)")]
     public float PriceScalar = 1f;

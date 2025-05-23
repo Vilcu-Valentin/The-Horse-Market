@@ -10,7 +10,8 @@ public sealed class TraitDef : ScriptableObject
     [Header("Identity")]
     public string DisplayName;
     [TextArea] public string Description;
-    //public TraitRarity Rarity;
+    [Tooltip("The lower this number, the rarer they are")]
+    public int rarityTickets;
     public Sprite Icon;
     public bool IsNegative;
 
@@ -36,10 +37,10 @@ public sealed class TraitDef : ScriptableObject
     public bool canFailTraining = false;
 
     [Header("Stat Adjustments")]
-    [Tooltip("Applies a delta to a specific stat of a horse")]
-    public List<StatCapMod> StatCapMods = new();
+    [Tooltip("Applies a modifier to a specific stat of a horse (0 - neutral)")]
+    public List<StatMod> StatCapMods = new();
     [Tooltip("Applies a starting stat bonus, MUST be positive")]
-    public List<StatCapMod> StartingStas = new();
+    public List<StatDelta> StartingStats = new();
     [Tooltip("Randomizes the starting bonus values, 0f = no randomness, 0.1f = +- 10%")]
     [Range(0f, 1f)]public float StartingBonusRandomness = 0f;
 
@@ -53,7 +54,14 @@ public sealed class TraitDef : ScriptableObject
 }
 
 [Serializable]
-public struct StatCapMod            // +15 Speed cap, -10 Strength cap, …
+public struct StatMod            
+{
+    public StatType Stat;
+    public float Modifier;
+}
+
+[Serializable]
+public struct StatDelta
 {
     public StatType Stat;
     public int Delta;

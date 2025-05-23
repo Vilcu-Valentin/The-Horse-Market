@@ -16,14 +16,9 @@ public class CrateDef : ScriptableObject
         new WeightedTier { Tier = null, Weight = 1 }   // assign real tiers in Inspector
     };
 
-    [Header("Initial Horse Setup")]
-    [Min(0)] public int MinTraitRolls = 1; 
-    [Min(1)] public int MaxTraitRolls = 2;   
-    // Visual picking
-    [Range(0, 0.5f)]
-    public float MaxStatVariance = 0.10f;              // ±10 % wiggle room around tier cap
+    [Min(0)] public int MinTraits = 1;
+    [Min(1)] public int MaxTraits = 2;
 }
-
 
 [Serializable]
 public struct WeightedTier
