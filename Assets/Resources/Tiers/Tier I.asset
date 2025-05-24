@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Tier I
   m_EditorClassIdentifier: 
   TierName: Tier I
+  tierIcon: {fileID: 21300000, guid: a858be52e542e874b9fc31c98095f99f, type: 3}
   TierIndex: 1
-  UIColour: {r: 1, g: 1, b: 1, a: 1}
+  UIColour: {r: 0.382, g: 0.33599916, b: 0.302544, a: 1}
   BasePriceMultiplier: 1
-  SpeedCap: 10
-  StaminaCap: 10
-  JumpHeightCap: 10
-  StrengthCap: 10
-  UpgradeChance: 0.3
-  DowngradeChance: 0.2
-  MutationChance: 0.02
+  StatCap: 10
+  UpgradeChance: 0.5
+  DowngradeChance: 0.4
+  MutationChance: 0.25

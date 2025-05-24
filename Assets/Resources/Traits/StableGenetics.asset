@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: StableGenetics
+  m_EditorClassIdentifier: 
+  DisplayName: Stable Genetics
+  Description: Horses with Stable Genetics reduce the likelihood of mutations, offering
+    breeders predictability and consistency in trait inheritance, ideal for focused
+    breeding programs.
+  rarityTickets: 35
+  Icon: {fileID: 0}
+  IsNegative: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.5
+  MutationMultiplier: 0.3
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 1
+  Venerable: 1
+  conflictedTraits: []

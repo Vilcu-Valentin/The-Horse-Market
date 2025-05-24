@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Fleeting
+  m_EditorClassIdentifier: 
+  DisplayName: Fleeting
+  Description: Horses with this trait start with significantly higher initial stats
+    but have considerably lower maximum potential in all areas, quickly reaching
+    their limits with limited long-term potential.
+  rarityTickets: 30
+  Icon: {fileID: 0}
+  IsNegative: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.35
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.65
+  - Stat: 1
+    Modifier: -0.65
+  - Stat: 2
+    Modifier: -0.65
+  - Stat: 3
+    Modifier: -0.65
+  StartingStats:
+  - Stat: 0
+    Modifier: 0.5
+  - Stat: 1
+    Modifier: 0.5
+  - Stat: 2
+    Modifier: 0.5
+  - Stat: 3
+    Modifier: 5
+  StartingBonusRandomness: 0.25
+  CompetitionBuffPct: 0
+  PriceScalar: 0.8
+  Venerable: 1
+  conflictedTraits: []

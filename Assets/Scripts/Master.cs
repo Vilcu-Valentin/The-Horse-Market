@@ -36,9 +36,9 @@ public class Master : MonoBehaviour
     {
         
             if (Input.GetKey("a"))
-                AddToNumber(-100);
+                AddToNumber(-1000);
             if (Input.GetKey("d"))
-                AddToNumber(100);
+                AddToNumber(1000);
 
         if(currentNumber != desiredNumber)
         {

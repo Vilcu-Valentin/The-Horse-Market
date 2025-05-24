@@ -25,8 +25,8 @@ public sealed class TraitDef : ScriptableObject
 
     [Header("Traits Inheritence")]
     [Tooltip("How reliably this trait is inherited if ONE parent owns it")]
-    [Range(0f, 1f)] public float BaseInheritChance = 0.25f;
-    [Tooltip("Multiplier changes the base mutation chance for a new trait to apper (0 - neutral)")]
+    [Range(0f, 0.5f)] public float BaseInheritChance = 0.25f;
+    [Tooltip("Multiplier changes the base mutation chance for a new trait to apper (1 - neutral)")]
     public float MutationMultiplier = 1f;
 
     [Header("Training")]
@@ -40,8 +40,8 @@ public sealed class TraitDef : ScriptableObject
     [Header("Stat Adjustments")]
     [Tooltip("Applies a modifier to a specific stat of a horse (0 - neutral)")]
     public List<StatMod> StatCapMods = new();
-    [Tooltip("Applies a starting stat bonus, MUST be positive")]
-    public List<StatDelta> StartingStats = new();
+    [Tooltip("Applies a starting stat bonus (0 - neutral)")]
+    public List<StatMod> StartingStats = new();
     [Tooltip("Randomizes the starting bonus values, 0f = no randomness, 0.1f = +- 10%")]
     [Range(0f, 1f)]public float StartingBonusRandomness = 0f;
 

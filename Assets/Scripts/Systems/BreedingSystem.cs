@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BreedingSystem : MonoBehaviour
@@ -49,6 +50,9 @@ public class BreedingSystem : MonoBehaviour
         List<TraitDef> childTraits = CalculateTraits(parentA, parentB);
 
         // Remove parents and add new foal to the player inventory
+        SaveSystem.Instance.Current.horses.Add(HorseFactory.CreateFoal(childTier, childVisual, childTraits));
+        SaveSystem.Instance.Current.horses.Remove(parentA);
+        SaveSystem.Instance.Current.horses.Remove(parentB);
     }
 
     private (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
@@ -123,7 +127,7 @@ public class BreedingSystem : MonoBehaviour
         foreach (TraitDef trait in parentB.Traits)
         {
             if (potentialTraits.ContainsKey(trait))
-                potentialTraits[trait] += trait.BaseInheritChance * 1.5f;
+                potentialTraits[trait] += trait.BaseInheritChance * 1.2f;
             else
                 potentialTraits[trait] = trait.BaseInheritChance;
         }

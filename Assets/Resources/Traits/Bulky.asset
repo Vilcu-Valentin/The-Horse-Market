@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Bulky
+  m_EditorClassIdentifier: 
+  DisplayName: Bulky
+  Description: Bulky horses possess significantly increased strength potential, though
+    their overall speed and jump capabilities are notably reduced, making them ideal
+    for strength-based competitions but disadvantaged elsewhere.
+  rarityTickets: 16
+  Icon: {fileID: 0}
+  IsNegative: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.2
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.5
+  - Stat: 1
+    Modifier: -0.2
+  - Stat: 2
+    Modifier: -0.7
+  - Stat: 3
+    Modifier: 0.5
+  StartingStats:
+  - Stat: 0
+    Modifier: -0.15
+  - Stat: 1
+    Modifier: -0.1
+  - Stat: 2
+    Modifier: -0.25
+  - Stat: 3
+    Modifier: 0.15
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 0.9
+  Venerable: 1
+  conflictedTraits: []

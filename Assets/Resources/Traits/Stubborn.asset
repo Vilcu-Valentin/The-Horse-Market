@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Stubborn
+  m_EditorClassIdentifier: 
+  DisplayName: Stubborn
+  Description: Stubborn horses actively resist training, leading to moderately reduced
+    training speeds and requiring consistent management and patience to progress
+    efficiently.
+  rarityTickets: 46
+  Icon: {fileID: 0}
+  IsNegative: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.23
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 0.85
+  canFailTraining: 1
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.05
+  - Stat: 1
+    Modifier: -0.05
+  - Stat: 2
+    Modifier: -0.05
+  - Stat: 3
+    Modifier: -0.05
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: -10
+  PriceScalar: 0.8
+  Venerable: 1
+  conflictedTraits: []

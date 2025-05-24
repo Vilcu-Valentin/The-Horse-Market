@@ -45,35 +45,78 @@ public class Horse
 
     private void BuildStats(TierDef tier, List<TraitDef> traits)
     {
-        List<Stat> max = new List<Stat>();
-        List<Stat> current = new List<Stat>(); 
-        // Current and Max stats
-        foreach (StatType s in Enum.GetValues(typeof(StatType)))
+        var maxStats = new List<Stat>();
+        var currentStats = new List<Stat>();
+
+        // 0) Log tier basics
+        int baseCap = tier.GetCap();
+        float tierRadius = 0.18f * Mathf.Pow(1.17f, -tier.TierIndex);
+        Debug.Log($"[BuildStats] Tier={tier.name} (Index={tier.TierIndex}) → baseCap={baseCap}, tierRadius={tierRadius:F4}");
+
+        foreach (StatType stat in Enum.GetValues(typeof(StatType)))
         {
-            int maxS = 0, currS = 0;
+            Debug.Log($"--- Stat: {stat} ---");
 
-            // Added tier cap
-            maxS += (int)UnityEngine.Random.Range(tier.GetCap() * -(0.35f * Mathf.Pow(1.17f, -tier.TierIndex)), tier.GetCap() * (0.35f * Mathf.Pow(1.17f, -tier.TierIndex)));
+            // ---- 1) TRAIT CAP BONUS ----
+            var capModList = traits
+                .SelectMany(t => t.StatCapMods, (t, m) => new { Trait = t.name, m.Stat, m.Modifier })
+                .Where(x => x.Stat == stat)
+                .ToList();
+            foreach (var m in capModList)
+                Debug.Log($"    CapMod from {m.Trait}: rawModifier={m.Modifier:F4} (contribution={m.Modifier - 1f:F4})");
+            float capBonusPercent = capModList.Sum(x => x.Modifier);
+            float capMultiplier = 1f + capBonusPercent;
+            Debug.Log($"    capBonusPercent={capBonusPercent:F4} → capMultiplier={capMultiplier:F4}");
 
-            // Added traits cap
-            float totalMod = traits
-                .SelectMany(t => t.StatCapMods)
-                .Where(m => m.Stat == s)
-                .Sum(m => m.Modifier);
-            maxS = (int)Math.Round(maxS * totalMod);
+            // ---- 2) RANDOMIZE AROUND 1.0 ± tierRadius ----
+            float randomFactor = UnityEngine.Random.Range(1f - tierRadius, 1f + tierRadius);
+            Debug.Log($"    randomFactor in [{1f - tierRadius:F4}…{1f + tierRadius:F4}] = {randomFactor:F4}");
 
-            max.Add(new Stat { _Stat = s, Value = Mathf.Max(1, maxS) });
+            // compute max
+            int maxValue = Mathf.RoundToInt(baseCap * randomFactor * capMultiplier);
+            maxValue = Mathf.Max(1, maxValue);
+            Debug.Log($"    maxValue = RoundToInt({baseCap} * {randomFactor:F4} * {capMultiplier:F4}) = {maxValue}");
+            maxStats.Add(new Stat { _Stat = stat, Value = maxValue });
 
-            currS += traits.Sum(t => t.StartingStats
-                                  .Where(m => m.Stat == s)
-                                  .Sum(m => (int)Math.Round(m.Delta * t.StartingBonusRandomness)));
+            // ---- 3) STARTING STAT PERCENT ----
+            var startModList = traits
+                .SelectMany(t => t.StartingStats, (t, m) => new { Trait = t.name, m.Stat, m.Modifier })
+                .Where(x => x.Stat == stat)
+                .ToList();
+            foreach (var m in startModList)
+                Debug.Log($"    StartingStatMod from {m.Trait}: modifier={m.Modifier:F4}");
+            float startPercent = startModList.Sum(x => x.Modifier);
+            float startPercentClamped = Mathf.Clamp(startPercent, 0f, 0.9f);
+            Debug.Log($"    startPercent (sum)={startPercent:F4} → clamped to {startPercentClamped:F4}");
 
-            current.Add(new Stat { _Stat = s, Value = Mathf.Max(1, currS) });
+            // ---- 4) STARTING RANDOMNESS ----
+            float startRandomness = traits.Sum(t => t.StartingBonusRandomness);
+            Debug.Log($"    startRandomness (sum of bonuses)={startRandomness:F4}");
+
+            // baseline start = maxValue * startPercentClamped
+            float baselineStart = maxValue * startPercentClamped;
+            Debug.Log($"    baselineStart = {maxValue} * {startPercentClamped:F4} = {baselineStart:F4}");
+
+            // random range around that baseline
+            float randomStart = UnityEngine.Random.Range(
+                baselineStart * (1f - startRandomness),
+                baselineStart * (1f + startRandomness)
+            );
+            Debug.Log($"    randomStart in [{baselineStart * (1f - startRandomness):F4}…{baselineStart * (1f + startRandomness):F4}] = {randomStart:F4}");
+
+            int currentValue = Mathf.RoundToInt(randomStart);
+            currentValue = Mathf.Clamp(currentValue, 1, maxValue);
+            Debug.Log($"    currentValue = Clamp(RoundToInt({randomStart:F4}), 1, {maxValue}) = {currentValue}");
+            currentStats.Add(new Stat { _Stat = stat, Value = currentValue });
         }
 
-        Current = current.ToArray();
-        Max = max.ToArray();
+        Max = maxStats.ToArray();
+        Current = currentStats.ToArray();
+
+        Debug.Log($"[BuildStats] Finished. Generated {Max.Length} max-stats and {Current.Length} current-stats.");
     }
+
+
 }
 
 [Serializable]

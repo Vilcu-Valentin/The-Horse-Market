@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Talented
+  m_EditorClassIdentifier: 
+  DisplayName: Talented
+  Description: Talented horses possess exceptional natural abilities, providing a
+    substantial boost to their competition performance, alongside improved training
+    effectiveness and speed. Additionally, they benefit from moderately increased
+    maximum potential across all stats, making them versatile and highly valuable
+    in both competitive events and breeding programs.
+  rarityTickets: 5
+  Icon: {fileID: 0}
+  IsNegative: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.1
+  MutationMultiplier: 1
+  TrainingMult: 1.2
+  TrainingSpeed: 1.3
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0.55
+  - Stat: 1
+    Modifier: 0.55
+  - Stat: 2
+    Modifier: 0.55
+  - Stat: 3
+    Modifier: 0.55
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 30
+  PriceScalar: 1.65
+  Venerable: 1.6
+  conflictedTraits: []

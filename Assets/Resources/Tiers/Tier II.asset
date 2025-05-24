@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
+  m_Name: Tier II
+  m_EditorClassIdentifier: 
+  TierName: Tier II
+  tierIcon: {fileID: 21300000, guid: 0be1f808443e18d4a8ab69f010a77f85, type: 3}
+  TierIndex: 2
+  UIColour: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  BasePriceMultiplier: 2
+  StatCap: 20
+  UpgradeChance: 0.4
+  DowngradeChance: 0.35
+  MutationChance: 0.15

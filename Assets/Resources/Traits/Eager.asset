@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Eager
+  m_EditorClassIdentifier: 
+  DisplayName: Eager
+  Description: Eager horses consistently perform better during training, modestly
+    improving the rate at which they gain stats, making them more efficient to train
+    overall.
+  rarityTickets: 75
+  Icon: {fileID: 0}
+  IsNegative: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.35
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1.15
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats:
+  - Stat: 0
+    Modifier: 0.02
+  - Stat: 1
+    Modifier: 0.02
+  - Stat: 2
+    Modifier: 0.02
+  - Stat: 3
+    Modifier: 0.02
+  StartingBonusRandomness: 0.1
+  CompetitionBuffPct: 0
+  PriceScalar: 1
+  Venerable: 1
+  conflictedTraits: []

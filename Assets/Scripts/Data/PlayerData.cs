@@ -18,6 +18,18 @@ public class PlayerData : ScriptableObject
     private void OnEnable() => RebuildLookup();
     private void OnValidate() => RebuildLookup();
 
+    public void AddHorse(Horse horse)
+    {
+        horses.Add(horse);
+        RebuildLookup();
+    }
+
+    public void RemoveHorse(Horse horse)
+    {
+        horses.Remove(horse);
+        RebuildLookup();
+    }
+
     private void RebuildLookup()
     {
         _lookup.Clear();

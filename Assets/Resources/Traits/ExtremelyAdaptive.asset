@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: ExtremelyAdaptive
+  m_EditorClassIdentifier: 
+  DisplayName: Extremely Adaptive
+  Description: This remarkable trait greatly enhances maximum stats across all areas,
+    creating exceptionally versatile horses capable of excelling broadly in competitive
+    events
+  rarityTickets: 8
+  Icon: {fileID: 0}
+  IsNegative: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.1
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0.6
+  - Stat: 1
+    Modifier: 0.6
+  - Stat: 2
+    Modifier: 0.6
+  - Stat: 3
+    Modifier: 0.6
+  StartingStats:
+  - Stat: 0
+    Modifier: 0.15
+  - Stat: 1
+    Modifier: 0.15
+  - Stat: 2
+    Modifier: 0.15
+  - Stat: 3
+    Modifier: 0.15
+  StartingBonusRandomness: 0.1
+  CompetitionBuffPct: 0
+  PriceScalar: 1.5
+  Venerable: 1.5
+  conflictedTraits: []

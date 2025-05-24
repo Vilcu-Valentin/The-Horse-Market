@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class CratePanelUI : MonoBehaviour
+{
+    public TextMeshProUGUI crateName;
+    public TextMeshProUGUI price;
+    public Image crateSprite;
+    public Image backgroundColor;
+
+    public void InitCrateUI(string crateName, int price, Sprite sprite, Color bgColor)
+    {
+        this.crateName.text = crateName;
+        this.price.text = price.ToString("#,##" + "0");
+        crateSprite.sprite = sprite;
+        backgroundColor.color = bgColor;
+    }
+}
