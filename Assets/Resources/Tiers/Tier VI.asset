@@ -15,7 +15,9 @@ MonoBehaviour:
   TierName: Tier VI
   tierIcon: {fileID: 21300000, guid: d3e87ca393e14354c9b4e0e6aca9a766, type: 3}
   TierIndex: 6
-  UIColour: {r: 0.18431373, g: 0.88235295, b: 0.8464212, a: 1}
+  HighlightColor: {r: 0.16078432, g: 0.88235295, b: 0.8666667, a: 1}
+  ForegroundColor: {r: 0.22745098, g: 0.6745098, b: 0.6156863, a: 1}
+  BackgroundColor: {r: 0.14117648, g: 0.2901961, b: 0.34509805, a: 1}
   BasePriceMultiplier: 32
   StatCap: 320
   UpgradeChance: 0.15

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Master : MonoBehaviour
 {
     [Header("Emeralds Counter")]
-    public int emeralds;
+    public long emeralds;
     public TextMeshProUGUI coinCounter;
 
     public float animationTime = 1.5f;
@@ -55,10 +55,10 @@ public class Master : MonoBehaviour
                     currentNumber = desiredNumber;
             }
 
-            coinCounter.text = currentNumber.ToString("#,##" + "0");
+            long currNumber = (long)currentNumber;
+            coinCounter.text = currNumber.ToShortString();
         }
 
         emeralds = (int)desiredNumber;
-        Debug.Log(emeralds);
     }
 }

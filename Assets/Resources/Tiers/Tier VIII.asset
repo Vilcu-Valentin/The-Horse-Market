@@ -15,7 +15,9 @@ MonoBehaviour:
   TierName: Tier VIII
   tierIcon: {fileID: 21300000, guid: 7a9429c5eda811540acb9780c3189d69, type: 3}
   TierIndex: 8
-  UIColour: {r: 0.672, g: 0.088703975, b: 0.088703975, a: 1}
+  HighlightColor: {r: 0.67058825, g: 0.09019608, b: 0.09019608, a: 1}
+  ForegroundColor: {r: 0.6039216, g: 0.26666668, b: 0.26666668, a: 1}
+  BackgroundColor: {r: 0.34509805, g: 0.1764706, b: 0.13725491, a: 1}
   BasePriceMultiplier: 128
   StatCap: 1280
   UpgradeChance: 0

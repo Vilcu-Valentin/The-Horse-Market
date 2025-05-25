@@ -8,7 +8,9 @@ public class TierDef : ScriptableObject
     public string TierName = "Tier I";
     public Sprite tierIcon;
     [Min(1)] public int TierIndex = 1; 
-    public Color UIColour = Color.white; // for shop & UI ribbons
+    public Color HighlightColor = Color.white; // for shop & UI ribbons
+    public Color ForegroundColor = Color.white;
+    public Color BackgroundColor = Color.white;
     [Tooltip("Final price multiplier, after all of the traits of the horse are calculated, they get multiplied with this value")]
     [Min(1)] public float BasePriceMultiplier = 1f;
 

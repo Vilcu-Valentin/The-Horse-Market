@@ -15,7 +15,9 @@ MonoBehaviour:
   TierName: Tier III
   tierIcon: {fileID: 21300000, guid: 7a1577769d35b6b458ce4440e89f2d6d, type: 3}
   TierIndex: 3
-  UIColour: {r: 0.8490566, g: 0.66526616, b: 0.29636872, a: 1}
+  HighlightColor: {r: 0.8627451, g: 0.69411767, b: 0.3254902, a: 1}
+  ForegroundColor: {r: 0.63529414, g: 0.5137255, b: 0.28627452, a: 1}
+  BackgroundColor: {r: 0.34509805, g: 0.27058825, b: 0.14117648, a: 1}
   BasePriceMultiplier: 4
   StatCap: 40
   UpgradeChance: 0.35

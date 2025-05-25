@@ -13,8 +13,9 @@ public class CratePanelUI : MonoBehaviour
 
     public void InitCrateUI(string crateName, int price, Sprite sprite, Color bgColor)
     {
+        long _price = price;
         this.crateName.text = crateName;
-        this.price.text = price.ToString("#,##" + "0");
+        this.price.text = _price.ToShortString();
         crateSprite.sprite = sprite;
         backgroundColor.color = bgColor;
     }

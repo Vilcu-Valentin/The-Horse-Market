@@ -15,7 +15,9 @@ MonoBehaviour:
   TierName: Tier VII
   tierIcon: {fileID: 21300000, guid: 9bae4d813da98d0439caa40c483b9cf7, type: 3}
   TierIndex: 7
-  UIColour: {r: 0.9056604, g: 0.42670104, b: 0.17942317, a: 1}
+  HighlightColor: {r: 0.9254902, g: 0.44313726, b: 0.17254902, a: 1}
+  ForegroundColor: {r: 0.7176471, g: 0.45882353, b: 0.2627451, a: 1}
+  BackgroundColor: {r: 0.41568628, g: 0.25490198, b: 0.14509805, a: 1}
   BasePriceMultiplier: 64
   StatCap: 640
   UpgradeChance: 0.1

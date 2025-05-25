@@ -15,7 +15,9 @@ MonoBehaviour:
   TierName: Tier II
   tierIcon: {fileID: 21300000, guid: 0be1f808443e18d4a8ab69f010a77f85, type: 3}
   TierIndex: 2
-  UIColour: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  HighlightColor: {r: 0.827451, g: 0.827451, b: 0.827451, a: 1}
+  ForegroundColor: {r: 0.58431375, g: 0.5764706, b: 0.5686275, a: 1}
+  BackgroundColor: {r: 0.34509805, g: 0.33333334, b: 0.31764707, a: 1}
   BasePriceMultiplier: 2
   StatCap: 20
   UpgradeChance: 0.4

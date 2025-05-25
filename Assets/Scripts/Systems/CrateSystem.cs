@@ -30,7 +30,7 @@ public class CrateSystem : MonoBehaviour
         foreach(var crate in crates) 
         {
             GameObject cr = Instantiate(crateUIPrefab, crateUIContents);
-            cr.GetComponent<CratePanelUI>().InitCrateUI(crate.name, crate.CostInEmeralds, crate.Icon, crate.crateColor);
+            cr.GetComponent<CratePanelUI>().InitCrateUI(crate.CrateName, crate.CostInEmeralds, crate.Icon, crate.crateColor);
         }
     }
 

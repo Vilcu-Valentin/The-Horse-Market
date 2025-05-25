@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "HorseGame/PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    public int emeralds;
+    public long emeralds;
     public List<Horse> horses = new();
     // public List<Item> inventory = new(); // Breeding items, maybe crates etc.
 
