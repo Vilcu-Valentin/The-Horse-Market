@@ -14,13 +14,20 @@ public static class WeightedSelector<T>
     /// <exception cref="InvalidOperationException"></exception>
     public static T Pick(IEnumerable<(T item, int ticket)> choices)
     {
-        var total = choices.Sum(c => c.ticket);
-        var r = UnityEngine.Random.Range(0, total);
+        int total = choices.Sum(c => c.ticket);
+        if (total <= 0) throw new InvalidOperationException("No tickets to choose from");
+
+        // r is [1 .. total]
+        int r = UnityEngine.Random.Range(1, total + 1);
+
         foreach (var (item, w) in choices)
         {
             r -= w;
-            if (r <= 0) return item;
+            if (r <= 0)
+                return item;
         }
+
+        // should never get here
         throw new InvalidOperationException();
     }
 }

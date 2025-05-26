@@ -66,6 +66,7 @@ MonoBehaviour:
   price: {fileID: 6277940912025215410}
   crateSprite: {fileID: 2234492619216783930}
   backgroundColor: {fileID: 734573607717054118}
+  button: {fileID: 8279024801727833859}
 --- !u!1 &1200526367954576045
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23627216, g: 0.41509432, b: 0.19449386, a: 1}
+  m_Color: {r: 0.28235295, g: 0.48235294, b: 0.23921569, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

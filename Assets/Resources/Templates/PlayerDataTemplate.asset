@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb30461088b7a054782c491889be88cf, type: 3}
   m_Name: PlayerDataTemplate
   m_EditorClassIdentifier: 
+  maxHorseTierInInventory: 3
   emeralds: 1000
   horses: []

@@ -4,38 +4,16 @@ using UnityEngine;
 
 public class CrateSystem : MonoBehaviour
 {
+    [SerializeField]
     public List<CrateDef> crates;
-    // TEMPORARY FIELDS
-    public CrateDef selectedCrate;
-    public Horse openedHorse;
 
-    public Transform crateUIContents;
-    public GameObject crateUIPrefab;
-    public CrateOpeningUI opener;
+    /// <summary>
+    /// Pure game-logic: picks a tier, spawns a horse, adds it to save, and starts the opening animation.
+    /// </summary>
+    public (TierDef, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
+    {
+        // Check if enough money, if there are enough remove them, otherwise raise money error
 
-    void Start()
-    {
-        PopulateUI();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            OpenCrate(selectedCrate);
-    }
-
-    //Temporary creation function might need to be moved somewhere else
-    public void PopulateUI()
-    {
-        foreach(var crate in crates) 
-        {
-            GameObject cr = Instantiate(crateUIPrefab, crateUIContents);
-            cr.GetComponent<CratePanelUI>().InitCrateUI(crate);
-        }
-    }
-
-    public void OpenCrate(CrateDef crate)
-    {
         var values = new List<(WeightedTier tier, int weight)>();
 
         foreach (var tier in crate.TierChances)
@@ -50,7 +28,7 @@ public class CrateSystem : MonoBehaviour
 
         Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount);
         SaveSystem.Instance.Current.horses.Add(pickedH);
-        //opener.BeginSpin(pickedH.Tier.tierIcon);
-        opener.StartSpin();
+
+        return (pickedH.Tier, values);
     }
 }

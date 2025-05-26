@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "HorseGame/PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    //TEMPORARY FIELD
+    public int maxHorseTierInInventory = 3;
+
     public long emeralds;
     public List<Horse> horses = new();
     // public List<Item> inventory = new(); // Breeding items, maybe crates etc.
@@ -17,6 +21,21 @@ public class PlayerData : ScriptableObject
 
     private void OnEnable() => RebuildLookup();
     private void OnValidate() => RebuildLookup();
+
+    public int GetHighestHorseTier()
+    {
+        // Until we solve the issue at hand it will return maxHorseTierInInventory as a debug
+        return maxHorseTierInInventory;
+        /*
+        int maxI = 0;
+        foreach(Horse horse in horses)
+        {
+            if(horse.Tier.TierIndex > maxI)
+                maxI = horse.Tier.TierIndex;
+        }
+        return maxI;
+        */
+    }
 
     public void AddHorse(Horse horse)
     {

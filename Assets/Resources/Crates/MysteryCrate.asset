@@ -26,26 +26,26 @@ MonoBehaviour:
     MinTraits: 2
     MaxTraits: 5
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
-    Tickets: 8
+    Tickets: 7
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
-    Tickets: 16
+    Tickets: 15
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
-    Tickets: 16
+    Tickets: 20
     MinTraits: 3
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
-    Tickets: 8
+    Tickets: 16
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
-    Tickets: 4
+    Tickets: 6
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
-    Tickets: 2
+    Tickets: 3
     MinTraits: 4
     MaxTraits: 8

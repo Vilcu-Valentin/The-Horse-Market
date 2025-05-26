@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class CratePanelUI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class CratePanelUI : MonoBehaviour
     public Image crateSprite;
     public Image backgroundColor;
 
+    public Button button;
+
+    public event Action<CrateDef> OnClicked;
+
     public void InitCrateUI(CrateDef crate)
     {
         long _price = crate.CostInEmeralds;
@@ -18,5 +23,8 @@ public class CratePanelUI : MonoBehaviour
         this.price.text = _price.ToShortString();
         crateSprite.sprite = crate.Icon;
         backgroundColor.color = crate.crateColor;
+
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => OnClicked?.Invoke(crate));
     }
 }
