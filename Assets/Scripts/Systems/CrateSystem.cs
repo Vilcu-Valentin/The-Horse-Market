@@ -30,7 +30,7 @@ public class CrateSystem : MonoBehaviour
         foreach(var crate in crates) 
         {
             GameObject cr = Instantiate(crateUIPrefab, crateUIContents);
-            cr.GetComponent<CratePanelUI>().InitCrateUI(crate.CrateName, crate.CostInEmeralds, crate.Icon, crate.crateColor);
+            cr.GetComponent<CratePanelUI>().InitCrateUI(crate);
         }
     }
 
@@ -50,6 +50,7 @@ public class CrateSystem : MonoBehaviour
 
         Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount);
         SaveSystem.Instance.Current.horses.Add(pickedH);
-        opener.PlayOpenAnimation(pickedH.Tier.tierIcon);
+        //opener.BeginSpin(pickedH.Tier.tierIcon);
+        opener.StartSpin();
     }
 }

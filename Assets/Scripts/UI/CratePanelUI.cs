@@ -11,12 +11,12 @@ public class CratePanelUI : MonoBehaviour
     public Image crateSprite;
     public Image backgroundColor;
 
-    public void InitCrateUI(string crateName, int price, Sprite sprite, Color bgColor)
+    public void InitCrateUI(CrateDef crate)
     {
-        long _price = price;
-        this.crateName.text = crateName;
+        long _price = crate.CostInEmeralds;
+        this.crateName.text = crate.CrateName;
         this.price.text = _price.ToShortString();
-        crateSprite.sprite = sprite;
-        backgroundColor.color = bgColor;
+        crateSprite.sprite = crate.Icon;
+        backgroundColor.color = crate.crateColor;
     }
 }

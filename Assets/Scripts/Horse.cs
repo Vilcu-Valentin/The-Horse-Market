@@ -9,6 +9,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class Horse
 {
     public Guid Id;
+    public string horseName;
 
     // Tier & visuals are references to immutable ScriptableObjects
     public TierDef Tier;
@@ -41,6 +42,7 @@ public class Horse
         Visual = visual;
         _traits = traits;
         BuildStats(tier, traits);
+        horseName = HorseNameGenerator.GetRandomHorseName();
     }
 
     private void BuildStats(TierDef tier, List<TraitDef> traits)

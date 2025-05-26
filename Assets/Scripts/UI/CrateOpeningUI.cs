@@ -1,150 +1,181 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Linq;
 
-[RequireComponent(typeof(CanvasGroup))]
 public class CrateOpeningUI : MonoBehaviour
 {
-    [Header("References")]
-    public GameObject panel;         // Root panel (inactive by default)
-    public ScrollRect scrollRect;    // Your ScrollRect
-    public RectTransform content;       // Content under ScrollRect.Viewport
-    public GameObject itemPrefab;    // Prefab: must have an Image component
+    [Tooltip("Speed in pixels per second (right→left).")]
+    public float speed = 100f;
 
-    [Header("Animation Settings")]
-    [Tooltip("Total spin time before final reel.")]
-    public float duration = 5f;
-    [Tooltip("Time between item steps.")]
-    public float spawnInterval = 0.1f;
+    [Tooltip("Local X‑position at which an item is considered off‑screen on the left.")]
+    public float thresholdX = -600f;
 
-    [Header("Data")]
-    [Tooltip("Weighted list of possible tier icons.")]
-    public List<WeightedSprite> weightedSprites;
+    [Tooltip("Minimum spin duration in seconds.")]
+    public float minSpinDuration = 3f;
 
-    [Header("Events")]
-    public UnityEvent onAnimationComplete;
+    [Tooltip("Maximum spin duration in seconds.")]
+    public float maxSpinDuration = 5f;
 
-    // internal
-    float _itemWidth;
-    float _spacing;
-    int _visibleCount;
-    Coroutine _running;
+    [Tooltip("Max random offset (+/-) from the horizontal center of the final item.")]
+    public float stopOffsetRange = 50f;
+
+    [Tooltip("Local X‑position of the selector center (stop line).")]
+    public float selectorX = 0f;
+
+    public RectTransform _rect;
+    public List<RectTransform> _items;
+    public HorizontalLayoutGroup _layoutGroup;
+
+    private float _itemWidth;
+    private float _spacing;
+
+    private enum SpinState { Idle, Spinning, SlowingDown }
+    private SpinState _state = SpinState.Idle;
+
+    private float _spinStartTime;
+    private float _spinDuration;
+    private float _initialSpeed;
+    private float _slowStartTime;
+    private float _decelDuration;
+
+    private RectTransform _stopItem;
+    private float _stopTargetX;
 
     void Awake()
     {
-        // Measure your slot width + spacing (assumes prefab and layout are set up)
-        var rt = itemPrefab.GetComponent<RectTransform>();
-        _itemWidth = rt.rect.width;
-        var hlg = content.GetComponent<HorizontalLayoutGroup>();
-        _spacing = hlg != null ? hlg.spacing : 0f;
+        _rect = GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
 
-        // How many items fit in viewport (plus a bit of buffer)
-        float vw = scrollRect.viewport.rect.width;
-        _visibleCount = Mathf.CeilToInt(vw / (_itemWidth + _spacing)) + 2;
+        if (_items == null || _items.Count == 0)
+        {
+            Debug.LogWarning("CrateOpeningUI: No items assigned.");
+            return;
+        }
+
+        _itemWidth = _items[0].sizeDelta.x;
+        _spacing = _layoutGroup != null ? _layoutGroup.spacing : 0f;
     }
 
     /// <summary>
-    /// Call this to run the reel. It will spin for `duration` seconds, then land your finalSprite in the center.
+    /// Call this to begin the spin.
     /// </summary>
-    public void PlayOpenAnimation(Sprite finalSprite)
+    public void StartSpin()
     {
-        if (_running != null) StopCoroutine(_running);
-        panel.SetActive(true);
-        _running = StartCoroutine(RunReel(finalSprite));
-    }
+        if (_state != SpinState.Idle) return;
 
-    private IEnumerator RunReel(Sprite finalSprite)
-    {
-        // 1) Seed initial items
-        ClearContent();
-        for (int i = 0; i < _visibleCount; i++)
-            SpawnItem(PickRandomSprite());
+        // Turn off layout to avoid jerks
+        if (_layoutGroup != null)
+            _layoutGroup.enabled = false;
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
-
-        // 2) Spin phase: continuously spawn → move → destroy front
-        float elapsed = 0f;
-        while (elapsed < duration)
+        // Reset colors: dim all items to HSV value=0.5
+        foreach (var rt in _items)
         {
-            // a) spawn new random at end
-            Sprite s = PickRandomSprite();
-            SpawnItem(s);
-
-            // b) animate one step left
-            yield return AnimateStep(spawnInterval);
-
-            // c) destroy the leftmost
-            Destroy(content.GetChild(0).gameObject);
-            content.anchoredPosition = Vector2.zero;
-
-            elapsed += spawnInterval;
+            var img = rt.GetComponent<Image>();
+            if (img != null)
+            {
+                Color.RGBToHSV(img.color, out float h, out float s, out float v);
+                img.color = Color.HSVToRGB(h, s, 0.5f);
+            }
         }
 
-        // 3) Final step: land on `finalSprite`
-        SpawnItem(finalSprite);
-        yield return AnimateStep(spawnInterval);
-        Destroy(content.GetChild(0).gameObject);
-        content.anchoredPosition = Vector2.zero;
-
-        // 4) Pause so the player sees it
-        yield return new WaitForSeconds(1f);
-
-        // 5) Tear down
-        panel.SetActive(false);
-        onAnimationComplete?.Invoke();
-        _running = null;
+        // Prepare timing
+        _spinDuration = UnityEngine.Random.Range(minSpinDuration, maxSpinDuration);
+        _spinStartTime = Time.time;
+        _initialSpeed = speed;
+        _state = SpinState.Spinning;
     }
 
-    private void ClearContent()
+    void Update()
     {
-        foreach (Transform child in content)
-            Destroy(child.gameObject);
-    }
+        if (_state == SpinState.Idle || _items == null) return;
 
-    private void SpawnItem(Sprite spr)
-    {
-        var go = Instantiate(itemPrefab, content);
-        go.GetComponent<Image>().sprite = spr;
-    }
+        float dt = Time.deltaTime;
+        float moveDistance = 0f;
 
-    private IEnumerator AnimateStep(float stepTime)
-    {
-        // Move content.anchoredPosition.x from 0 → -(itemWidth+spacing) with ease-out
-        Vector2 start = content.anchoredPosition;
-        Vector2 end = start + Vector2.left * (_itemWidth + _spacing);
-
-        float t = 0f;
-        while (t < stepTime)
+        if (_state == SpinState.Spinning)
         {
-            t += Time.deltaTime;
-            float norm = Mathf.Clamp01(t / stepTime);
-            // ease-out quad: f(x)=1-(1-x)^2
-            float eased = 1f - (1f - norm) * (1f - norm);
-            content.anchoredPosition = Vector2.Lerp(start, end, eased);
-            yield return null;
+            if (Time.time - _spinStartTime >= _spinDuration)
+                BeginSlowdown();
+
+            moveDistance = speed * dt;
         }
-        content.anchoredPosition = end;
+        else if (_state == SpinState.SlowingDown)
+        {
+            float t = (Time.time - _slowStartTime) / _decelDuration;
+            if (t >= 1f)
+            {
+                EndSpin();
+                return;
+            }
+            float currentSpeed = Mathf.Lerp(_initialSpeed, 0f, t);
+            moveDistance = currentSpeed * dt;
+        }
+
+        // Move and wrap all items
+        foreach (var rt in _items)
+        {
+            Vector2 p = rt.anchoredPosition;
+            p.x -= moveDistance;
+            rt.anchoredPosition = p;
+
+            if (p.x < thresholdX)
+            {
+                float maxX = _items.Max(x => x.anchoredPosition.x);
+                p.x = maxX + _itemWidth + _spacing;
+                rt.anchoredPosition = p;
+            }
+        }
+
+        // Highlight overlap during spin
+        foreach (var rt in _items)
+        {
+            var img = rt.GetComponent<Image>();
+            if (img == null) continue;
+            float halfW = _itemWidth * 0.5f;
+            // If any pixel of item overlaps selectorX
+            if (Mathf.Abs(rt.anchoredPosition.x - selectorX) <= halfW)
+            {
+                Color.RGBToHSV(img.color, out float h, out float s, out float v);
+                img.color = Color.HSVToRGB(h, s, 1.0f);
+            }
+            else
+            {
+                Color.RGBToHSV(img.color, out float h, out float s, out float v);
+                img.color = Color.HSVToRGB(h, s, 0.5f);
+            }
+        }
     }
 
-    private Sprite PickRandomSprite()
+    private void BeginSlowdown()
     {
-        // Project your List<WeightedSprite> into the form WeightedSelector wants:
-        var weightedList = weightedSprites
-            .Select(ws => (item: ws, weight: ws.weight));
+        _state = SpinState.SlowingDown;
+        _slowStartTime = Time.time;
 
-        // Now call Pick with the tuple sequence
-        var chosen = WeightedSelector<WeightedSprite>.Pick(weightedList);
+        // Pick rightmost existing item
+        _stopItem = _items.OrderByDescending(x => x.anchoredPosition.x).First();
 
-        return chosen.sprite;
+        // Determine stop target with optional offset
+        float offset = UnityEngine.Random.Range(-stopOffsetRange, stopOffsetRange);
+        _stopTargetX = selectorX + offset;
+
+        // Calculate decel time so item eases into place
+        float startX = _stopItem.anchoredPosition.x;
+        float distance = startX - _stopTargetX;
+        _decelDuration = distance > 0f ? (2f * distance) / _initialSpeed : 0.01f;
+
+        // Debug: tint selected item red
+        var dbgImg = _stopItem.GetComponent<Image>();
+        if (dbgImg != null)
+            dbgImg.color = new Color(1f, 0.5f, 0.5f);
     }
 
-    [System.Serializable]
-    public struct WeightedSprite
+    private void EndSpin()
     {
-        public Sprite sprite;
-        public int weight;
+        _state = SpinState.Idle;
+        // Optionally re-enable layout group
+        // if (_layoutGroup != null)
+        //     _layoutGroup.enabled = true;
     }
 }
