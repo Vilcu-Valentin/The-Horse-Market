@@ -31,6 +31,84 @@ public class Horse
         Current.Set(s, sb);
     }
 
+    /// <summary>
+    /// Calculates the horses max possible market price (when it's fully trained) based on it's stats and traits
+    /// </summary>
+    /// <returns>An int value representing the price in emerald</returns>
+    public long GetMaxPrice()
+    {
+        // 1) Compute average tiers (ensure no zero‐division)
+        int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
+        int avgCurrent = (int)Current.Average(t => t.Value);
+
+        // 2) Base price = (3.5 * avgCaps)^2, rounded
+        float rawBase = 3.5f * avgCaps;
+        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.7f));
+
+        // 3) Aggregate all flat multipliers from traits + visual
+        float priceMultiplier = 1f;
+        float venerableMultiplier = 1f;
+        foreach (var trait in _traits)
+        {
+            priceMultiplier *= 1f + trait.PriceScalar;
+            venerableMultiplier *= trait.Venerable;
+        }
+        priceMultiplier *= Visual.PriceScalar;
+
+        // warp venerableMultiplier from [1 → 2.5] into [0 → 1]
+        float vNorm = (venerableMultiplier - 1) / 1.5f;
+        float vWarp = Mathf.Pow(vNorm, 1.15f);
+
+        float venerableScalar = 1f + 2f * vWarp;
+        priceMultiplier *= venerableScalar;
+
+        // 5) Final price
+        return (long)Mathf.Round(basePrice * priceMultiplier);
+    }
+
+    /// <summary>
+    /// Calculates the horse’s current market price based on its stats and traits.
+    /// </summary>
+    /// <returns>Price in emerald (rounded to nearest integer).</returns>
+    public long GetPrice()
+    {
+        // 1) Compute average tiers (ensure no zero‐division)
+        int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
+        int avgCurrent = (int)Current.Average(t => t.Value);
+
+        // 2) Base price = (3.5 * avgCaps)^2, rounded
+        float rawBase = 3.5f * avgCaps;
+        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.7f));
+
+        // 3) Aggregate all flat multipliers from traits + visual
+        float priceMultiplier = 1f;
+        float venerableMultiplier = 1f;
+        foreach (var trait in _traits)
+        {
+            priceMultiplier *= 1f + trait.PriceScalar;
+            venerableMultiplier *= trait.Venerable;
+        }
+        priceMultiplier *= Visual.PriceScalar;
+
+        // 4) “Ease‐in” on how much the current tier (relative to cap) and venerable boost the price
+        float tierRatio = (float)avgCurrent / avgCaps;               // now a float in [0,1]
+        float tierRatioSq = tierRatio * tierRatio;            // instead of Pow(x,2)
+
+        // warp venerableMultiplier from [1 → 2.5] into [0 → 1]
+        float vNorm = (venerableMultiplier - 1) / 1.5f;
+        float vWarp = Mathf.Pow(vNorm, 1.15f);
+
+        float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
+        priceMultiplier *= venerableScalar;
+
+        float trainingMultiplier = tierRatio * 0.8f + 0.2f;
+        priceMultiplier *= trainingMultiplier;
+
+        // 5) Final price
+        return (long)Mathf.Round(basePrice * priceMultiplier);
+    }
+
+
     internal Horse(
         Guid g,  
         TierDef tier, 
@@ -59,18 +137,28 @@ public class Horse
         {
             Debug.Log($"--- Stat: {stat} ---");
 
-            // ---- 1) TRAIT CAP BONUS ----
+            // ---- 1) TRAIT CAP BONUS (multiplicative) ----
             var capModList = traits
                 .SelectMany(t => t.StatCapMods, (t, m) => new { Trait = t.name, m.Stat, m.Modifier })
                 .Where(x => x.Stat == stat)
                 .ToList();
+
+            // log each one
             foreach (var m in capModList)
-                Debug.Log($"    CapMod from {m.Trait}: rawModifier={m.Modifier:F4} (contribution={m.Modifier - 1f:F4})");
-            float capBonusPercent = capModList.Sum(x => x.Modifier);
-            float capMultiplier = 1f + capBonusPercent;
-            Debug.Log($"    capBonusPercent={capBonusPercent:F4} → capMultiplier={capMultiplier:F4}");
+                Debug.Log(
+                    $"    CapMod from {m.Trait}: " +
+                    $"percent={(m.Modifier * 100f):F1}% → factor={(1f + m.Modifier):F4}"
+                );
+
+            // multiplicative stack
+            float capMultiplier = capModList
+                .Aggregate(1f, (acc, m) => acc * (1f + m.Modifier));
+
+            Debug.Log($"    capMultiplier = {capMultiplier:F4}");
+
 
             // ---- 2) RANDOMIZE AROUND 1.0 ± tierRadius ----
+            // (unchanged)
             float randomFactor = UnityEngine.Random.Range(1f - tierRadius, 1f + tierRadius);
             Debug.Log($"    randomFactor in [{1f - tierRadius:F4}…{1f + tierRadius:F4}] = {randomFactor:F4}");
 
@@ -80,16 +168,33 @@ public class Horse
             Debug.Log($"    maxValue = RoundToInt({baseCap} * {randomFactor:F4} * {capMultiplier:F4}) = {maxValue}");
             maxStats.Add(new Stat { _Stat = stat, Value = maxValue });
 
-            // ---- 3) STARTING STAT PERCENT ----
+
+            // ---- 3) STARTING STAT PERCENT (multiplicative) ----
             var startModList = traits
                 .SelectMany(t => t.StartingStats, (t, m) => new { Trait = t.name, m.Stat, m.Modifier })
                 .Where(x => x.Stat == stat)
                 .ToList();
+
+            // log each one
             foreach (var m in startModList)
-                Debug.Log($"    StartingStatMod from {m.Trait}: modifier={m.Modifier:F4}");
-            float startPercent = startModList.Sum(x => x.Modifier);
+                Debug.Log(
+                    $"    StartingStatMod from {m.Trait}: " +
+                    $"percent={(m.Modifier * 100f):F1}% → factor={(1f + m.Modifier):F4}"
+                );
+
+            // multiplicative stack of starting‐percent
+            float startMultiplier = startModList
+                .Aggregate(1f, (acc, m) => acc * (1f + m.Modifier));
+
+            // convert back to percent-of-base and clamp (0…90%)
+            float startPercent = startMultiplier - 1f;
             float startPercentClamped = Mathf.Clamp(startPercent, 0f, 0.9f);
-            Debug.Log($"    startPercent (sum)={startPercent:F4} → clamped to {startPercentClamped:F4}");
+
+            Debug.Log(
+                $"    startPercent = {startPercent:F4} " +
+                $"→ clamped to {startPercentClamped:F4}"
+            );
+
 
             // ---- 4) STARTING RANDOMNESS ----
             float startRandomness = traits.Sum(t => t.StartingBonusRandomness);

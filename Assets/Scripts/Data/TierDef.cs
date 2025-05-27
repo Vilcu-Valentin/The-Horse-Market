@@ -11,8 +11,6 @@ public class TierDef : ScriptableObject
     public Color HighlightColor = Color.white; // for shop & UI ribbons
     public Color ForegroundColor = Color.white;
     public Color BackgroundColor = Color.white;
-    [Tooltip("Final price multiplier, after all of the traits of the horse are calculated, they get multiplied with this value")]
-    [Min(1)] public float BasePriceMultiplier = 1f;
 
     [Tooltip("Base State Cap for all stats, without any traits")]
     [Min(1)] public int StatCap = 10;

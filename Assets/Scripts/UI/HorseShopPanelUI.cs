@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class HorseShopPanelUI : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class HorseShopPanelUI : MonoBehaviour
         horseName.text = horse.horseName;
         horseTier.text = horse.Tier.TierName;
         horseTier.color = horse.Tier.HighlightColor;
-        // calculated horse price is needed;
+        price.text = horse.GetPrice().ToShortString();
         foreground.color = horse.Tier.ForegroundColor;
         background.color = horse.Tier.BackgroundColor;
         horseSprite.sprite = horse.Visual.sprite2D;

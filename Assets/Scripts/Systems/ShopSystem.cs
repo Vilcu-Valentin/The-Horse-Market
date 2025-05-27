@@ -3,10 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class ShopSystem : MonoBehaviour
 {
     public List<TierDef> _allTiers;
     public List<HorseShopPanelUI> horsePanels;
+
+    // TEMPORARY FIELDS - move to UI Manager
+    public TextMeshProUGUI refreshOffersPriceUI;
+    private long refreshOffersIncreases = -1;
+
+    private void Start()
+    {
+        RefreshOffers();
+    }
 
     public void RefreshOffers()
     {
@@ -18,6 +29,22 @@ public class ShopSystem : MonoBehaviour
 
             panel.InitHorseUI(pickedH);
         }
+
+        refreshOffersIncreases++;
+
+        long offerPrice = GetRefreshOffer();
+        Debug.Log("OFFER PRICE: " + offerPrice + " Increases: " + refreshOffersIncreases);
+
+        if (offerPrice <= 0)
+            refreshOffersPriceUI.text = "Free";
+        else
+            refreshOffersPriceUI.text = offerPrice.ToShortString();
+    }
+
+    public void BuyHorse()
+    {
+        refreshOffersIncreases = 0;
+        refreshOffersPriceUI.text = "Free";
     }
 
     private TierDef PickHorseTier()
@@ -30,7 +57,6 @@ public class ShopSystem : MonoBehaviour
             if(tickets > 0 )
             {
                 values.Add((tier, tickets));
-                Debug.Log(tier.TierName);
             }
         }
 
@@ -60,4 +86,25 @@ public class ShopSystem : MonoBehaviour
         // round to nearest int
         return (int)MathF.Round(value);
     }
+
+    private long GetRefreshOffer()
+    {
+        double u = SaveSystem.Instance.Current.GetHighestHorseTier();
+        double x = refreshOffersIncreases;
+
+        double expoExp = Math.Pow(u, 0.95) * (x / 10.0);
+        double powPart = Math.Pow(x, expoExp);
+        double cubicPart = 50.0 * x * Math.Pow(u, 3.2);
+
+        double rawOffer = powPart + cubicPart;
+
+        // guard against NaN
+        if (double.IsNaN(rawOffer) || double.IsInfinity(rawOffer))
+            rawOffer = 696969; // error
+
+        long units = (long)Math.Round(rawOffer / 50.0);
+        return units * 50L;
+    }
+
+
 }

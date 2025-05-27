@@ -17,11 +17,11 @@ public static class NumberExtensions
 
         // ≥ 1 000 000 000 → millions suffix
         if (value >= BILLION)
-            return (value / (double)MILLION).ToString("#,##0") + "m";
+            return (value / (double)BILLION).ToString("#,##0") + "b";
 
         // ≥ 1 000 000 → thousands suffix
         if (value >= MILLION)
-            return (value / (double)THOUSAND).ToString("#,##0") + "k";
+            return (value / (double)MILLION).ToString("#.##0") + "m";
 
         // < 1 000 000 → default grouping
         return value.ToString("#,##0");
