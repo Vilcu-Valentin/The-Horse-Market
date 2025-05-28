@@ -12,7 +12,7 @@ public class CratePanelUI : MonoBehaviour
     public Image crateSprite;
     public Image backgroundColor;
 
-    public Button button;
+    public Button buyButton;
 
     public event Action<CrateDef> OnClicked;
 
@@ -24,7 +24,7 @@ public class CratePanelUI : MonoBehaviour
         crateSprite.sprite = crate.Icon;
         backgroundColor.color = crate.crateColor;
 
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => OnClicked?.Invoke(crate));
+        buyButton.onClick.RemoveAllListeners();
+        buyButton.onClick.AddListener(() => OnClicked?.Invoke(crate));
     }
 }

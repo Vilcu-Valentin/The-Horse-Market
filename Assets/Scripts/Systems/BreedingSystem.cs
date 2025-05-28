@@ -4,26 +4,9 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BreedingSystem : MonoBehaviour
+public static class BreedingSystem 
 {
-    public static BreedingSystem Instance { get; private set; }
-
-    [Tooltip("All available TierDefs, sorted by TierIndex ascending")]
-    public List<TierDef> allTiers;
-    [Tooltip("All available VisualDefs")]
-    public List<VisualDef> allVisuals;
-    [Tooltip("All available TraitsDefs")]
-    public List<TraitDef> allTraits;
-
-    void Awake()
-    {
-        if (Instance == null) { Instance = this; }
-        else Destroy(gameObject);
-
-        allTiers = allTiers.OrderBy(t => t.TierIndex).ToList();
-    }
-
-    public void Breed(Horse parentA, Horse parentB) // also add a list of breeding items later
+    public static void Breed(Horse parentA, Horse parentB) // also add a list of breeding items later
     {
         // Calculates upgrade odds
         Vector3 parentAOdds = Vector3.zero;
@@ -55,7 +38,7 @@ public class BreedingSystem : MonoBehaviour
         SaveSystem.Instance.Current.horses.Remove(parentB);
     }
 
-    private (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
+    private static (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
     {
         float _baseUp = horse.Tier.UpgradeChance;
         float _baseSame = horse.Tier.SameChance;
@@ -65,8 +48,8 @@ public class BreedingSystem : MonoBehaviour
         float multDown = 1;
         foreach(TraitDef trait in horse.Traits)
         {
-            multUp += trait.UpgradeMult - 1f;
-            multDown += trait.DowngradeMult - 1f;
+            multUp *= trait.UpgradeMult;
+            multDown *= trait.DowngradeMult;
         }
 
         _baseUp *= multUp;
@@ -75,7 +58,7 @@ public class BreedingSystem : MonoBehaviour
         return (_baseUp / totalRaw, _baseSame / totalRaw, _baseDown / totalRaw);
     }
 
-    private TierDef CalculateTier(Horse parentA, Horse parentB, int tierDelta)
+    private static TierDef CalculateTier(Horse parentA, Horse parentB, int tierDelta)
     {
         int delta = tierDelta;
         int volatilityNo = Mathf.FloorToInt((CalculateTierVolatility(parentA) + CalculateTierVolatility(parentB)) / 2f);
@@ -90,13 +73,15 @@ public class BreedingSystem : MonoBehaviour
         else if (roll < deltaV.x + deltaV.y) delta *= 2;
         else delta *= 3;
 
+        var allTiers = HorseMarketDatabase.Instance._allTiers;
+
         int newIndex = Mathf.Clamp(parentA.Tier.TierIndex + delta,
                              allTiers.First().TierIndex,
                              allTiers.Last().TierIndex);
         return allTiers[newIndex];
     }
 
-    private int CalculateTierVolatility(Horse parent)
+    private static int CalculateTierVolatility(Horse parent)
     {
         int number = 0;
         foreach(TraitDef trait in parent.Traits)
@@ -108,16 +93,16 @@ public class BreedingSystem : MonoBehaviour
         return number;
     }
 
-    private VisualDef CalculateVisual(Horse parentA, Horse parentB)
+    private static VisualDef CalculateVisual(Horse parentA, Horse parentB)
     {
         Vector3 visualOdds = new Vector3(0.45f, 0.45f, 0.1f);
         float roll = Random.value;
         if (roll < visualOdds.x) return parentA.Visual;
         else if (roll < visualOdds.x + visualOdds.y) return parentB.Visual;
-        else return TraitSystem.Instance.PickVisual();
+        else return TraitSystem.PickVisual();
     }
 
-    private List<TraitDef> CalculateTraits(Horse parentA, Horse parentB)
+    private static List<TraitDef> CalculateTraits(Horse parentA, Horse parentB)
     {
         Dictionary<TraitDef, float> potentialTraits = new Dictionary<TraitDef, float>();
         List<TraitDef> foalTraits = new List<TraitDef>();
@@ -149,7 +134,7 @@ public class BreedingSystem : MonoBehaviour
         float initialChance = parentA.Tier.MutationChance * ((mutMultA + mutMultB) * 0.5f);
         while(Random.value < initialChance)
         {
-            var t = TraitSystem.Instance.PickTraits(foalTraits);
+            var t = TraitSystem.PickTraits(foalTraits);
             if (t != null)
             {
                 foalTraits.Add(t);

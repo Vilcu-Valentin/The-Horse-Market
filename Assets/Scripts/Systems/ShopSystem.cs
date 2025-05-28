@@ -3,55 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using TMPro;
-
-public class ShopSystem : MonoBehaviour
+public static class ShopSystem 
 {
-    public List<TierDef> _allTiers;
-    public List<HorseShopPanelUI> horsePanels;
-
-    // TEMPORARY FIELDS - move to UI Manager
-    public TextMeshProUGUI refreshOffersPriceUI;
-    private long refreshOffersIncreases = -1;
-
-    private void Start()
+    private static long refreshOffersIncreases = -1;
+    public static void BuyHorse(Horse horse)
     {
-        RefreshOffers();
+        // Check if enough money, if there are enough remove them, otherwise raise money error
+        
+        refreshOffersIncreases = 0;
+        SaveSystem.Instance.Current.horses.Add(horse);
     }
 
-    public void RefreshOffers()
+    /// <summary>
+    /// Generates 'count' new horse offers and returns them along with the emerald cost for the next refresh.
+    /// </summary>
+    public static (List<Horse> offers, long nextRefreshPrice) GenerateOffers(int count)
     {
-        foreach(var panel in horsePanels)
-        {
-            TierDef chosenTier = PickHorseTier();
-            int amount = UnityEngine.Random.Range(2, 7);
-            Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount);
+        var offers = new List<Horse>(count);
 
-            panel.InitHorseUI(pickedH);
+        // create all offers
+        for (int i = 0; i < count; i++)
+        {
+            TierDef tier = PickHorseTier();
+            int traits = UnityEngine.Random.Range(2, 7);
+            offers.Add(HorseFactory.CreateRandomHorse(tier, traits));
         }
 
+        // bump the counter and compute price
         refreshOffersIncreases++;
-
-        long offerPrice = GetRefreshOffer();
-        Debug.Log("OFFER PRICE: " + offerPrice + " Increases: " + refreshOffersIncreases);
-
-        if (offerPrice <= 0)
-            refreshOffersPriceUI.text = "Free";
-        else
-            refreshOffersPriceUI.text = offerPrice.ToShortString();
+        return (offers, GetRefreshOffer());
     }
 
-    public void BuyHorse()
-    {
-        refreshOffersIncreases = 0;
-        refreshOffersPriceUI.text = "Free";
-    }
-
-    private TierDef PickHorseTier()
+    private static TierDef PickHorseTier()
     {
         var values = new List<(TierDef tier, int ticket)>();
 
-        foreach(var tier in _allTiers)
+        foreach(var tier in HorseMarketDatabase.Instance._allTiers)
         {
             int tickets = TicketDistribution(tier.TierIndex, SaveSystem.Instance.Current.GetHighestHorseTier());
             if(tickets > 0 )
@@ -69,7 +56,7 @@ public class ShopSystem : MonoBehaviour
     /// <param name="x">The tier you want to get tickets for</param>
     /// <param name="v">The current max tier</param>
     /// <returns></returns>
-    private int TicketDistribution(int x, int v)
+    private static int TicketDistribution(int x, int v)
     {
         // constants as floats
         const float a = 50f;
@@ -87,7 +74,11 @@ public class ShopSystem : MonoBehaviour
         return (int)MathF.Round(value);
     }
 
-    private long GetRefreshOffer()
+    /// <summary>
+    /// Gives a price for the refresh based on the tier and how many refreshes have been made
+    /// </summary>
+    /// <returns>A long representing the cost in emeralds of the refresh</returns>
+    private static long GetRefreshOffer()
     {
         double u = SaveSystem.Instance.Current.GetHighestHorseTier();
         double x = refreshOffersIncreases;
@@ -105,6 +96,4 @@ public class ShopSystem : MonoBehaviour
         long units = (long)Math.Round(rawOffer / 50.0);
         return units * 50L;
     }
-
-
 }

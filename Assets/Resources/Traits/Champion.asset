@@ -49,5 +49,5 @@ MonoBehaviour:
   StartingBonusRandomness: 0.1
   CompetitionBuffPct: 30
   PriceScalar: 3.5
-  Venerable: 2.6
+  Venerable: 2.5
   conflictedTraits: []

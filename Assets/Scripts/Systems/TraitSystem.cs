@@ -3,26 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TraitSystem: MonoBehaviour
+public static class TraitSystem
 {
-    public static TraitSystem Instance { get; private set; }
-
-    public List<VisualDef> _allVisuals;
-    public List<TraitDef> _allTraits;
-    public List<TierDef> _allTiers;
-
-    void Awake()
-    {
-        if (Instance == null) { Instance = this;}
-        else Destroy(gameObject);
-    }
 
     /// <summary>
     /// Takes a desired number of traits and creates a list of traits that doesn't conflict with eachother
     /// </summary>
     /// <param name="traitsNo">Number of desired trates</param>
     /// <returns>A list of traits (could be less then the traitsNo depending on the conflicts)</returns>
-    public List<TraitDef> PickTraits(int traitsNo)
+    public static List<TraitDef> PickTraits(int traitsNo)
     {
         var selectedTraits = new List<TraitDef>(); 
         int traitsLeft = traitsNo;
@@ -30,7 +19,7 @@ public class TraitSystem: MonoBehaviour
         while (traitsLeft > 0)
         {
             // Build the pool of allowed traits:
-            var allowed = _allTraits
+            var allowed = HorseMarketDatabase.Instance._allTraits
                 // 1. Never re-pick a trait you’ve already chosen
                 .Where(t => !selectedTraits.Contains(t))
                 // 2. And it must have no conflict *in either direction* with any chosen trait
@@ -60,12 +49,12 @@ public class TraitSystem: MonoBehaviour
     /// <param name="traits"></param>
     /// <param name="traitsNo"></param>
     /// <returns>A trait that doesn't conflict with the already exisitng list of traits</returns>
-    public TraitDef PickTraits(List<TraitDef> traits)
+    public static TraitDef PickTraits(List<TraitDef> traits)
     {
         var selectedTraits = traits;
 
         // Build the pool of allowed traits:
-        var allowed = _allTraits
+        var allowed = HorseMarketDatabase.Instance._allTraits
             // 1. Never re-pick a trait you’ve already chosen
             .Where(t => !selectedTraits.Contains(t))
             // 2. And it must have no conflict *in either direction* with any chosen trait
@@ -87,9 +76,9 @@ public class TraitSystem: MonoBehaviour
     /// Picks a random(weighted) visual from all available visuals
     /// </summary>
     /// <returns></returns>
-    public VisualDef PickVisual()
+    public static VisualDef PickVisual()
     {
-        var visualChoices = _allVisuals.Select(v => (item: v, ticket: v.rarityTickets));
+        var visualChoices = HorseMarketDatabase.Instance._allVisuals.Select(v => (item: v, ticket: v.rarityTickets));
         return WeightedSelector<VisualDef>.Pick(visualChoices);
     }
 }

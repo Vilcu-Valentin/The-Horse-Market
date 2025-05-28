@@ -16,8 +16,8 @@ public static class HorseFactory
     public static Horse CreateRandomHorse(TierDef tier, int traitsNo)
     {
 
-        var selectedVisual = TraitSystem.Instance.PickVisual();
-        var selectedTraits = TraitSystem.Instance.PickTraits(traitsNo);
+        var selectedVisual = TraitSystem.PickVisual();
+        var selectedTraits = TraitSystem.PickTraits(traitsNo);
 
         return CreateFoal(tier, selectedVisual, selectedTraits);
     }

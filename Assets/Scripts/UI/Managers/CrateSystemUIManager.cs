@@ -5,7 +5,6 @@ using UnityEngine;
 public class CrateSystemUIManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CrateSystem crateSystem;
     [SerializeField] private Transform crateUIContents;
     [SerializeField] private GameObject crateUIPrefab;
     [SerializeField] private CrateOpeningUI opener;
@@ -20,7 +19,7 @@ public class CrateSystemUIManager : MonoBehaviour
     /// </summary>
     private void PopulateUI()
     {
-        foreach (var crate in crateSystem.crates)
+        foreach (var crate in HorseMarketDatabase.Instance._allCrates)
         {
             GameObject go = Instantiate(crateUIPrefab, crateUIContents);
             var panel = go.GetComponent<CratePanelUI>();
@@ -34,7 +33,9 @@ public class CrateSystemUIManager : MonoBehaviour
     {
         TierDef tier;
         List<(WeightedTier tier, int weight)> values;
-        (tier, values) = crateSystem.OpenCrate(selectedCrate);
+        
+        // We should check if true (if we have enough money to open it, TODO: Implement)
+        (tier, values) = CrateSystem.OpenCrate(selectedCrate);
         opener.StartSpin(tier, values);
     }
 }

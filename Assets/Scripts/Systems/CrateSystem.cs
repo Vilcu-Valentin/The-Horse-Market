@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrateSystem : MonoBehaviour
+public static class CrateSystem 
 {
-    [SerializeField]
-    public List<CrateDef> crates;
-
     /// <summary>
     /// Pure game-logic: picks a tier, spawns a horse, adds it to save, and starts the opening animation.
     /// </summary>
-    public (TierDef, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
+    public static (TierDef, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
     {
         // Check if enough money, if there are enough remove them, otherwise raise money error
 
