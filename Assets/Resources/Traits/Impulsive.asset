@@ -25,7 +25,7 @@ MonoBehaviour:
   BaseInheritChance: 0.15
   MutationMultiplier: 1
   TrainingMult: 0.6
-  TrainingSpeed: 0.6
+  TrainingSpeed: 1.4
   canFailTraining: 1
   StatCapMods:
   - Stat: 0
