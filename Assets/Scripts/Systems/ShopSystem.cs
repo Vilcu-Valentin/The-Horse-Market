@@ -96,4 +96,47 @@ public static class ShopSystem
         long units = (long)Math.Round(rawOffer / 50.0);
         return units * 50L;
     }
+
+    /// <summary>
+    /// Debug helper: For each Tier in HorseMarketDatabase.Instance._allTiers,
+    /// generate `samplesPerTier` random horses of *that* tier, sum up their Price,
+    /// and then print "Tier X – average price: YYY" (one line per tier).
+    ///
+    /// Call this from anywhere (e.g. inside GenerateOffers, or from an editor button)
+    /// to see the empirical average price per tier.
+    /// </summary>
+    public static void DebugAverageOfferPrices(int samplesPerTier)
+    {
+        if (HorseMarketDatabase.Instance == null ||
+            HorseMarketDatabase.Instance._allTiers == null)
+        {
+            Debug.LogError("HorseMarketDatabase or its _allTiers list is null. Cannot compute averages.");
+            return;
+        }
+
+        // Loop over every tier definition in your database
+        foreach (TierDef tier in HorseMarketDatabase.Instance._allTiers)
+        {
+            // Accumulate total price in a 64-bit integer (to avoid overflow)
+            long totalPriceForTier = 0;
+
+            for (int i = 0; i < samplesPerTier; i++)
+            {
+                int traits = UnityEngine.Random.Range(2, 7);
+
+                // Create exactly one horse of the *current* tier
+                Horse randomHorse = HorseFactory.CreateRandomHorse(tier, traits);
+
+                totalPriceForTier += randomHorse.GetMaxPrice();
+            }
+
+            // Compute the average as a double for accuracy
+            double avgPrice = totalPriceForTier / (double)samplesPerTier;
+
+            // Format the tier’s "name"
+            string tierName = tier.TierName;
+
+            Debug.Log($"[DEBUG] {tierName} – average price: {avgPrice:F2}");
+        }
+    }
 }

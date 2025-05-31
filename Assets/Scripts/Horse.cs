@@ -41,9 +41,9 @@ public class Horse
         int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
         int avgCurrent = (int)Current.Average(t => t.Value);
 
-        // 2) Base price = (3.5 * avgCaps)^2, rounded
-        float rawBase = 3.5f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.7f));
+        // 2) Base price = (0.75 * avgCaps)^2, rounded
+        float rawBase = 0.75f * avgCaps;
+        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
@@ -76,9 +76,9 @@ public class Horse
         int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
         int avgCurrent = (int)Current.Average(t => t.Value);
 
-        // 2) Base price = (3.5 * avgCaps)^2, rounded
-        float rawBase = 3.5f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.7f));
+        // 2) Base price = (0.75 * avgCaps)^2, rounded
+        float rawBase = 0.75f * avgCaps;
+        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
