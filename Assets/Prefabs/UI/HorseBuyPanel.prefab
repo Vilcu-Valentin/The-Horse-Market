@@ -990,6 +990,7 @@ MonoBehaviour:
   soldPanel: {fileID: 8369897847300769083}
   soldText: {fileID: 1541913048572788048}
   buyButton: {fileID: 1879547572580599845}
+  infoButton: {fileID: 4751880465228584715}
 --- !u!1 &7638414892540583660
 GameObject:
   m_ObjectHideFlags: 0

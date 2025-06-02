@@ -7,7 +7,7 @@ public static class CrateSystem
     /// <summary>
     /// Pure game-logic: picks a tier, spawns a horse, adds it to save, and starts the opening animation.
     /// </summary>
-    public static (TierDef, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
+    public static (Horse, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
     {
         // Check if enough money, if there are enough remove them, otherwise raise money error
 
@@ -26,6 +26,6 @@ public static class CrateSystem
         Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount);
         SaveSystem.Instance.Current.horses.Add(pickedH);
 
-        return (pickedH.Tier, values);
+        return (pickedH, values);
     }
 }

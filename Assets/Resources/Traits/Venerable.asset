@@ -16,7 +16,8 @@ MonoBehaviour:
   Description: Venerable horses gain increasing prestige and value as they age, especially
     appealing to collectors and exhibition enthusiasts.
   rarityTickets: 14
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: e22f1bd7596ee504c976d8c78cee4f28, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
   IsNegative: 0
   UpgradeMult: 1
   DowngradeMult: 1
@@ -32,4 +33,5 @@ MonoBehaviour:
   CompetitionBuffPct: 10
   PriceScalar: 1.8
   Venerable: 2
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 97394c1f78449c84d93e6cd27d8d7431, type: 2}

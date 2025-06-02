@@ -16,8 +16,9 @@ MonoBehaviour:
   Description: Surefooted horses excel significantly in jump events, navigating obstacles
     with ease and agility.
   rarityTickets: 40
-  Icon: {fileID: 0}
-  IsNegative: 1
+  Icon: {fileID: 21300000, guid: 5ccaef7c977c78f499fd49192445f6bb, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  IsNegative: 0
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
@@ -36,4 +37,7 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1.2
   Venerable: 1.1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 8b7a268522ecde04cbb12deac5b2f5c8, type: 2}
+  - {fileID: 11400000, guid: ce14c4a854ca10042948f64892e55e7e, type: 2}
+  - {fileID: 11400000, guid: ac855fd369cb1c24e9b10330f96d2008, type: 2}

@@ -7,6 +7,7 @@ using UnityEngine;
 public class VisualDef : ScriptableObject
 {
     public HorseColor horseColor;
+    public Color textColor;
     public Sprite sprite2D;
     [Tooltip("The lower this number, the rarer they are")]
     public int rarityTickets;

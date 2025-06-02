@@ -10,6 +10,8 @@ public class ShopSystemUIManager : MonoBehaviour
     public List<HorseShopPanelUI> horsePanels;
     public TextMeshProUGUI refreshOffersPriceUI;
 
+    public HorseInfoPanelUI horseInfoPanel;
+
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class ShopSystemUIManager : MonoBehaviour
         foreach (var panel in horsePanels)
         {
             panel.OnClicked += BuyHorse;
+            panel.InfoClicked += OpenInfoPanel;
         }
     }
 
@@ -42,5 +45,11 @@ public class ShopSystemUIManager : MonoBehaviour
         ShopSystem.BuyHorse(horse);
 
         refreshOffersPriceUI.text = "Free";
+    }
+
+    public void OpenInfoPanel(Horse horse, bool inventoryMode)
+    {
+        horseInfoPanel.gameObject.SetActive(true);
+        horseInfoPanel.HorseUIInit(horse, inventoryMode);
     }
 }

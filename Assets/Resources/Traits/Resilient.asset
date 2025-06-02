@@ -16,10 +16,11 @@ MonoBehaviour:
   Description: Resilient horses have slightly reduced chances of tier changes, stabilizing
     their breeding outcomes, although limiting upgrade potential.
   rarityTickets: 55
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8e0c8e73da58cea42b9270caa24129a6, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
   IsNegative: 0
-  UpgradeMult: 0.8
-  DowngradeMult: 0.8
+  UpgradeMult: 0.5
+  DowngradeMult: 0.5
   TierVolatility: 0
   BaseInheritChance: 0.4
   MutationMultiplier: 1
@@ -32,4 +33,10 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1
   Venerable: 1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 0fc5b7ec7f7b29940aed976571e119dd, type: 2}
+  - {fileID: 11400000, guid: c5d126b2a6bf6604ba94e70039204279, type: 2}
+  - {fileID: 11400000, guid: 43382b4e267280d40adcdc23a5e2a6ce, type: 2}
+  - {fileID: 11400000, guid: aa0b2e5084bc9b94a8c309db45c7b4d6, type: 2}
+  - {fileID: 11400000, guid: 92677cea91d48474f8b4015ce119fa8a, type: 2}
+  - {fileID: 11400000, guid: 23becf6ef56b85f4d8b561ff26ccabed, type: 2}

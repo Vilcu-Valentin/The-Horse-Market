@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sorrel
   m_EditorClassIdentifier: 
   horseColor: 14
+  textColor: {r: 0.6039216, g: 0.21568628, b: 0, a: 1}
   sprite2D: {fileID: 21300000, guid: 0216c4136a183fe4f98d000d0a449ea9, type: 3}
   rarityTickets: 38
   PriceScalar: 1.16

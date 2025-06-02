@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,8 @@ public class CrateOpeningUI : MonoBehaviour
     public RectTransform _rect;
     public List<RectTransform> _items;
     public HorizontalLayoutGroup _layoutGroup;
+
+    public event Action OpeningFinished;
 
     private float _itemWidth;
     private float _spacing;
@@ -189,8 +192,7 @@ public class CrateOpeningUI : MonoBehaviour
         _state = SpinState.Idle;
         CancelInvoke();
         parentPanel.SetActive(false);
-        // Show horse pop-up
-
+        OpeningFinished?.Invoke();
         // Optionally re-enable layout
         // if (_layoutGroup != null) _layoutGroup.enabled = true;
     }

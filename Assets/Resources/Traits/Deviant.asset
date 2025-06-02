@@ -17,7 +17,8 @@ MonoBehaviour:
     significantly reducing training effectiveness, competitive outcomes, and training
     speed. They represent a major risk for trainers and competitors alike.
   rarityTickets: 5
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: f2d5da9833e7b2a4d92ffa4a36e5e2ed, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 99edff7e0c2078f4a9c848e568665b5a, type: 3}
   IsNegative: 1
   UpgradeMult: 1
   DowngradeMult: 1
@@ -25,7 +26,7 @@ MonoBehaviour:
   BaseInheritChance: 0.1
   MutationMultiplier: 1
   TrainingMult: 0.7
-  TrainingSpeed: 1.5
+  TrainingSpeed: 0.5
   canFailTraining: 0
   StatCapMods:
   - Stat: 0
@@ -41,4 +42,5 @@ MonoBehaviour:
   CompetitionBuffPct: -30
   PriceScalar: 0.4
   Venerable: 1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 4e7bcc9cba96b7344a7b69fd355e4b9f, type: 2}

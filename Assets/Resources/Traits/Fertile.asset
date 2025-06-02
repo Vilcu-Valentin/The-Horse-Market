@@ -16,7 +16,8 @@ MonoBehaviour:
   Description: Horses with the Fertile trait moderately improve the chances of successful
     tier upgrades when bred, making them reliable and valuable breeding partners.
   rarityTickets: 65
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: e82ff634006851d45bebb489471dd108, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
   IsNegative: 0
   UpgradeMult: 1.15
   DowngradeMult: 1
@@ -32,4 +33,6 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1.02
   Venerable: 1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: c5d126b2a6bf6604ba94e70039204279, type: 2}
+  - {fileID: 11400000, guid: e2899f7c9d70216439453691dce904fe, type: 2}

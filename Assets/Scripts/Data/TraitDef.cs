@@ -13,6 +13,7 @@ public sealed class TraitDef : ScriptableObject
     [Tooltip("The lower this number, the rarer they are")]
     public int rarityTickets;
     public Sprite Icon;
+    public Sprite BorderIcon;
     public bool IsNegative;
 
     [Header("Breeding Odds")]
@@ -32,7 +33,7 @@ public sealed class TraitDef : ScriptableObject
     [Header("Training")]
     [Tooltip("Multiplier on XP gain during training (<1 = worse, >1 = better)")]
     public float TrainingMult = 1f;
-    [Tooltip("Multiplier on training speed (<1 = faster, >1 = slower)")]
+    [Tooltip("Multiplier on training energy (<1 = less energy, >1 = more energy)")]
     public float TrainingSpeed = 1f;
     [Tooltip("If true training can fail and yield no increase")]
     public bool canFailTraining = false;

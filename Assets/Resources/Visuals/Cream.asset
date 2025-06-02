@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cream
   m_EditorClassIdentifier: 
   horseColor: 6
+  textColor: {r: 0.6627451, g: 0.43137255, b: 0.043137256, a: 1}
   sprite2D: {fileID: 21300000, guid: 806366fef28194f4ab76ee1ea2bdffb2, type: 3}
   rarityTickets: 85
   PriceScalar: 1.05

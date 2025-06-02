@@ -17,8 +17,9 @@ MonoBehaviour:
     making them top contenders in strength-focused events and greatly enhancing market
     value.
   rarityTickets: 40
-  Icon: {fileID: 0}
-  IsNegative: 1
+  Icon: {fileID: 21300000, guid: adff3d143405046448af0db3d4f2bb7f, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  IsNegative: 0
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
@@ -37,4 +38,6 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1.2
   Venerable: 1.1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 2647399162b278d4ebb92514ed1b9a2e, type: 2}
+  - {fileID: 11400000, guid: 2d0df398a00b77745b4e93e59c035252, type: 2}

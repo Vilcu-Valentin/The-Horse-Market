@@ -17,7 +17,8 @@ MonoBehaviour:
     potential, offering significantly higher odds of tier upgrades, stronger initial
     stats, and reduced risk of tier downgrades, greatly enhancing breeding outcomes.
   rarityTickets: 10
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: cca1d512e9db7cc4b84a573a40468c1b, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
   IsNegative: 0
   UpgradeMult: 1.5
   DowngradeMult: 0.85

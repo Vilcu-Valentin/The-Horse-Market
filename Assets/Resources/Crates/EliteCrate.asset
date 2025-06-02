@@ -15,7 +15,7 @@ MonoBehaviour:
   CrateName: Elite Crate
   Icon: {fileID: 21300000, guid: 6a78b69edc8d3a7499aad19ff993e34d, type: 3}
   crateColor: {r: 0.4117647, g: 0.7019608, b: 0.69803923, a: 1}
-  CostInEmeralds: 50000
+  CostInEmeralds: 75000
   TierChances:
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
     Tickets: 20

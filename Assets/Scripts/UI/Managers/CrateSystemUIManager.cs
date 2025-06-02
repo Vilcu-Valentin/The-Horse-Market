@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CrateSystemUIManager : MonoBehaviour
@@ -8,6 +10,10 @@ public class CrateSystemUIManager : MonoBehaviour
     [SerializeField] private Transform crateUIContents;
     [SerializeField] private GameObject crateUIPrefab;
     [SerializeField] private CrateOpeningUI opener;
+    [SerializeField] private GameObject horseInfoPanel;
+
+    // Keep a reference so we can unsubscribe later:
+    private Action _onFinishedHandler;
 
     void Start()
     {
@@ -31,11 +37,26 @@ public class CrateSystemUIManager : MonoBehaviour
 
     private void OpenCrate(CrateDef selectedCrate)
     {
-        TierDef tier;
-        List<(WeightedTier tier, int weight)> values;
-        
         // We should check if true (if we have enough money to open it, TODO: Implement)
-        (tier, values) = CrateSystem.OpenCrate(selectedCrate);
-        opener.StartSpin(tier, values);
+        Horse horse;
+        List<(WeightedTier tier, int weight)> values;
+        (horse, values) = CrateSystem.OpenCrate(selectedCrate);
+
+        // Create a one‐time handler that "captures" `horse`:
+        _onFinishedHandler = () =>
+        {
+            ShowHorseInfo(horse);
+            opener.OpeningFinished -= _onFinishedHandler;
+        };
+
+        opener.OpeningFinished += _onFinishedHandler;
+
+        opener.StartSpin(horse.Tier, values);
+    }
+
+    private void ShowHorseInfo(Horse openedHorse)
+    {
+        horseInfoPanel.SetActive(true);
+        horseInfoPanel.GetComponent<HorseInfoPanelUI>().HorseUIInit(openedHorse, false);
     }
 }

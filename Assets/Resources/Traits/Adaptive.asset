@@ -16,7 +16,8 @@ MonoBehaviour:
   Description: Adaptive horses modestly boost maximum stat limits across all areas,
     making them versatile and capable competitors across multiple event types.
   rarityTickets: 22
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: b20ab12e4115c804bb4a7b817349fde2, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
   IsNegative: 0
   UpgradeMult: 1
   DowngradeMult: 1
@@ -40,4 +41,7 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1.35
   Venerable: 1.15
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 246149833a1569d4db51ad6725e8a09e, type: 2}
+  - {fileID: 11400000, guid: 74ef36703804ca84c8bca8373cfa0fb6, type: 2}
+  - {fileID: 11400000, guid: b6f039c24681ef045813f409df444b78, type: 2}

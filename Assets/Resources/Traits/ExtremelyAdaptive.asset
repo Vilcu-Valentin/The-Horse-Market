@@ -17,7 +17,8 @@ MonoBehaviour:
     creating exceptionally versatile horses capable of excelling broadly in competitive
     events
   rarityTickets: 8
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 001ede226a00b26478d88e5405550db5, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
   IsNegative: 0
   UpgradeMult: 1
   DowngradeMult: 1
@@ -49,4 +50,7 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1.5
   Venerable: 1.5
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 3dbb4925fd3f56c4bb1bdb7822c573c2, type: 2}
+  - {fileID: 11400000, guid: 74ef36703804ca84c8bca8373cfa0fb6, type: 2}
+  - {fileID: 11400000, guid: b6f039c24681ef045813f409df444b78, type: 2}

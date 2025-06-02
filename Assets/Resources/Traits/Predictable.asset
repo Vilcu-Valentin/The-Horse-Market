@@ -17,8 +17,9 @@ MonoBehaviour:
     chances, producing consistently predictable offspring. Ideal for breeders seeking
     steady progress and reliability over unpredictable outcomes.
   rarityTickets: 42
-  Icon: {fileID: 0}
-  IsNegative: 0
+  Icon: {fileID: 21300000, guid: 45acd148f5411ef499972453708f59e0, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
+  IsNegative: 1
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
@@ -33,4 +34,7 @@ MonoBehaviour:
   CompetitionBuffPct: 0
   PriceScalar: 1
   Venerable: 1
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 43382b4e267280d40adcdc23a5e2a6ce, type: 2}
+  - {fileID: 11400000, guid: aa0b2e5084bc9b94a8c309db45c7b4d6, type: 2}
+  - {fileID: 11400000, guid: e2899f7c9d70216439453691dce904fe, type: 2}

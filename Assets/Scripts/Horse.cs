@@ -38,8 +38,7 @@ public class Horse
     public long GetMaxPrice()
     {
         // 1) Compute average tiers (ensure no zero‐division)
-        int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
-        int avgCurrent = (int)Current.Average(t => t.Value);
+        float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
         float rawBase = 0.75f * avgCaps;
@@ -55,12 +54,15 @@ public class Horse
         }
         priceMultiplier *= Visual.PriceScalar;
 
-        // warp venerableMultiplier from [1 → 2.5] into [0 → 1]
+        // warp venerableMultiplier from [1 → 1.5] into [0 → 1]
         float vNorm = (venerableMultiplier - 1) / 1.5f;
         float vWarp = Mathf.Pow(vNorm, 1.15f);
 
         float venerableScalar = 1f + 2f * vWarp;
         priceMultiplier *= venerableScalar;
+
+        Debug.Log("Max Price: " + basePrice * priceMultiplier +
+    " BasePrice: " + basePrice + " PriceMult: " + priceMultiplier);
 
         // 5) Final price
         return (long)Mathf.Round(basePrice * priceMultiplier);
@@ -70,11 +72,11 @@ public class Horse
     /// Calculates the horse’s current market price based on its stats and traits.
     /// </summary>
     /// <returns>Price in emerald (rounded to nearest integer).</returns>
-    public long GetPrice()
+    public long GetCurrentPrice()
     {
         // 1) Compute average tiers (ensure no zero‐division)
-        int avgCaps = (int)Mathf.Max(1f, (float)Max.Average(t => t.Value));
-        int avgCurrent = (int)Current.Average(t => t.Value);
+        float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
+        float avgCurrent = Current.Average(t => (float)t.Value);
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
         float rawBase = 0.75f * avgCaps;
@@ -91,21 +93,64 @@ public class Horse
         priceMultiplier *= Visual.PriceScalar;
 
         // 4) “Ease‐in” on how much the current tier (relative to cap) and venerable boost the price
-        float tierRatio = (float)avgCurrent / avgCaps;               // now a float in [0,1]
+        float tierRatio = (float)(avgCurrent - 1) / (Mathf.Max(1, avgCaps - 1));               // now a float in [0,1]
         float tierRatioSq = tierRatio * tierRatio;            // instead of Pow(x,2)
 
-        // warp venerableMultiplier from [1 → 2.5] into [0 → 1]
+        // warp venerableMultiplier from [1 → 1.5] into [0 → 1]
         float vNorm = (venerableMultiplier - 1) / 1.5f;
         float vWarp = Mathf.Pow(vNorm, 1.15f);
 
         float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
         priceMultiplier *= venerableScalar;
 
-        float trainingMultiplier = tierRatio * 0.8f + 0.2f;
-        priceMultiplier *= trainingMultiplier;
+        float trainingMultiplier = tierRatio * 0.5f + 0.5f;
+
+        Debug.Log("Current Price: " + basePrice * priceMultiplier * trainingMultiplier +
+            " BasePrice: " + basePrice + " PriceMult: " + priceMultiplier + "TrainingMult: " + trainingMultiplier + "TrainingR: " + tierRatio);
 
         // 5) Final price
-        return (long)Mathf.Round(basePrice * priceMultiplier);
+        return (long)Mathf.Round(basePrice * priceMultiplier * trainingMultiplier);
+    }
+
+    public long GetMinPrice()
+    {
+        // 1) Compute average tiers (ensure no zero‐division)
+        float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
+        float avgCurrent = Current.Average(t => (float)t.Value);
+
+        // 2) Base price = (0.75 * avgCaps)^2, rounded
+        float rawBase = 0.75f * avgCaps;
+        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
+
+        // 3) Aggregate all flat multipliers from traits + visual
+        float priceMultiplier = 1f;
+        float venerableMultiplier = 1f;
+        foreach (var trait in _traits)
+        {
+            priceMultiplier *= 1f + trait.PriceScalar;
+            venerableMultiplier *= trait.Venerable;
+        }
+        priceMultiplier *= Visual.PriceScalar;
+
+        float tierRatio = (float)(avgCurrent - 1) / (Mathf.Max(1,avgCaps - 1));
+        float tierRatioSq = tierRatio * tierRatio;            
+
+        float vNorm = (venerableMultiplier - 1) / 1.5f;
+        float vWarp = Mathf.Pow(vNorm, 1.15f);
+
+        float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
+        priceMultiplier *= venerableScalar;
+        // 5) Final price
+        return (long)Mathf.Round(basePrice * priceMultiplier * 0.5f);
+    }
+
+    /// <summary>
+    /// Used by the shop, it's the market price of the horse + 35%
+    /// </summary>
+    /// <returns>Inflated current price</returns>
+    public long GetMarketPrice()
+    {
+        return (long)(GetCurrentPrice() * 1.3);
     }
 
 
