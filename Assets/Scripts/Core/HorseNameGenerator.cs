@@ -3,70 +3,55 @@ using UnityEngine;
 
 public static class HorseNameGenerator
 {
-    // List of single-part horse names
+    // List of single-part horse names (no color references)
     private static readonly string[] SingleNames =
     {
-        "Caravaggio",
-        "Quincy",
-        "Clover",
-        "Majesty",
-        "Zephyr",
-        "Aurora",
-        "Stella",
-        "Bandit",
-        "Echo",
-        "Harmony"
-        // add more single names here
+        "Caravaggio", "Quincy", "Clover", "Majesty", "Zephyr", "Aurora", "Stella", "Bandit", "Echo", "Harmony",
+        "Comet", "Eclipse", "Phoenix", "Mystic", "Rogue", "Valor", "Reign", "Thunder", "Spirit", "Legacy",
+        "Valiant", "Quest", "Ranger", "Summit", "Noble", "Arrow", "Bravo", "Caden", "Dante", "Enzo",
+        "Finn", "Gatsby", "Hunter", "Jaxon", "Kael", "Leo", "Maverick", "Nico", "Orion", "Pax",
+        "Quinn", "Ryder", "Silas", "Titan", "Ursus", "Zenith", "Atlas", "Apollo", "Hercules", "Achilles",
+        "Pegasus", "Nimbus", "Everest", "Azrael", "Sirocco", "Cyclone", "Vortex", "Torrent", "Maestro", "Odyssey"
+        // (Feel free to add more single names here)
     };
 
-    // Word lists for combined names
+    // Word lists for combined names (no color references)
     private static readonly string[] CombinedFirstParts =
     {
-        "Night",
-        "Wind",
-        "Iron",
-        "Star",
-        "Silver",
-        "Fire",
-        "River",
-        "Shadow",
-        "Golden",
-        "Storm"
-        // add more first parts here
+        "Night", "Wind", "Iron", "Star", "Fire", "River", "Shadow", "Storm", "Thunder", "Eclipse",
+        "Apex", "Canyon", "Destiny", "Echo", "Falcon", "Gale", "Horizon", "Legend", "Meridian", "Nova",
+        "Odyssey", "Phoenix", "Quest", "Ranger", "Summit", "Titan", "Valor", "Whisper", "Zenith", "Cascade"
+        // (Feel free to add more first parts here)
     };
 
     private static readonly string[] CombinedSecondParts =
     {
-        "Rider",
-        "Fever",
-        "Whisper",
-        "Flame",
-        "Runner",
-        "Spirit",
-        "Legend",
-        "Dream",
-        "Chaser",
-        "Dancer"
-        // add more second parts here
+        "Rider", "Whisper", "Flame", "Runner", "Spirit", "Legend", "Dream", "Chaser", "Dancer", "Strider",
+        "Seeker", "Voyager", "Wanderer", "Keeper", "Bound", "Caller", "Breaker", "Charger", "Drifter", "Fighter",
+        "Guardian", "Hunter", "Jester", "Maker", "Nomad", "Oracle", "Pioneer", "Raider", "Sentinel", "Tracker"
+        // (Feel free to add more second parts here)
     };
 
-    // Syllable pools for on-the-fly generation
+    // Syllable pools for on-the-fly generation (expanded)
     private static readonly string[] SyllableStarts =
     {
-        "ba", "ka", "le", "sa", "ri", "mo", "ta", "za", "ia", "no"
-        // add more possible starting syllables
+        "ba", "ka", "le", "sa", "ri", "mo", "ta", "za", "ia", "no",
+        "da", "fa", "ha", "jo", "lu", "me", "ni", "pa", "ra", "si"
+        // (Feel free to add more possible starting syllables)
     };
 
     private static readonly string[] SyllableMiddles =
     {
-        "lo", "ri", "na", "ve", "ra", "li", "ta", "ne", "on", "ar"
-        // add more possible middle syllables
+        "lo", "ri", "na", "ve", "ra", "li", "ta", "ne", "on", "ar",
+        "di", "mi", "sa", "te", "ul", "van", "zen", "cor", "bel", "dor"
+        // (Feel free to add more possible middle syllables)
     };
 
     private static readonly string[] SyllableEnds =
     {
-        "na", "ra", "lio", "ko", "mi", "ti", "la", "do", "ra", "pha"
-        // add more possible ending syllables
+        "na", "ra", "lio", "ko", "mi", "ti", "la", "do", "pha", "us",
+        "ix", "os", "um", "en", "et", "yl", "al", "or", "cy", "ia"
+        // (Feel free to add more possible ending syllables)
     };
 
     /// <summary>
@@ -76,11 +61,11 @@ public static class HorseNameGenerator
     {
         float roll = UnityEngine.Random.value;
         if (roll < 0.5f)
-            return GetSingleName();       // 50% single-part
+            return GetSingleName();       // 50% chance: single-part name
         else if (roll < 0.8f)
-            return GetCombinedName();     // 30% combined
+            return GetCombinedName();     // 30% chance: combined name
         else
-            return GetSyllableName(UnityEngine.Random.Range(2, 4)); // 20% syllable-based (2–3 syllables)
+            return GetSyllableName(UnityEngine.Random.Range(2, 4)); // 20% chance: 2–3 syllable name
     }
 
     private static string GetSingleName()

@@ -57,6 +57,6 @@ public class CrateSystemUIManager : MonoBehaviour
     private void ShowHorseInfo(Horse openedHorse)
     {
         horseInfoPanel.SetActive(true);
-        horseInfoPanel.GetComponent<HorseInfoPanelUI>().HorseUIInit(openedHorse, false);
+        horseInfoPanel.GetComponent<HorseInfoPanelUI>().HorseUIInit(openedHorse, true);
     }
 }

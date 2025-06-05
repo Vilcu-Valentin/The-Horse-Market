@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class HorseInfoPanelUI : MonoBehaviour
 { 
@@ -18,6 +19,7 @@ public class HorseInfoPanelUI : MonoBehaviour
 
     [Header("Value")]
     public InfoBarUI emeraldBar;
+    public Button sellButton;
 
     [Header("Stats")]
     public InfoBarUI speedBar;
@@ -26,7 +28,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public InfoBarUI strengthBar;
 
     [Header("Training")]
-    // ENERGY BAR NEEDED
+    public EnergyBarUI trainingEnergyBar;
     public TMP_Text trainingMultiplierText;
     public Button addTrainingItemButton;
     public Button trainButton;
@@ -42,7 +44,6 @@ public class HorseInfoPanelUI : MonoBehaviour
     [Header("Traits")]
     public GameObject traitPrefab;
     public Transform traitPanel;
-    // TRAITS GENERATION AND SORTING
 
     /// <summary>
     /// Initializes Horse Info UI
@@ -67,27 +68,40 @@ public class HorseInfoPanelUI : MonoBehaviour
 
         //Value
         emeraldBar.UpdateBar("Emeralds", horse.GetCurrentPrice(), horse.GetMinPrice(), horse.GetMaxPrice(), true);
+        sellButton.gameObject.SetActive(inventoryMode);
 
         //Stats
         speedBar.UpdateBar("Speed", horse.GetCurrent(StatType.Speed), 1, horse.GetMax(StatType.Speed), false);
         staminaBar.UpdateBar("Stamina", horse.GetCurrent(StatType.Stamina), 1, horse.GetMax(StatType.Stamina), false);
         jumpBar.UpdateBar("Jump Height", horse.GetCurrent(StatType.JumpHeight), 1, horse.GetMax(StatType.JumpHeight), false);
-        strengthBar.UpdateBar("Strength", horse.GetCurrent(StatType.Strength), 1, horse.GetMax(StatType.Strength), false); 
+        strengthBar.UpdateBar("Strength", horse.GetCurrent(StatType.Strength), 1, horse.GetMax(StatType.Strength), false);
 
-        //Training TODO: GET THE ACTUAL DATA 
-        trainingMultiplierText.text = "100xp";
-        if(inventoryMode)
+        //Training 
+        trainingEnergyBar.SetMaxEnergy(horse.GetTrainingEnergy());
+        trainingEnergyBar.SetEnergy(horse.currentTrainingEnergy);
+
+        trainingMultiplierText.text = "+" + horse.GetTrainingRate().ToShortString();
+
+        addTrainingItemButton.gameObject.SetActive(inventoryMode);
+        trainButton.gameObject.SetActive(inventoryMode);
+        trainButton.onClick.RemoveAllListeners();
+        if (inventoryMode)
         {
-            addTrainingItemButton.gameObject.SetActive(true);
-            trainButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            addTrainingItemButton.gameObject.SetActive(false);
-            trainButton.gameObject.SetActive(false);
+            // Capture both "horse" and "inventoryMode" in the closure.
+            trainButton.onClick.AddListener(() =>
+            {
+                horse.Train();
+                HorseUIInit(horse, inventoryMode);
+            });
         }
 
-        //Breeding TODO: GET THE ACTUAL DATA
+        // Breeding
+        float upChance;
+        float sameChance;
+        float downChance;
+
+        (upChance, sameChance, downChance) = horse.GetBreedingOdds();
+
         if(inventoryMode)
         {
             breedButton.gameObject.SetActive(true);
@@ -96,15 +110,27 @@ public class HorseInfoPanelUI : MonoBehaviour
         {
             breedButton.gameObject.SetActive(false);
         }
-        upgradeSlider.value = 0.3f;
-        sameSlider.value = upgradeSlider.value + 0.3f;
+        upgradeSlider.value = upChance;
+        sameSlider.value = upChance + sameChance;
 
+        if (upChance > 0)
+            upgradeText.text = "UP: " + upChance.ToString("# %");
+        else
+            upgradeText.text = "UP: 0%";
+        sameText.text = "SAME: " + sameChance.ToString("# %");
+        if (downChance > 0)
+            downgradeText.text = "DOWN: " + downChance.ToString("# %");
+        else
+            downgradeText.text = "DOWN: 0%";
+
+        // Traits
         foreach (Transform child in traitPanel)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (var trait in horse.Traits)
+        var sortedTraits = horse.Traits.OrderByDescending(t => t.quality);
+        foreach (var trait in sortedTraits)
         {
             GameObject tr = Instantiate(traitPrefab, traitPanel);
             tr.GetComponent<TraitUI>().InitTrait(trait);

@@ -38,7 +38,7 @@ public static class BreedingSystem
         SaveSystem.Instance.Current.horses.Remove(parentB);
     }
 
-    private static (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
+    public static (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
     {
         float _baseUp = horse.Tier.UpgradeChance;
         float _baseSame = horse.Tier.SameChance;

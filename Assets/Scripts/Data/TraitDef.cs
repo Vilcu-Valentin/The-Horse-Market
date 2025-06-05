@@ -14,7 +14,8 @@ public sealed class TraitDef : ScriptableObject
     public int rarityTickets;
     public Sprite Icon;
     public Sprite BorderIcon;
-    public bool IsNegative;
+    [Tooltip("Lower for very bad traits, Higher for luxury traits")]
+    public int quality;
 
     [Header("Breeding Odds")]
     [Tooltip("Multiplier applied to upgrade probability (<1 = worse, >1 = better)")]

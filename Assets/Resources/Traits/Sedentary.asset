@@ -18,7 +18,7 @@ MonoBehaviour:
   rarityTickets: 70
   Icon: {fileID: 21300000, guid: d43bb4a6b78ac6f4aa4e814e4472ff3e, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
-  IsNegative: 1
+  quality: 0
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
@@ -29,9 +29,9 @@ MonoBehaviour:
   canFailTraining: 0
   StatCapMods:
   - Stat: 0
-    Modifier: -0.15
+    Modifier: -0.2
   - Stat: 1
-    Modifier: -0.15
+    Modifier: -0.2
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
@@ -40,3 +40,5 @@ MonoBehaviour:
   conflictedTraits:
   - {fileID: 11400000, guid: b44118fe156ba194f96dc46af7373ce9, type: 2}
   - {fileID: 11400000, guid: 961b0c2ec264823499f2e2b29a8fbc81, type: 2}
+  - {fileID: 11400000, guid: 6ee0a7ad325b1d34db36ee30716212ff, type: 2}
+  - {fileID: 11400000, guid: 448093cdaafe5bd4bbeb2f44402afda0, type: 2}

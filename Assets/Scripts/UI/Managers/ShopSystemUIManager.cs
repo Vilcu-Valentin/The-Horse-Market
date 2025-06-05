@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -28,6 +29,33 @@ public class ShopSystemUIManager : MonoBehaviour
     {
         long offerPrice;
         List<Horse> horses;
+
+        /*DEBUG, REMOVE AFTER TESTING
+        foreach(var currentTier in HorseMarketDatabase.Instance._allTiers)
+        {
+            List<long> prices = new List<long>();
+            const int SAMPLES = 1000;
+            for (int i = 0; i < SAMPLES; i++)
+            {
+                int traits = UnityEngine.Random.Range(2, 7);
+                Horse h = HorseFactory.CreateRandomHorse(currentTier, traits);
+                prices.Add(h.GetMaxPrice());
+            }
+            prices.Sort();
+
+            // Number to trim from each end (floor of 10% of SAMPLES):
+            int trimCount = (int)(SAMPLES * 0.20);  // e.g. 10
+            long sum = 0;
+            int count = 0;
+            // Sum from index trimCount to index (SAMPLES - trimCount - 1):
+            for (int i = trimCount; i < SAMPLES - trimCount; i++)
+            {
+                sum += prices[i];
+                count++;
+            }
+            double trimmedMean = (double)sum / count;
+            Debug.Log($"Tier {currentTier} – 20% trimmed mean: {trimmedMean}");
+        } */
         
         (horses, offerPrice) = ShopSystem.GenerateOffers(horsePanels.Count);
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
@@ -14,6 +15,9 @@ public class Horse
     // Tier & visuals are references to immutable ScriptableObjects
     public TierDef Tier;
     public VisualDef Visual;
+
+    // Training
+    public int currentTrainingEnergy;
 
     // TRAINABLE STATS  – current value & cap
     public Stat[] Current = new Stat[4];
@@ -32,9 +36,75 @@ public class Horse
     }
 
     /// <summary>
+    /// This method will train the horse provided enough energy is left
+    /// </summary>
+    /// <returns>A bool stating if training was succesfull(true) or not(false)</returns>
+    public bool Train()
+    {
+        if (currentTrainingEnergy <= 0)
+            return false;
+
+        int canFailTraining = 0;
+        foreach(TraitDef trait in _traits)
+            if(trait.canFailTraining == true)
+                canFailTraining++;
+
+        if (canFailTraining > 0)
+        {
+            float roll;
+            roll = UnityEngine.Random.value;
+
+            float value = (Mathf.Pow(canFailTraining, 0.8f)) / 3f;
+            if (roll < value)
+            {
+                currentTrainingEnergy--;
+                return false;
+            }
+        }
+
+        int amount = GetTrainingRate();
+        foreach (var stat in Current)
+            AddCurrent(stat._Stat, amount);
+
+        currentTrainingEnergy--;
+        return true;
+    }
+
+    public int GetTrainingRate()
+    {
+        float trainMultiplier = 1f;
+        foreach (TraitDef trait in _traits)
+            trainMultiplier *= trait.TrainingMult;
+
+        return Mathf.RoundToInt(Mathf.Max(1, Tier.TierIndex * trainMultiplier));
+    }
+
+    /// <summary>
+    /// Calculates the max amount of training energy a horse has
+    /// </summary>
+    /// <returns></returns>
+    public int GetTrainingEnergy()
+    {
+        float trainingSpeed = 1f;
+        foreach (TraitDef trait in _traits)
+            trainingSpeed *= trait.TrainingSpeed;
+
+        return Mathf.RoundToInt(Mathf.Clamp((Tier.TierIndex * 0.88f + 3) * trainingSpeed, 1, 12));
+    }
+
+    /// <summary>
+    /// Calculates the horse's breeding odds based on the tier and current traits
+    /// </summary>
+    /// <returns>Triple floats for downgrade, same, upgrade chance</returns>
+    public (float, float, float) GetBreedingOdds()
+    {
+        return BreedingSystem.CalculateUpgradeOdds(this);
+    }
+
+    /// <summary>
     /// Calculates the horses max possible market price (when it's fully trained) based on it's stats and traits
     /// </summary>
-    /// <returns>An int value representing the price in emerald</returns>
+    /// <returns>An long value representing the price in emerald</returns>
     public long GetMaxPrice()
     {
         // 1) Compute average tiers (ensure no zero‐division)
@@ -112,11 +182,14 @@ public class Horse
         return (long)Mathf.Round(basePrice * priceMultiplier * trainingMultiplier);
     }
 
+    /// <summary>
+    /// Calculates the minimum possible price of the horse
+    /// </summary>
+    /// <returns></returns>
     public long GetMinPrice()
     {
         // 1) Compute average tiers (ensure no zero‐division)
         float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
-        float avgCurrent = Current.Average(t => (float)t.Value);
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
         float rawBase = 0.75f * avgCaps;
@@ -132,14 +205,6 @@ public class Horse
         }
         priceMultiplier *= Visual.PriceScalar;
 
-        float tierRatio = (float)(avgCurrent - 1) / (Mathf.Max(1,avgCaps - 1));
-        float tierRatioSq = tierRatio * tierRatio;            
-
-        float vNorm = (venerableMultiplier - 1) / 1.5f;
-        float vWarp = Mathf.Pow(vNorm, 1.15f);
-
-        float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
-        priceMultiplier *= venerableScalar;
         // 5) Final price
         return (long)Mathf.Round(basePrice * priceMultiplier * 0.5f);
     }
@@ -265,10 +330,10 @@ public class Horse
         Max = maxStats.ToArray();
         Current = currentStats.ToArray();
 
+        currentTrainingEnergy = GetTrainingEnergy();
+
         Debug.Log($"[BuildStats] Finished. Generated {Max.Length} max-stats and {Current.Length} current-stats.");
     }
-
-
 }
 
 [Serializable]

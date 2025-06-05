@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496226467479761163}
   - component: {fileID: 4414712637630988960}
+  - component: {fileID: -2635478279934005647}
   m_Layer: 5
   m_Name: TraitPanel
   m_TagString: Untagged
@@ -126,8 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f09d95c10421543bd0f27b90676a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipPrefab: {fileID: 6066452695861244240, guid: e6554abda595c1f4499c85a0c9f4c5b9,
+    type: 3}
   traitImage: {fileID: 8358203260427809806}
   borderImage: {fileID: 2309833361003555139}
+--- !u!114 &-2635478279934005647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104090135708529806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28537e13249f3a748bf93e3714f11d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 10, y: 0}
+  delay: 0.25
 --- !u!1 &5130609155400790892
 GameObject:
   m_ObjectHideFlags: 0

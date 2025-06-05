@@ -18,8 +18,8 @@ MonoBehaviour:
   rarityTickets: 65
   Icon: {fileID: 21300000, guid: e82ff634006851d45bebb489471dd108, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
-  IsNegative: 0
-  UpgradeMult: 1.15
+  quality: 2
+  UpgradeMult: 1.5
   DowngradeMult: 1
   TierVolatility: 0
   BaseInheritChance: 0.44

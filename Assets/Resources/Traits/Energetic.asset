@@ -18,7 +18,7 @@ MonoBehaviour:
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: a0f52d86766ece641a22acdcc54f3c52, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
-  IsNegative: 1
+  quality: 2
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
@@ -40,3 +40,4 @@ MonoBehaviour:
   conflictedTraits:
   - {fileID: 11400000, guid: ce14c4a854ca10042948f64892e55e7e, type: 2}
   - {fileID: 11400000, guid: 6ee0a7ad325b1d34db36ee30716212ff, type: 2}
+  - {fileID: 11400000, guid: 139dd89fdbd2cca43889eacab5292140, type: 2}

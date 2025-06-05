@@ -19,14 +19,14 @@ MonoBehaviour:
   rarityTickets: 46
   Icon: {fileID: 21300000, guid: 2e70a07a0de34f444a1a6d32ead46599, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
-  IsNegative: 1
+  quality: 0
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
   BaseInheritChance: 0.23
   MutationMultiplier: 1
   TrainingMult: 1
-  TrainingSpeed: 0.85
+  TrainingSpeed: 0.75
   canFailTraining: 1
   StatCapMods:
   - Stat: 0

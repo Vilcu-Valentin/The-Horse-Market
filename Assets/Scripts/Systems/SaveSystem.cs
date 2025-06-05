@@ -8,7 +8,7 @@ public class SaveSystem : MonoBehaviour
     public static SaveSystem Instance { get; private set; }
     public PlayerData Current { get; private set; }
 
-    [SerializeField] PlayerData template;      // drag in PlayerDataTemplate.asset
+    [SerializeField] PlayerData template;
 
     string SavePath => Path.Combine(Application.persistentDataPath, "player.json");
 
