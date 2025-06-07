@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Energetic
   m_EditorClassIdentifier: 
+  id: cc57751f-e06c-406a-879a-34948a0ce802
   DisplayName: Energetic
   Description: Energetic horses possess notably improved speed potential, making
     them highly competitive in sprint and racing events.

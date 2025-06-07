@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Champion
   m_EditorClassIdentifier: 
+  id: ec8954b8-9029-4edf-8ac5-ce72eaa4c780
   DisplayName: Champion
   Description: Champion horses represent the pinnacle of equine genetics, offering
     dramatically increased stat caps across all areas, an immense boost to competitive

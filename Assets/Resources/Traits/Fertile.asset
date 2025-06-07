@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Fertile
   m_EditorClassIdentifier: 
+  id: 9ed8e57a-fdeb-49c7-9b5c-e5c7a9f3d3c1
   DisplayName: Fertile
   Description: Horses with the Fertile trait moderately improve the chances of successful
     tier upgrades when bred, making them reliable and valuable breeding partners.

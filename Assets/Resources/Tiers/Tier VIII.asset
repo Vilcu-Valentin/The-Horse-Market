@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier VIII
   m_EditorClassIdentifier: 
+  id: 7e0c09a4-0dce-4fad-8304-45a3cff47b40
   TierName: Tier VIII
   tierIcon: {fileID: 21300000, guid: 7a9429c5eda811540acb9780c3189d69, type: 3}
   TierIndex: 8
   HighlightColor: {r: 0.67058825, g: 0.09019608, b: 0.09019608, a: 1}
   ForegroundColor: {r: 0.6039216, g: 0.26666668, b: 0.26666668, a: 1}
   BackgroundColor: {r: 0.34509805, g: 0.1764706, b: 0.13725491, a: 1}
-  BasePriceMultiplier: 128
   StatCap: 1280
   UpgradeChance: 0
   DowngradeChance: 0.2

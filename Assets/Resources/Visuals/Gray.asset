@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded0b6382b5151f45ac95af523a65fbb, type: 3}
   m_Name: Gray
   m_EditorClassIdentifier: 
+  id: 74e221a4-4c6f-4eb3-91b6-6042f2ecb8af
   horseColor: 10
   textColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   sprite2D: {fileID: 21300000, guid: e6580d5f31cb106449048cd712852eaa, type: 3}

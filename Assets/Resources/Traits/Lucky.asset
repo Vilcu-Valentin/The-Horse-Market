@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Lucky
   m_EditorClassIdentifier: 
+  id: 3b2ba68b-1091-464f-a5f9-ff6b88dc6b5a
   DisplayName: Lucky
   Description: Lucky horses are prized by breeders for their remarkable breeding
     potential, offering significantly higher odds of tier upgrades, stronger initial

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Resilient
   m_EditorClassIdentifier: 
+  id: 72342c74-2870-43d9-9511-07d4db149b7b
   DisplayName: Resilient
   Description: Resilient horses have slightly reduced chances of tier changes, stabilizing
     their breeding outcomes, although limiting upgrade potential.

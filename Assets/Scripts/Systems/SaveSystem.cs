@@ -8,13 +8,15 @@ public class SaveSystem : MonoBehaviour
     public static SaveSystem Instance { get; private set; }
     public PlayerData Current { get; private set; }
 
-    [SerializeField] PlayerData template;
+    [SerializeField] private PlayerData template;
 
-    string SavePath => Path.Combine(Application.persistentDataPath, "player.json");
+    private string SavePath => Path.Combine(Application.persistentDataPath, "player.json");
+
+    // Event for any UI or logic to subscribe to when data changes
+    public event System.Action<PlayerData> OnPlayerDataChanged;
 
     void Awake()
     {
-        // Enforce the singleton
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -26,26 +28,68 @@ public class SaveSystem : MonoBehaviour
         Load();
     }
 
+    /// <summary>
+    /// Loads saved JSON into the existing Current instance (or creates it once).
+    /// </summary>
     public void Load()
     {
-        // 1) Clone the SO so you never touch the asset on disk
-        Current = Instantiate(template);
+        // Only instantiate once; after that, reuse the same ScriptableObject instance
+        if (Current == null)
+        {
+            Current = Instantiate(template);
+        }
 
-        // 2) If we have saved JSON, overwrite the clone
+        // Overwrite fields on the existing instance
         if (File.Exists(SavePath))
         {
             var json = File.ReadAllText(SavePath);
             JsonUtility.FromJsonOverwrite(json, Current);
         }
+
+        // Notify listeners that data is fresh
+        OnPlayerDataChanged?.Invoke(Current);
     }
 
+    /// <summary>
+    /// Saves the Current instance to disk and refreshes it in-place.
+    /// </summary>
     public void Save()
     {
         var json = JsonUtility.ToJson(Current, true);
         File.WriteAllText(SavePath, json);
+
+        // Refresh in-place so any binding to Current sees updates
+        Load();
+    }
+
+    /// <summary>
+    /// Helper: add a horse, persist, and notify.
+    /// </summary>
+    public void AddHorse(Horse horse)
+    {
+        Current.AddHorse(horse);
+        Save();
+    }
+
+    /// <summary>
+    /// Helper: remove a horse, persist, and notify.
+    /// </summary>
+    public void RemoveHorse(Horse horse)
+    {
+        Current.RemoveHorse(horse);
+        Save();
+    }
+
+    public void AddEmeralds(long amount)
+    {
+        var cur = Current.emeralds;
+        cur = Mathf.Max(0, (int)(cur + amount));
+        Current.emeralds = cur;
+        Save();
     }
 
     void OnApplicationQuit() => Save();
+
     void OnApplicationPause(bool pause)
     {
         if (pause) Save();

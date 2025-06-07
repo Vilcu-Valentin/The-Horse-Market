@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded0b6382b5151f45ac95af523a65fbb, type: 3}
   m_Name: Brindle
   m_EditorClassIdentifier: 
+  id: 0af99f06-ea3e-49ae-bb5c-f710ba497e89
   horseColor: 2
   textColor: {r: 0.4862745, g: 0.33333334, b: 0.27450982, a: 1}
   sprite2D: {fileID: 21300000, guid: 8913340c0058ed74998378ebf540c257, type: 3}

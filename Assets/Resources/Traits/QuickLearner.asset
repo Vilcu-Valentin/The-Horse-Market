@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: QuickLearner
   m_EditorClassIdentifier: 
+  id: f58520e5-df6a-4717-8fdc-fbb905721a29
   DisplayName: Quick Learner
   Description: Quick Learners exhibit superior ability during training, significantly
     enhancing training speed and providing a noticeable boost to overall training

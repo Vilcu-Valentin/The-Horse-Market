@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Venerable
   m_EditorClassIdentifier: 
+  id: 52801b3f-a4a3-4600-84a6-7659ea8867e4
   DisplayName: Venerable
   Description: Venerable horses gain increasing prestige and value as they age, especially
     appealing to collectors and exhibition enthusiasts.

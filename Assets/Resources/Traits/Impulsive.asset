@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Impulsive
   m_EditorClassIdentifier: 
+  id: 85955b62-d662-4152-acbf-1f96fadf9123
   DisplayName: Impulsive
   Description: Impulsive horses suffer from significantly decreased training speed
     and reduced training effectiveness, as their unpredictable behavior frequently

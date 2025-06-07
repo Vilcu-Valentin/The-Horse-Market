@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Mutagenic
   m_EditorClassIdentifier: 
+  id: 41a292ac-a1df-4f70-9035-f25385b7f990
   DisplayName: Mutagenic
   Description: Mutagenic horses greatly increase the chances of genetic mutations,
     providing breeders opportunities to achieve unique and rare trait combinations.

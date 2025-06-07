@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Bulky
   m_EditorClassIdentifier: 
+  id: 3ab904d5-59aa-4527-85a8-252dfe75f602
   DisplayName: Bulky
   Description: Bulky horses possess significantly increased strength potential, though
     their overall speed and jump capabilities are notably reduced, making them ideal

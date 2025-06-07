@@ -24,7 +24,7 @@ public static class CrateSystem
         int amount = Random.Range(chosen.MinTraits, chosen.MaxTraits);
 
         Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount);
-        SaveSystem.Instance.Current.horses.Add(pickedH);
+        SaveSystem.Instance.AddHorse(pickedH);
 
         return (pickedH, values);
     }

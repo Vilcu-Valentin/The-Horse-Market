@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Robust
   m_EditorClassIdentifier: 
+  id: 9ca1120a-04b5-49f1-af9a-8dfbf8dbb1d2
   DisplayName: Robust
   Description: Robust horses dramatically reduce the likelihood of breeding downgrades,
     offering security and reliability in maintaining stable tier quality.

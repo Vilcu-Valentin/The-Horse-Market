@@ -2,11 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
 [CreateAssetMenu(menuName = "HorseGame/Trait")]
 public sealed class TraitDef : ScriptableObject
 {
+    [SerializeField, HideInInspector]
+    private string id;
+    public string ID => id;
+
     [Header("Identity")]
     public string DisplayName;
     [TextArea] public string Description;
@@ -63,6 +70,17 @@ public sealed class TraitDef : ScriptableObject
     {
         return conflictedTraits.Contains(other);
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(id))
+        {
+            id = Guid.NewGuid().ToString();
+            EditorUtility.SetDirty(this);
+        }
+    }
+#endif
 }
 
 [Serializable]

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Strong
   m_EditorClassIdentifier: 
+  id: 1027a5f0-9d60-47a2-a95d-f5115efe2fd2
   DisplayName: Strong
   Description: Strong horses possess modestly higher strength limits, making them
     reliable competitors in strength-based events.

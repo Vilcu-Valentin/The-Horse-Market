@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Unadaptable
   m_EditorClassIdentifier: 
+  id: 1eb3e4fa-f61f-4c86-897d-ecbd3ce8f407
   DisplayName: Unadaptable
   Description: Horses with this severe negative trait experience substantial reductions
     in maximum potential across all performance stats.

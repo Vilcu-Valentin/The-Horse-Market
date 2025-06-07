@@ -9,9 +9,9 @@ public static class ShopSystem
     public static void BuyHorse(Horse horse)
     {
         // Check if enough money, if there are enough remove them, otherwise raise money error
-        
+
         refreshOffersIncreases = 0;
-        SaveSystem.Instance.Current.horses.Add(horse);
+        SaveSystem.Instance.AddHorse(horse);
     }
 
     /// <summary>

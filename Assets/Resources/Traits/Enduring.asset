@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Enduring
   m_EditorClassIdentifier: 
+  id: 30386cc0-823b-4e87-8316-94a7071bb4ae
   DisplayName: Enduring
   Description: Enduring horses enjoy moderately increased stamina potential, ideal
     for endurance-based competitions and long-duration events.

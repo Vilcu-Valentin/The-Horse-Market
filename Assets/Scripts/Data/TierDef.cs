@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(menuName = "HorseGame/Tier")]
 public class TierDef : ScriptableObject
 {
+    [SerializeField, HideInInspector]
+    private string id;
+    public string ID => id;
+
     public string TierName = "Tier I";
     public Sprite tierIcon;
     [Min(1)] public int TierIndex = 1; 
@@ -27,4 +36,16 @@ public class TierDef : ScriptableObject
 
     // Convenience
     public float SameChance => 1f - UpgradeChance - DowngradeChance;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(id))
+        {
+            id = Guid.NewGuid().ToString();
+            EditorUtility.SetDirty(this);
+        }
+    }
+#endif
+
 }

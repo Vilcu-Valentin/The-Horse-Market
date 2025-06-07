@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Graceful
   m_EditorClassIdentifier: 
+  id: 3b492f69-a1d6-4195-bc9e-7109819e3363
   DisplayName: Graceful
   Description: Graceful horses enjoy increased jumping potential and a moderate competitive
     boost, enhancing performance particularly in jump-based competitions and exhibitions.

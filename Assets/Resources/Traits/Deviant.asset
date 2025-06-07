@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Deviant
   m_EditorClassIdentifier: 
+  id: 189f32ef-b5dc-4d2e-a532-f7e9d114d25a
   DisplayName: Deviant
   Description: Deviant horses exhibit unpredictable and often detrimental behavior,
     significantly reducing training effectiveness, competitive outcomes, and training

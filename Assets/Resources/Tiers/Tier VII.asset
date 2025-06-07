@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier VII
   m_EditorClassIdentifier: 
+  id: 5fa5c7bc-8012-4855-90bd-509b953042a0
   TierName: Tier VII
   tierIcon: {fileID: 21300000, guid: 9bae4d813da98d0439caa40c483b9cf7, type: 3}
   TierIndex: 7
   HighlightColor: {r: 0.9254902, g: 0.44313726, b: 0.17254902, a: 1}
   ForegroundColor: {r: 0.7176471, g: 0.45882353, b: 0.2627451, a: 1}
   BackgroundColor: {r: 0.41568628, g: 0.25490198, b: 0.14509805, a: 1}
-  BasePriceMultiplier: 64
   StatCap: 640
   UpgradeChance: 0.1
   DowngradeChance: 0.25

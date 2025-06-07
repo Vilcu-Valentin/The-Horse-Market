@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Talented
   m_EditorClassIdentifier: 
+  id: fc061243-49fe-4177-9bfc-4e631a6c5d69
   DisplayName: Talented
   Description: Talented horses possess exceptional natural abilities, providing a
     substantial boost to their competition performance, alongside improved training

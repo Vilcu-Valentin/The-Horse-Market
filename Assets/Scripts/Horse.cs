@@ -7,7 +7,7 @@ using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 [Serializable]
-public class Horse
+public class Horse : ISerializationCallbackReceiver
 {
     public Guid Id;
     public string horseName;
@@ -25,6 +25,42 @@ public class Horse
 
     [SerializeField] private List<TraitDef> _traits = new();
     public IReadOnlyList<TraitDef> Traits => _traits;   // read-only view
+
+
+    // — surrogate fields for JSON serialization —
+    [SerializeField] private string _idString;
+    [SerializeField] private string _tierID;
+    [SerializeField] private string _visualID;
+    [SerializeField] private List<string> _traitIDs;
+
+    public void OnBeforeSerialize()
+    {
+        _idString = Id.ToString();
+        _tierID = Tier != null ? Tier.ID : "";
+        _visualID = Visual != null ? Visual.ID : "";
+        _traitIDs = _traits.Select(t => t.ID).ToList();
+    }
+    public void OnAfterDeserialize()
+    {
+        // 1) Rehydrate the GUID
+        if (!string.IsNullOrEmpty(_idString) && Guid.TryParse(_idString, out var parsed))
+            Id = parsed;
+        else
+            Id = Guid.NewGuid();
+
+        // 2) Rehydrate SO references via your database
+        var db = HorseMarketDatabase.Instance;
+        if (db != null)
+        {
+            Tier = db.GetTier(_tierID);
+            Visual = db.GetVisual(_visualID);
+            _traits = _traitIDs
+                .Select(id => db.GetTrait(id))
+                .Where(t => t != null)
+                .ToList();
+        }
+    }
+
 
     public int GetCurrent(StatType s) => Current.Get(s);
     public int GetMax(StatType s) => Max.Get(s);

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier I
   m_EditorClassIdentifier: 
+  id: 9be0035f-d6eb-4391-b0ae-781c775adc78
   TierName: Tier I
   tierIcon: {fileID: 21300000, guid: a858be52e542e874b9fc31c98095f99f, type: 3}
   TierIndex: 1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Powerful
   m_EditorClassIdentifier: 
+  id: b8f8913f-7f3d-44ec-8ae3-4c302061c0a7
   DisplayName: Powerful
   Description: Powerful horses significantly increase their maximum strength potential,
     making them top contenders in strength-focused events and greatly enhancing market

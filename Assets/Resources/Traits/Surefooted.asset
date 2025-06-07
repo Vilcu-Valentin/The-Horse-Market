@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Surefooted
   m_EditorClassIdentifier: 
+  id: 1744e346-fa48-4d5d-928e-dd8aadbedb63
   DisplayName: Surefooted
   Description: Surefooted horses excel significantly in jump events, navigating obstacles
     with ease and agility.

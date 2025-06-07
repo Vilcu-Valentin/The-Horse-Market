@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Intelligent
   m_EditorClassIdentifier: 
+  id: 645eb1d9-9d9b-4701-870d-8b4b3b065e23
   DisplayName: Intelligent
   Description: Intelligent horses are exceptional learners, dramatically increasing
     training speed and notably boosting training effectiveness, quickly reaching

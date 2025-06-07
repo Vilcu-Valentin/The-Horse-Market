@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: ExtremelyAdaptive
   m_EditorClassIdentifier: 
+  id: 41b1680b-76d1-4116-ad30-3df573cd3e25
   DisplayName: Extremely Adaptive
   Description: This remarkable trait greatly enhances maximum stats across all areas,
     creating exceptionally versatile horses capable of excelling broadly in competitive

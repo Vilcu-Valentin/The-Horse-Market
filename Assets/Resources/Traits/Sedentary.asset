@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Sedentary
   m_EditorClassIdentifier: 
+  id: ea23d4ce-d2b0-413e-84a4-f660e84d7b32
   DisplayName: Sedentary
   Description: Sedentary horses suffer from modestly reduced maximum speed and stamina
     capabilities, impacting their performance in most competitive events negatively.

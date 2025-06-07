@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Barren
   m_EditorClassIdentifier: 
+  id: 65ff3a87-fdf8-47e9-98ce-7af57178a147
   DisplayName: Barren
   Description: Horses marked as Barren carry a substantial risk in breeding due to
     dramatically increased chances of tier downgrades. They are considered poor breeding

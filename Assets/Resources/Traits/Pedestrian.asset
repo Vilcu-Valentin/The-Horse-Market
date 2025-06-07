@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Pedestrian
   m_EditorClassIdentifier: 
+  id: 74bb8c51-b9f5-48a9-868d-35b90cd4135a
   DisplayName: Pedestrian
   Description: Pedestrian horses carry notably reduced market value, greatly limited
     competitive potential, and negligible benefit from age-based price increases,

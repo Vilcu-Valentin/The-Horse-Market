@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Stubborn
   m_EditorClassIdentifier: 
+  id: 2936754c-3083-4f57-be9e-9b36aa32501d
   DisplayName: Stubborn
   Description: Stubborn horses actively resist training, leading to moderately reduced
     training speeds and requiring consistent management and patience to progress

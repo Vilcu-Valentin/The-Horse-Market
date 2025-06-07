@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Nimble
   m_EditorClassIdentifier: 
+  id: fae212b8-bdf3-474e-8d90-5aa287fb98d2
   DisplayName: Nimble
   Description: Nimble horses have modestly increased jump height capabilities, aiding
     performance in obstacle courses and agility-focused competitions.

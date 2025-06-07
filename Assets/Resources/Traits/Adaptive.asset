@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Adaptive
   m_EditorClassIdentifier: 
+  id: 4adc0f89-cc83-465d-bbe7-e478507e29fa
   DisplayName: Adaptive
   Description: Adaptive horses modestly boost maximum stat limits across all areas,
     making them versatile and capable competitors across multiple event types.

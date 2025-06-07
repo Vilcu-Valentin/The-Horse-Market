@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Tireless
   m_EditorClassIdentifier: 
+  id: a2e52640-b39d-4280-b99b-8982b0da1c42
   DisplayName: Tireless
   Description: Tireless horses significantly outperform others in stamina-demanding
     events due to their superior endurance.

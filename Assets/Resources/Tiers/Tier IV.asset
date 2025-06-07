@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier IV
   m_EditorClassIdentifier: 
+  id: ff68f208-ebe7-4c8f-85b2-19d862bccb84
   TierName: Tier IV
   tierIcon: {fileID: 21300000, guid: 0f4b7c632fd56864bba737cd822df4d3, type: 3}
   TierIndex: 4
   HighlightColor: {r: 0.24313726, g: 0.6509804, b: 0.16078432, a: 1}
   ForegroundColor: {r: 0.30980393, g: 0.56078434, b: 0.2509804, a: 1}
   BackgroundColor: {r: 0.17254902, g: 0.34509805, b: 0.13725491, a: 1}
-  BasePriceMultiplier: 8
   StatCap: 80
   UpgradeChance: 0.3
   DowngradeChance: 0.3

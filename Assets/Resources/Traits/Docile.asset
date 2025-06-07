@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Docile
   m_EditorClassIdentifier: 
+  id: d0910b1e-82ac-4f07-9799-1cb545abb316
   DisplayName: Docile
   Description: Docile horses respond well during training, moderately enhancing training
     effectiveness and ensuring steady progress with fewer challenges.

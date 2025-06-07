@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Sprinter
   m_EditorClassIdentifier: 
+  id: fda6050a-2681-4ad4-8c69-21406c21f754
   DisplayName: Sprinter
   Description: Sprinter horses possess increased speed potential, excelling particularly
     in short-distance races.

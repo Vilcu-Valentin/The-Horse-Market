@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded0b6382b5151f45ac95af523a65fbb, type: 3}
   m_Name: Chestnut
   m_EditorClassIdentifier: 
+  id: 980a3fa3-e1ff-4866-bfe3-857a7fe3de3e
   horseColor: 4
   textColor: {r: 0.6862745, g: 0.32941177, b: 0.11372549, a: 1}
   sprite2D: {fileID: 21300000, guid: cb65d2a648ee271459a36680a06e35f7, type: 3}

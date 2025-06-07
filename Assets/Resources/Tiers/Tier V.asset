@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier V
   m_EditorClassIdentifier: 
+  id: ac2f7beb-aa99-4926-b4db-481b5e634596
   TierName: Tier V
   tierIcon: {fileID: 21300000, guid: 32a99fdf02679674abae75de22d72338, type: 3}
   TierIndex: 5
   HighlightColor: {r: 0.69411767, g: 0.25882354, b: 0.9764706, a: 1}
   ForegroundColor: {r: 0.43529412, g: 0.24705882, b: 0.56078434, a: 1}
   BackgroundColor: {r: 0.2509804, g: 0.14117648, b: 0.34509805, a: 1}
-  BasePriceMultiplier: 16
   StatCap: 160
   UpgradeChance: 0.2
   DowngradeChance: 0.3

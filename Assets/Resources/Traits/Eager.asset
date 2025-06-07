@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Eager
   m_EditorClassIdentifier: 
+  id: 89159245-ea6c-4d5e-b947-d409b5121f75
   DisplayName: Eager
   Description: Eager horses consistently perform better during training, modestly
     improving the rate at which they gain stats, making them more efficient to train

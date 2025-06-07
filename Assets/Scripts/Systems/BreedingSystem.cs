@@ -33,9 +33,9 @@ public static class BreedingSystem
         List<TraitDef> childTraits = CalculateTraits(parentA, parentB);
 
         // Remove parents and add new foal to the player inventory
-        SaveSystem.Instance.Current.horses.Add(HorseFactory.CreateFoal(childTier, childVisual, childTraits));
-        SaveSystem.Instance.Current.horses.Remove(parentA);
-        SaveSystem.Instance.Current.horses.Remove(parentB);
+        SaveSystem.Instance.AddHorse(HorseFactory.CreateFoal(childTier, childVisual, childTraits));
+        SaveSystem.Instance.RemoveHorse(parentA);
+        SaveSystem.Instance.RemoveHorse(parentB);
     }
 
     public static (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
