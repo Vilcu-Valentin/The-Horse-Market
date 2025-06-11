@@ -24,6 +24,7 @@ public class HorseInventoryPanelUI : MonoBehaviour
 
     public event Action<Horse> OnClicked;
     public event Action<Horse, bool> InfoClicked;
+    public event Action<Horse, bool> FavoriteToggled;
 
     public void InitHorseUI(Horse horse)
     {
@@ -37,7 +38,18 @@ public class HorseInventoryPanelUI : MonoBehaviour
 
         sellButton.onClick.RemoveAllListeners();
         sellButton.onClick.AddListener(() => HandleSellClick(horse));
+        infoButton.onClick.RemoveAllListeners();
         infoButton.onClick.AddListener(() => HandleInfoClick(horse, true));
+
+        favoriteButton.onClick.RemoveAllListeners();
+        favoriteButton.onClick.AddListener(() =>
+        {
+            bool newFavState = !horse.favorite; 
+            SetFavoriteIndicator(newFavState);
+            FavoriteToggled?.Invoke(horse, newFavState);
+        });
+
+        SetFavoriteIndicator(horse.favorite);
 
         float avgCaps = Mathf.Max(1f, (float)horse.Max.Average(t => t.Value));
         float avgCurrent = horse.Current.Average(t => (float)t.Value);
@@ -48,6 +60,8 @@ public class HorseInventoryPanelUI : MonoBehaviour
             trainingAmount.text = "0%";
         else
             trainingAmount.text = ratio.ToString("# %");
+
+        Debug.Log(horse.horseName + " favorite: " + horse.favorite);
     }
 
     private void HandleSellClick(Horse horse)
@@ -58,6 +72,15 @@ public class HorseInventoryPanelUI : MonoBehaviour
     private void HandleInfoClick(Horse horse, bool inventoryMode)
     {
         InfoClicked?.Invoke(horse, inventoryMode);
+    }
+
+    public void SetFavoriteIndicator(bool isFav) 
+    {
+        // favoriteButton.image.sprite = isFav ? filledStarSprite : emptyStarSprite;
+
+        // Or if you just want a tint:
+        favoriteButton.image.color = isFav ? new Color(1f, 0.84f, 0f)  // gold
+                                           : Color.white;
     }
 
 }

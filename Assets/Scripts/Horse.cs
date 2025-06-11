@@ -11,6 +11,7 @@ public class Horse : ISerializationCallbackReceiver
 {
     public Guid Id;
     public string horseName;
+    public bool favorite = false;
 
     // Tier & visuals are references to immutable ScriptableObjects
     public TierDef Tier;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System.Linq;
+using System;
 
 public class HorseInfoPanelUI : MonoBehaviour
 { 
@@ -16,6 +17,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_Text horseColor;
     public TMP_Text horseColorMultiplier;
     public TMP_InputField horseName;
+    public Button favoriteButton;
 
     [Header("Value")]
     public InfoBarUI emeraldBar;
@@ -45,6 +47,11 @@ public class HorseInfoPanelUI : MonoBehaviour
     public GameObject traitPrefab;
     public Transform traitPanel;
 
+    public event Action<Horse> OnSellClicked;
+    public event Action<Horse, bool> OnFavoriteClicked;
+    public event Action<Horse> OnBreedingClicked;
+    public event Action<Horse> OnNameChanged;
+
     /// <summary>
     /// Initializes Horse Info UI
     /// </summary>
@@ -52,6 +59,31 @@ public class HorseInfoPanelUI : MonoBehaviour
     /// <param name="inventoryMode"></param>
     public void HorseUIInit(Horse horse, bool inventoryMode)
     {
+        horseName.interactable = inventoryMode;
+        horseName.onEndEdit.RemoveAllListeners();
+        horseName.text = horse.horseName;
+        horseName.onEndEdit.AddListener(newName =>
+        {
+            if (string.IsNullOrWhiteSpace(newName) || newName == horse.horseName)
+                return;
+            horse.horseName = newName;
+            OnNameChanged?.Invoke(horse);
+        });
+
+        favoriteButton.gameObject.SetActive(inventoryMode);
+        favoriteButton.onClick.RemoveAllListeners();
+        if(inventoryMode)
+        {
+            favoriteButton.onClick.AddListener(() =>
+            {
+                bool newFavState = !horse.favorite;
+                SetFavoriteIndicator(newFavState);
+                OnFavoriteClicked?.Invoke(horse, newFavState);
+            });
+        }
+
+        SetFavoriteIndicator(horse.favorite);
+
         // MainInfo
         tierText.text = horse.Tier.TierName;
         tierText.color = horse.Tier.HighlightColor;
@@ -64,11 +96,19 @@ public class HorseInfoPanelUI : MonoBehaviour
         horseColor.color = horse.Visual.textColor;
         horseColorMultiplier.text = "x" + horse.Visual.PriceScalar.ToString("#.##");
 
-        horseName.text = horse.horseName;
-
         //Value
         emeraldBar.UpdateBar("Emeralds", horse.GetCurrentPrice(), horse.GetMinPrice(), horse.GetMaxPrice(), true);
+
+        sellButton.onClick.RemoveAllListeners();
         sellButton.gameObject.SetActive(inventoryMode);
+        if (inventoryMode)
+        {
+            sellButton.onClick.AddListener(() =>
+            {
+                gameObject.SetActive(false);
+                OnSellClicked?.Invoke(horse);
+            });
+        }
 
         //Stats
         speedBar.UpdateBar("Speed", horse.GetCurrent(StatType.Speed), 1, horse.GetMax(StatType.Speed), false);
@@ -102,14 +142,9 @@ public class HorseInfoPanelUI : MonoBehaviour
 
         (upChance, sameChance, downChance) = horse.GetBreedingOdds();
 
-        if(inventoryMode)
-        {
-            breedButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            breedButton.gameObject.SetActive(false);
-        }
+        breedButton.onClick.RemoveAllListeners();
+        breedButton.gameObject.SetActive(inventoryMode);
+
         upgradeSlider.value = upChance;
         sameSlider.value = upChance + sameChance;
 
@@ -135,5 +170,14 @@ public class HorseInfoPanelUI : MonoBehaviour
             GameObject tr = Instantiate(traitPrefab, traitPanel);
             tr.GetComponent<TraitUI>().InitTrait(trait);
         }
+    }
+
+    public void SetFavoriteIndicator(bool isFav)
+    {
+        // favoriteButton.image.sprite = isFav ? filledStarSprite : emptyStarSprite;
+
+        // Or if you just want a tint:
+        favoriteButton.image.color = isFav ? new Color(1f, 0.84f, 0f)  // gold
+                                           : Color.white;
     }
 }

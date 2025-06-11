@@ -18,7 +18,7 @@ MonoBehaviour:
   CostInEmeralds: 250000
   TierChances:
   - Tier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
-    Tickets: 2
+    Tickets: 1
     MinTraits: 1
     MaxTraits: 4
   - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
@@ -38,14 +38,14 @@ MonoBehaviour:
     MinTraits: 3
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
-    Tickets: 16
+    Tickets: 15
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
-    Tickets: 6
+    Tickets: 5
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
-    Tickets: 3
+    Tickets: 2
     MinTraits: 4
     MaxTraits: 8
