@@ -18,6 +18,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_Text horseColorMultiplier;
     public TMP_InputField horseName;
     public Button favoriteButton;
+    public Button closeButton;
 
     [Header("Value")]
     public InfoBarUI emeraldBar;
@@ -34,6 +35,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_Text trainingMultiplierText;
     public Button addTrainingItemButton;
     public Button trainButton;
+    public DialogPanelUI trainingFailDialog;
 
     [Header("Breeding")]
     public Slider upgradeSlider;
@@ -42,6 +44,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_Text sameText;
     public TMP_Text downgradeText;
     public Button breedButton;
+    public BreedingUIManager breedingUIManager;
 
     [Header("Traits")]
     public GameObject traitPrefab;
@@ -49,8 +52,8 @@ public class HorseInfoPanelUI : MonoBehaviour
 
     public event Action<Horse> OnSellClicked;
     public event Action<Horse, bool> OnFavoriteClicked;
-    public event Action<Horse> OnBreedingClicked;
     public event Action<Horse> OnNameChanged;
+    public event Action OnCloseClicked;
 
     /// <summary>
     /// Initializes Horse Info UI
@@ -59,6 +62,15 @@ public class HorseInfoPanelUI : MonoBehaviour
     /// <param name="inventoryMode"></param>
     public void HorseUIInit(Horse horse, bool inventoryMode)
     {
+        closeButton.onClick.RemoveAllListeners();
+        if(inventoryMode)
+        {
+            closeButton.onClick.AddListener(() =>
+            {
+                OnCloseClicked?.Invoke();
+            });
+        }
+
         horseName.interactable = inventoryMode;
         horseName.onEndEdit.RemoveAllListeners();
         horseName.text = horse.horseName;
@@ -125,12 +137,28 @@ public class HorseInfoPanelUI : MonoBehaviour
         addTrainingItemButton.gameObject.SetActive(inventoryMode);
         trainButton.gameObject.SetActive(inventoryMode);
         trainButton.onClick.RemoveAllListeners();
+        if (horse.currentTrainingEnergy <= 0)
+            trainButton.interactable = false;
+        else
+            trainButton.interactable = true;
+
         if (inventoryMode)
         {
-            // Capture both "horse" and "inventoryMode" in the closure.
             trainButton.onClick.AddListener(() =>
             {
-                horse.Train();
+                // 1) Attempt to train
+                bool success = horse.Train();
+
+                // 2) If it failed, show the failure dialog
+                if (!success)
+                {
+                    trainingFailDialog.Show(
+                        "Training session failed, but consumed 1 energy!",
+                        () => { /* nothing else to do on OK */ }
+                    );
+                }
+
+                // 3) Refresh all fields (energy bar, stats, etc.)
                 HorseUIInit(horse, inventoryMode);
             });
         }
@@ -144,6 +172,16 @@ public class HorseInfoPanelUI : MonoBehaviour
 
         breedButton.onClick.RemoveAllListeners();
         breedButton.gameObject.SetActive(inventoryMode);
+        if(inventoryMode)
+        {
+            breedButton.onClick.AddListener(() =>
+            {
+                breedingUIManager.gameObject.SetActive(true);
+                breedingUIManager.InitUI();
+                breedingUIManager.AddParentA(horse);
+                gameObject.SetActive(false);
+            });
+        }
 
         upgradeSlider.value = upChance;
         sameSlider.value = upChance + sameChance;

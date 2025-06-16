@@ -80,14 +80,6 @@ public class SaveSystem : MonoBehaviour
         Save();
     }
 
-    public void AddEmeralds(long amount)
-    {
-        var cur = Current.emeralds;
-        cur = Mathf.Max(0, (int)(cur + amount));
-        Current.emeralds = cur;
-        Save();
-    }
-
     void OnApplicationQuit() => Save();
 
     void OnApplicationPause(bool pause)

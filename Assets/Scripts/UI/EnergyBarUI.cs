@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 [ExecuteAlways]
 public class EnergyBarUI : MonoBehaviour
 {
@@ -44,6 +48,7 @@ public class EnergyBarUI : MonoBehaviour
 
     private void OnValidate()
     {
+#if UNITY_EDITOR
         // Whenever something changes in the Inspector (maxEnergy, direction, spacing, sprites, etc.), rebuild
         // Delay until after script recompiles so that everything is initialized.
         UnityEditor.EditorApplication.delayCall += () =>
@@ -57,6 +62,7 @@ public class EnergyBarUI : MonoBehaviour
             }
             UpdateVisuals();
         };
+#endif
     }
 
     private void Awake()

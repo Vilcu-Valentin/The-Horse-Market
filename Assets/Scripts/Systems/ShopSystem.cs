@@ -5,11 +5,9 @@ using UnityEngine;
 
 public static class ShopSystem 
 {
-    private static long refreshOffersIncreases = -1;
+    private static long refreshOffersIncreases = 0;
     public static void BuyHorse(Horse horse)
     {
-        // Check if enough money, if there are enough remove them, otherwise raise money error
-
         refreshOffersIncreases = 0;
         SaveSystem.Instance.AddHorse(horse);
     }
@@ -29,10 +27,18 @@ public static class ShopSystem
             offers.Add(HorseFactory.CreateRandomHorse(tier, traits));
         }
 
+        long price = GetRefreshOffer();
+
         // bump the counter and compute price
         refreshOffersIncreases++;
-        return (offers, GetRefreshOffer());
+        return (offers, price);
     }
+
+    public static long PeekRefreshCost()
+    {
+        return GetRefreshOffer();    // uses the *current* refreshOffersIncreases
+    }
+
 
     private static TierDef PickHorseTier()
     {
@@ -81,7 +87,7 @@ public static class ShopSystem
     private static long GetRefreshOffer()
     {
         double u = SaveSystem.Instance.Current.GetHighestHorseTier();
-        double x = refreshOffersIncreases;
+        double x = Math.Max(0, refreshOffersIncreases);
 
         double expoExp = Math.Pow(u, 0.95) * (x / 10.0);
         double powPart = Math.Pow(x, expoExp);

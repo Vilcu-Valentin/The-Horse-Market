@@ -9,8 +9,6 @@ public static class CrateSystem
     /// </summary>
     public static (Horse, List<(WeightedTier tier, int weight)>) OpenCrate(CrateDef crate)
     {
-        // Check if enough money, if there are enough remove them, otherwise raise money error
-
         var values = new List<(WeightedTier tier, int weight)>();
 
         foreach (var tier in crate.TierChances)

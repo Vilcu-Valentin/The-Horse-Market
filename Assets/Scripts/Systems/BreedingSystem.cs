@@ -6,17 +6,11 @@ using UnityEngine;
 
 public static class BreedingSystem 
 {
-    public static void Breed(Horse parentA, Horse parentB) // also add a list of breeding items later
+    public static Horse Breed(Horse parentA, Horse parentB) // also add a list of breeding items later
     {
         // Calculates upgrade odds
-        Vector3 parentAOdds = Vector3.zero;
-        Vector3 parentBOdds = Vector3.zero;
         Vector3 foalOdds = Vector3.zero;
-        (parentAOdds.x, parentAOdds.y, parentAOdds.z) = CalculateUpgradeOdds(parentA);
-        (parentBOdds.x, parentBOdds.y, parentBOdds.z) = CalculateUpgradeOdds(parentB);
-        foalOdds.x = (parentAOdds.x + parentBOdds.x) / 2;
-        foalOdds.y = (parentAOdds.y + parentBOdds.y) / 2;
-        foalOdds.z = (parentAOdds.z + parentBOdds.z) / 2;
+        (foalOdds.x, foalOdds.y, foalOdds.z) = CalculateFoalOdds(parentA, parentB);
 
         // Selects new tier based on those odds
         float roll = Random.value;
@@ -33,9 +27,25 @@ public static class BreedingSystem
         List<TraitDef> childTraits = CalculateTraits(parentA, parentB);
 
         // Remove parents and add new foal to the player inventory
-        SaveSystem.Instance.AddHorse(HorseFactory.CreateFoal(childTier, childVisual, childTraits));
         SaveSystem.Instance.RemoveHorse(parentA);
         SaveSystem.Instance.RemoveHorse(parentB);
+        Horse breededFoal = HorseFactory.CreateFoal(childTier, childVisual, childTraits);
+        SaveSystem.Instance.AddHorse(breededFoal);
+        return breededFoal;
+    }
+
+    public static (float baseUp, float baseSame, float baseDown) CalculateFoalOdds(Horse parentA, Horse parentB)
+    {
+        Vector3 parentAOdds = Vector3.zero;
+        Vector3 parentBOdds = Vector3.zero;
+        Vector3 foalOdds = Vector3.zero;
+        (parentAOdds.x, parentAOdds.y, parentAOdds.z) = CalculateUpgradeOdds(parentA);
+        (parentBOdds.x, parentBOdds.y, parentBOdds.z) = CalculateUpgradeOdds(parentB);
+        foalOdds.x = (parentAOdds.x + parentBOdds.x) / 2;
+        foalOdds.y = (parentAOdds.y + parentBOdds.y) / 2;
+        foalOdds.z = (parentAOdds.z + parentBOdds.z) / 2;
+
+        return (foalOdds.x, foalOdds.y, foalOdds.z);
     }
 
     public static (float baseUp, float baseSame, float baseDown) CalculateUpgradeOdds(Horse horse)
@@ -61,25 +71,34 @@ public static class BreedingSystem
     private static TierDef CalculateTier(Horse parentA, Horse parentB, int tierDelta)
     {
         int delta = tierDelta;
-        int volatilityNo = Mathf.FloorToInt((CalculateTierVolatility(parentA) + CalculateTierVolatility(parentB)) / 2f);
+
+        int volatilityNo = Mathf.CeilToInt((CalculateTierVolatility(parentA)
+                                          + CalculateTierVolatility(parentB)) / 2f);
+        Debug.Log("Volatilityno: " + volatilityNo);
         float volatilityMult = Mathf.Pow(volatilityNo, 0.68f);
 
-        Vector3 deltaV = new Vector3(0.83f * volatilityMult, 0.14f * volatilityMult, 0.02f * volatilityMult);
-        float rawDelta = deltaV.x + deltaV.y + deltaV.z;  
-        deltaV = new Vector3(deltaV.x / rawDelta, deltaV.y / rawDelta, deltaV.z / rawDelta);
+        const float baseX1 = 0.83f;
+        const float baseX2 = 0.14f;
+        const float baseX3 = 0.02f;
 
-        float roll = Random.value;
-        if (roll < deltaV.x) delta *= 1;
-        else if (roll < deltaV.x + deltaV.y) delta *= 2;
-        else delta *= 3;
+        float w1 = baseX1;
+        float w2 = baseX2 * volatilityMult;
+        float w3 = baseX3 * volatilityMult;
+
+        float total = w1 + w2 + w3;
+        float pick = Random.value * total;
+
+        if (pick <= w1) delta *= 1;  // small or no volatility → ~100% here
+        else if (pick <= w1 + w2) delta *= 2;  // higher volatility boosts this
+        else delta *= 3;  // and this
 
         var allTiers = HorseMarketDatabase.Instance._allTiers;
-
-        int newIndex = Mathf.Clamp(parentA.Tier.TierIndex + delta,
-                             allTiers.First().TierIndex,
-                             allTiers.Last().TierIndex);
-        return allTiers[newIndex];
+        int minIdx = allTiers.First().TierIndex;
+        int maxIdx = allTiers.Last().TierIndex;
+        int newIndex = Mathf.Clamp(parentA.Tier.TierIndex + delta, minIdx, maxIdx);
+        return allTiers[newIndex - 1];
     }
+
 
     private static int CalculateTierVolatility(Horse parent)
     {

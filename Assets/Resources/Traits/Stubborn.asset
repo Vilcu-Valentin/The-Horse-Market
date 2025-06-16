@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Stubborn horses actively resist training, leading to moderately reduced
     training speeds and requiring consistent management and patience to progress
     efficiently.
+  ModifiersDescription: 
   rarityTickets: 46
   Icon: {fileID: 21300000, guid: 2e70a07a0de34f444a1a6d32ead46599, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.23
+  BaseInheritChance: 0.38
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 0.75

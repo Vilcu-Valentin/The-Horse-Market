@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Docile
   Description: Docile horses respond well during training, moderately enhancing training
     effectiveness and ensuring steady progress with fewer challenges.
+  ModifiersDescription: 
   rarityTickets: 75
   Icon: {fileID: 21300000, guid: 7ccf6324157866641a3830691e45e10c, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.45
   MutationMultiplier: 1
   TrainingMult: 1.3
   TrainingSpeed: 1

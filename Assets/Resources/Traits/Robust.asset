@@ -16,14 +16,15 @@ MonoBehaviour:
   DisplayName: Robust
   Description: Robust horses dramatically reduce the likelihood of breeding downgrades,
     offering security and reliability in maintaining stable tier quality.
+  ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 44a189fa506ec9d4680bb6f5578275c6, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
   quality: 2
   UpgradeMult: 1
-  DowngradeMult: 0.5
+  DowngradeMult: 0.25
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.45
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

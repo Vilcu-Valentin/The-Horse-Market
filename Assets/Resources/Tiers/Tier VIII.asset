@@ -22,4 +22,4 @@ MonoBehaviour:
   StatCap: 1280
   UpgradeChance: 0
   DowngradeChance: 0.2
-  MutationChance: 0.001
+  MutationChance: 0.005

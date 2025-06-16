@@ -18,14 +18,15 @@ MonoBehaviour:
     dramatically increased stat caps across all areas, an immense boost to competitive
     performance, increased value as they age, and premium pricing, making them unmatched
     in market and exhibitions alike.
+  ModifiersDescription: 
   rarityTickets: 3
   Icon: {fileID: 21300000, guid: 9aa8d06cad7a0da4c93b62e8f619da17, type: 3}
   BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
   quality: 5
-  UpgradeMult: 1.25
+  UpgradeMult: 1.5
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.05
+  BaseInheritChance: 0.25
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

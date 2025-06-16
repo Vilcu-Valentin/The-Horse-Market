@@ -8,7 +8,6 @@ public static class InventorySystem
 {
     public static void SellHorse(Horse horse)
     {
-        SaveSystem.Instance.RemoveHorse(horse);
-        SaveSystem.Instance.AddEmeralds(horse.GetCurrentPrice());
+
     }
 }

@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Adaptive
   Description: Adaptive horses modestly boost maximum stat limits across all areas,
     making them versatile and capable competitors across multiple event types.
+  ModifiersDescription: 
   rarityTickets: 22
   Icon: {fileID: 21300000, guid: b20ab12e4115c804bb4a7b817349fde2, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.25
+  BaseInheritChance: 0.3
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

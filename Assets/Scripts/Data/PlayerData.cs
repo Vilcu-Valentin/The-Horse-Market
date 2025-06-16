@@ -21,7 +21,7 @@ public class PlayerData : ScriptableObject
 
     public int GetHighestHorseTier()
     {
-        int maxI = 0;
+        int maxI = 1;
         foreach(Horse horse in horses)
         {
             if(horse.Tier.TierIndex > maxI)

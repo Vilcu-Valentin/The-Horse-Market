@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Powerful horses significantly increase their maximum strength potential,
     making them top contenders in strength-focused events and greatly enhancing market
     value.
+  ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: adff3d143405046448af0db3d4f2bb7f, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.4
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

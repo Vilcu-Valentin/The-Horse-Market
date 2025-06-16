@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Weak
   Description: Weak horses possess lower-than-average strength caps, negatively impacting
     performance in strength-dependent events.
+  ModifiersDescription: 
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: ae7415420880b6b44b929c9fbb65cfae, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.5
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

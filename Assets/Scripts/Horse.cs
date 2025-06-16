@@ -64,7 +64,16 @@ public class Horse : ISerializationCallbackReceiver
 
 
     public int GetCurrent(StatType s) => Current.Get(s);
+    public int GetAverageCurrent()
+    {
+        return (int)Current.Average(t => (float)t.Value);
+    }
+
     public int GetMax(StatType s) => Max.Get(s);
+    public int GetAverageMax()
+    {
+        return (int)Max.Average(t => (float)t.Value);
+    }
     public void AddCurrent(StatType s, int delta)
     {
         var sb = Current.Get(s);

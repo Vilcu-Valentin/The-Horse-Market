@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Horses possessing the Predictable trait noticeably reduce both mutation
     chances, producing consistently predictable offspring. Ideal for breeders seeking
     steady progress and reliability over unpredictable outcomes.
+  ModifiersDescription: 
   rarityTickets: 42
   Icon: {fileID: 21300000, guid: 45acd148f5411ef499972453708f59e0, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.25
+  BaseInheritChance: 0
   MutationMultiplier: 0.8
   TrainingMult: 1
   TrainingSpeed: 1

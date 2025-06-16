@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Horses with this trait start with significantly higher initial stats
     but have considerably lower maximum potential in all areas, quickly reaching
     their limits with limited long-term potential.
+  ModifiersDescription: 
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 7f7f04a66897a4b49bab25e507c4a657, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.5
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

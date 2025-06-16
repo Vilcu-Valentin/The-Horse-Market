@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Horses with this trait require substantial patience due to their notably
     slower progression and somewhat reduced effectiveness in stat gains during training
     sessions.
+  ModifiersDescription: 
   rarityTickets: 45
   Icon: {fileID: 21300000, guid: 44b9b6884498b1247ad123cf96ff7e94, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.5
   MutationMultiplier: 1
   TrainingMult: 0.6
   TrainingSpeed: 0.35

@@ -16,7 +16,11 @@ public class ShopSystemUIManager : MonoBehaviour
 
     void Start()
     {
-        RefreshOffers();
+        var (initialHorses, pricePaid) = ShopSystem.GenerateOffers(horsePanels.Count);
+        for (int i = 0; i < horsePanels.Count; i++)
+            horsePanels[i].InitHorseUI(initialHorses[i]);
+
+        UpdateRefreshPriceUI();
 
         foreach (var panel in horsePanels)
         {
@@ -27,8 +31,12 @@ public class ShopSystemUIManager : MonoBehaviour
 
     public void RefreshOffers()
     {
-        long offerPrice;
-        List<Horse> horses;
+        long cost = ShopSystem.PeekRefreshCost();
+        Debug.Log("RefreshOffers cost: " + cost);
+
+        if (!EconomySystem.Instance.RemoveEmeralds(cost))
+            return;
+
 
         /*DEBUG, REMOVE AFTER TESTING
         foreach(var currentTier in HorseMarketDatabase.Instance._allTiers)
@@ -56,28 +64,36 @@ public class ShopSystemUIManager : MonoBehaviour
             double trimmedMean = (double)sum / count;
             Debug.Log($"Tier {currentTier} – 20% trimmed mean: {trimmedMean}");
         } */
-        
-        (horses, offerPrice) = ShopSystem.GenerateOffers(horsePanels.Count);
 
+        List<Horse> horses;
+        (horses, _) = ShopSystem.GenerateOffers(horsePanels.Count);
         for (int i = 0; i < horses.Count; i++)
             horsePanels[i].InitHorseUI(horses[i]);
 
-        if (offerPrice <= 0)
-            refreshOffersPriceUI.text = "Free";
-        else
-            refreshOffersPriceUI.text = offerPrice.ToShortString();
+        UpdateRefreshPriceUI();
     }
 
-    public void BuyHorse(Horse horse)
+    public void BuyHorse(Horse horse, HorseShopPanelUI uiPanel)
     {
-        ShopSystem.BuyHorse(horse);
-
-        refreshOffersPriceUI.text = "Free";
+        if (EconomySystem.Instance.RemoveEmeralds(horse.GetMarketPrice()))
+        {
+            ShopSystem.BuyHorse(horse);
+            uiPanel.SetSoldPanelTrue();
+            refreshOffersPriceUI.text = "Free";
+        }
     }
 
     public void OpenInfoPanel(Horse horse, bool inventoryMode)
     {
         horseInfoPanel.gameObject.SetActive(true);
         horseInfoPanel.HorseUIInit(horse, inventoryMode);
+    }
+
+    void UpdateRefreshPriceUI()
+    {
+        long nextCost = ShopSystem.PeekRefreshCost();
+        refreshOffersPriceUI.text = nextCost <= 0
+            ? "Free"
+            : nextCost.ToShortString();
     }
 }

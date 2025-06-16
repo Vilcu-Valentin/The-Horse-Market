@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Tireless
   Description: Tireless horses significantly outperform others in stamina-demanding
     events due to their superior endurance.
+  ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 00847f8fa1e0e404192207204b8beb53, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.4
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

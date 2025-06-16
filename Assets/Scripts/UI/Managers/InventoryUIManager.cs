@@ -5,11 +5,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum InventoryMode { Inventory, Selecting}
+
 /// <summary>
 /// Manages the inventory UI with pagination, search, sorting and favorites support.
 /// </summary>
 public class InventoryUIManager : MonoBehaviour
 {
+    public GameObject noHorsePanel;
+
+    /// <summary>
+    /// Used in SelectingMode
+    /// </summary>
+    public Button closePanelButton;
+    public DialogPanelUI confirmSellDialog;
+
     [Header("UI Panels")]
     public List<HorseInventoryPanelUI> horsePanels;
     public HorseInfoPanelUI horseInfoPanel;
@@ -28,9 +38,14 @@ public class InventoryUIManager : MonoBehaviour
     private int currentPage = 0;
     private int itemsPerPage => horsePanels.Count;
 
-    private enum SortField { Name = 0, Tier = 1, Price = 2, Training = 3 }
+    private enum SortField { Name = 0, Tier = 1, Price = 2, Stats = 3 }
     private SortField currentSortField = SortField.Name;
     private bool isAscending = true;
+
+    private TierDef selectionTier;
+    private Horse selectionExcludedHorse;
+    private InventoryMode currentMode = InventoryMode.Inventory;
+    private Action<Horse> onSelectCallback;
 
     void Start()
     {
@@ -38,6 +53,35 @@ public class InventoryUIManager : MonoBehaviour
         horseInfoPanel.OnNameChanged += HandleNameChanged;
         horseInfoPanel.OnSellClicked += SellHorse;
         horseInfoPanel.OnFavoriteClicked += OnFavoriteToggled;
+        horseInfoPanel.OnCloseClicked += RefreshList;
+        RefreshList();
+    }
+
+    /// <summary>
+    /// Call this to show the inventory for picking a breeding candidate.
+    /// </summary>
+    public void OpenForSelecting(
+        Action<Horse> onPick,
+        TierDef requiredTier = null,
+        Horse excludedHorse = null      // ← new
+    )
+    {
+        closePanelButton.gameObject.SetActive(true);
+        currentMode = InventoryMode.Selecting;
+        onSelectCallback = onPick;
+        selectionTier = requiredTier;
+        selectionExcludedHorse = excludedHorse;   // ← new
+        gameObject.SetActive(true);
+        RefreshList();
+    }
+
+
+    public void OpenForInventory()
+    {
+        closePanelButton.gameObject.SetActive(false);
+        currentMode = InventoryMode.Inventory;
+        onSelectCallback = null;
+        selectionTier = null;
         RefreshList();
     }
 
@@ -46,10 +90,10 @@ public class InventoryUIManager : MonoBehaviour
         // Panel events
         foreach (var panel in horsePanels)
         {
-            panel.OnClicked += SellHorse;
+            panel.OnClicked += HandleClick;
             panel.InfoClicked += OpenInfoPanel;
-            // Make sure HorseInventoryPanelUI has this event and SetFavoriteIndicator()
             panel.FavoriteToggled += OnFavoriteToggled;
+            panel.SelectClicked += HandleSelect;
         }
 
         // Search input
@@ -64,6 +108,26 @@ public class InventoryUIManager : MonoBehaviour
         nextPageButton.onClick.AddListener(() => { if ((currentPage + 1) * itemsPerPage < filteredHorses.Count) { currentPage++; RefreshList(); } });
     }
 
+    private void HandleClick(Horse horse)
+    {
+        if (currentMode == InventoryMode.Inventory)
+            SellHorse(horse);
+    }
+
+    private void HandleSelect(Horse horse)
+    {
+        // only in a select mode do we honor this
+        if (currentMode != InventoryMode.Inventory && onSelectCallback != null)
+        {
+            onSelectCallback(horse);
+            // auto-close or revert to browsing
+            currentMode = InventoryMode.Inventory;
+            onSelectCallback = null;
+            RefreshList();
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnFavoriteToggled(Horse horse, bool fav)
     {
         horse.favorite = fav;
@@ -74,8 +138,14 @@ public class InventoryUIManager : MonoBehaviour
     /// <summary>
     /// Applies filtering, sorting and pagination in sequence.
     /// </summary>
-    public void RefreshList()
+    private void RefreshList()
     {
+        gameObject.SetActive(true);
+        if(SaveSystem.Instance.Current.horses.Count <= 0)
+            noHorsePanel.SetActive(true);
+        else
+            noHorsePanel.SetActive(false);
+
         ApplyFiltering();
         ApplySorting();
         ApplyPagination();
@@ -84,8 +154,19 @@ public class InventoryUIManager : MonoBehaviour
     private void ApplyFiltering()
     {
         var query = searchInput.text?.ToLower() ?? string.Empty;
-        filteredHorses = SaveSystem.Instance.Current.horses.ToList()
-            .Where(h => string.IsNullOrEmpty(query) || h.horseName.ToLower().Contains(query))
+
+        filteredHorses = SaveSystem.Instance.Current.horses
+            // name search
+            .Where(h => string.IsNullOrEmpty(query)
+                        || h.horseName.ToLower().Contains(query))
+            // optional tier filter
+            .Where(h => currentMode != InventoryMode.Selecting
+                        || selectionTier == null
+                        || h.Tier == selectionTier)
+            // **NEW**: drop the excluded horse
+            .Where(h => currentMode != InventoryMode.Selecting
+                        || selectionExcludedHorse == null
+                        || h != selectionExcludedHorse)
             .ToList();
     }
 
@@ -114,8 +195,8 @@ public class InventoryUIManager : MonoBehaviour
                 return h.Tier.TierIndex;
             case SortField.Price:
                 return h.GetCurrentPrice();
-            case SortField.Training:
-                return h.currentTrainingEnergy;
+            case SortField.Stats:
+                return h.GetAverageMax();
             default:
                 return h.horseName;
         }
@@ -134,7 +215,7 @@ public class InventoryUIManager : MonoBehaviour
             {
                 var horse = pageItems[i];
                 horsePanels[i].gameObject.SetActive(true);
-                horsePanels[i].InitHorseUI(horse);
+                horsePanels[i].InitHorseUI(horse, currentMode);
             }
             else
             {
@@ -151,15 +232,27 @@ public class InventoryUIManager : MonoBehaviour
 
     public void SellHorse(Horse horse)
     {
-        SaveSystem.Instance.RemoveHorse(horse);
-        SaveSystem.Instance.AddEmeralds(horse.GetCurrentPrice());
-        RefreshList();
+        // 1) Show confirmation dialog
+        confirmSellDialog.Show(
+            // message
+            $"Are you sure you want to sell “<color=#FFFFFF>{horse.horseName}</color>” for <color=#1DB921>{horse.GetCurrentPrice().ToShortString()} emeralds</color>?",
+            // onConfirm
+            () => {
+                // actually remove and give money
+                SaveSystem.Instance.RemoveHorse(horse);
+                EconomySystem.Instance.AddEmeralds(horse.GetCurrentPrice());
+                RefreshList();
+            },
+            // onCancel (optional—if you don’t need to do anything, you can omit this)
+            () => { /* user cancelled; nothing to do */ }
+        );
     }
 
     public void OpenInfoPanel(Horse horse, bool inventoryMode)
     {
         horseInfoPanel.gameObject.SetActive(true);
         horseInfoPanel.HorseUIInit(horse, inventoryMode);
+        gameObject.SetActive(false);
     }
 
     private void HandleNameChanged(Horse horse)

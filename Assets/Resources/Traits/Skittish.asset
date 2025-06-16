@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Skittish
   Description: Skittish horses can be challenging, as their nervous temperament moderately
     reduces training effectiveness, requiring additional effort to achieve progress.
+  ModifiersDescription: 
   rarityTickets: 70
   Icon: {fileID: 21300000, guid: 63b79e0a6cfe68c459bf2598c46cac6f, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.45
   MutationMultiplier: 1
   TrainingMult: 0.8
   TrainingSpeed: 1

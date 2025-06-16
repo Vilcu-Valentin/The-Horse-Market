@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class HorseInventoryPanelUI : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class HorseInventoryPanelUI : MonoBehaviour
     public Image horseSprite;
 
     public Button sellButton;
+    public Button selectButton;
+
     public Button infoButton;
     public Button favoriteButton;
 
@@ -25,8 +28,9 @@ public class HorseInventoryPanelUI : MonoBehaviour
     public event Action<Horse> OnClicked;
     public event Action<Horse, bool> InfoClicked;
     public event Action<Horse, bool> FavoriteToggled;
+    public event Action<Horse> SelectClicked;
 
-    public void InitHorseUI(Horse horse)
+    public void InitHorseUI(Horse horse, InventoryMode mode)
     {
         horseName.text = horse.horseName;
         horseTier.text = horse.Tier.TierName;
@@ -37,11 +41,24 @@ public class HorseInventoryPanelUI : MonoBehaviour
         horseSprite.sprite = horse.Visual.sprite2D;
 
         sellButton.onClick.RemoveAllListeners();
-        sellButton.onClick.AddListener(() => HandleSellClick(horse));
+        sellButton.gameObject.SetActive(false);
+        selectButton.onClick.RemoveAllListeners();
+        selectButton.gameObject.SetActive(false);
+
         infoButton.onClick.RemoveAllListeners();
+        favoriteButton.onClick.RemoveAllListeners();
         infoButton.onClick.AddListener(() => HandleInfoClick(horse, true));
 
-        favoriteButton.onClick.RemoveAllListeners();
+        if (mode == InventoryMode.Inventory)
+        {
+            sellButton.gameObject.SetActive(true);
+            sellButton.onClick.AddListener(() => HandleSellClick(horse));
+        }else
+        {
+            selectButton.gameObject.SetActive(true);
+            selectButton.onClick.AddListener(() => HandleSelectClick(horse));
+        }
+
         favoriteButton.onClick.AddListener(() =>
         {
             bool newFavState = !horse.favorite; 
@@ -51,15 +68,7 @@ public class HorseInventoryPanelUI : MonoBehaviour
 
         SetFavoriteIndicator(horse.favorite);
 
-        float avgCaps = Mathf.Max(1f, (float)horse.Max.Average(t => t.Value));
-        float avgCurrent = horse.Current.Average(t => (float)t.Value);
-
-        float ratio = avgCurrent / avgCaps;
-        trainingBar.value = ratio;
-        if (ratio <= 0.01)
-            trainingAmount.text = "0%";
-        else
-            trainingAmount.text = ratio.ToString("# %");
+        trainingAmount.text = horse.GetAverageMax().ToShortString();
 
         Debug.Log(horse.horseName + " favorite: " + horse.favorite);
     }
@@ -67,6 +76,11 @@ public class HorseInventoryPanelUI : MonoBehaviour
     private void HandleSellClick(Horse horse)
     {
         OnClicked?.Invoke(horse);
+    }
+
+    private void HandleSelectClick(Horse horse)
+    {
+        SelectClicked?.Invoke(horse);
     }
 
     private void HandleInfoClick(Horse horse, bool inventoryMode)

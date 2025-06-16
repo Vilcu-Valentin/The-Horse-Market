@@ -18,6 +18,7 @@ MonoBehaviour:
     rates and breeding volatility. Breeding these horses can yield exceptionally
     rare offspring with surprising traits or significantly altered tiers, but the
     unpredictability poses a considerable risk.
+  ModifiersDescription: 
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 5a0dfc798bb962e4aac65533ded621c9, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -25,7 +26,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 1
-  BaseInheritChance: 0.25
+  BaseInheritChance: 0.35
   MutationMultiplier: 1.65
   TrainingMult: 1
   TrainingSpeed: 1

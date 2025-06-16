@@ -37,21 +37,23 @@ public class CrateSystemUIManager : MonoBehaviour
 
     private void OpenCrate(CrateDef selectedCrate)
     {
-        // We should check if true (if we have enough money to open it, TODO: Implement)
-        Horse horse;
-        List<(WeightedTier tier, int weight)> values;
-        (horse, values) = CrateSystem.OpenCrate(selectedCrate);
-
-        // Create a one‐time handler that "captures" `horse`:
-        _onFinishedHandler = () =>
+        if (EconomySystem.Instance.RemoveEmeralds(selectedCrate.CostInEmeralds))
         {
-            ShowHorseInfo(horse);
-            opener.OpeningFinished -= _onFinishedHandler;
-        };
+            Horse horse;
+            List<(WeightedTier tier, int weight)> values;
+            (horse, values) = CrateSystem.OpenCrate(selectedCrate);
 
-        opener.OpeningFinished += _onFinishedHandler;
+            // Create a one‐time handler that "captures" `horse`:
+            _onFinishedHandler = () =>
+            {
+                ShowHorseInfo(horse);
+                opener.OpeningFinished -= _onFinishedHandler;
+            };
 
-        opener.StartSpin(horse.Tier, values);
+            opener.OpeningFinished += _onFinishedHandler;
+
+            opener.StartSpin(horse.Tier, values);
+        }
     }
 
     private void ShowHorseInfo(Horse openedHorse)

@@ -19,6 +19,7 @@ MonoBehaviour:
     effectiveness and speed. Additionally, they benefit from moderately increased
     maximum potential across all stats, making them versatile and highly valuable
     in both competitive events and breeding programs.
+  ModifiersDescription: 
   rarityTickets: 5
   Icon: {fileID: 21300000, guid: 686394a638a41f34dbe0915fd18e0e7c, type: 3}
   BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
@@ -26,7 +27,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.1
+  BaseInheritChance: 0.25
   MutationMultiplier: 1
   TrainingMult: 1.35
   TrainingSpeed: 1.5

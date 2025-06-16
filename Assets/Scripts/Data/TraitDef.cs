@@ -17,6 +17,7 @@ public sealed class TraitDef : ScriptableObject
     [Header("Identity")]
     public string DisplayName;
     [TextArea] public string Description;
+    [TextArea] public string ModifiersDescription;
     [Tooltip("The lower this number, the rarer they are")]
     public int rarityTickets;
     public Sprite Icon;

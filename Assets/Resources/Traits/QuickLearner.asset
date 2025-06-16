@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Quick Learners exhibit superior ability during training, significantly
     enhancing training speed and providing a noticeable boost to overall training
     effectiveness.
+  ModifiersDescription: 
   rarityTickets: 35
   Icon: {fileID: 21300000, guid: 2d7f8f065cf5a7f4d90a74a97d28c9be, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -24,7 +25,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.45
   MutationMultiplier: 1
   TrainingMult: 1.35
   TrainingSpeed: 1.6

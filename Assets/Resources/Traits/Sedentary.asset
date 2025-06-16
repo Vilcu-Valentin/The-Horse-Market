@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Sedentary
   Description: Sedentary horses suffer from modestly reduced maximum speed and stamina
     capabilities, impacting their performance in most competitive events negatively.
+  ModifiersDescription: 
   rarityTickets: 70
   Icon: {fileID: 21300000, guid: d43bb4a6b78ac6f4aa4e814e4472ff3e, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -23,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.36
+  BaseInheritChance: 0.45
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

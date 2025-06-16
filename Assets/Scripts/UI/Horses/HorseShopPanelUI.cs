@@ -21,7 +21,7 @@ public class HorseShopPanelUI : MonoBehaviour
     public Button buyButton;
     public Button infoButton;
 
-    public event Action<Horse> OnClicked;
+    public event Action<Horse, HorseShopPanelUI> OnClicked;
     public event Action<Horse, bool> InfoClicked;
 
     public void InitHorseUI(Horse horse)
@@ -43,10 +43,14 @@ public class HorseShopPanelUI : MonoBehaviour
         infoButton.onClick.AddListener(() => HandleInfoClick(horse, false));
     }
 
-    private void HandleBuyClick(Horse horse)
+    public void SetSoldPanelTrue()
     {
         soldPanel.SetActive(true);
-        OnClicked?.Invoke(horse);
+    }
+
+    private void HandleBuyClick(Horse horse)
+    {
+        OnClicked?.Invoke(horse, this);
     }
 
     private void HandleInfoClick(Horse horse, bool inventoryMode)
