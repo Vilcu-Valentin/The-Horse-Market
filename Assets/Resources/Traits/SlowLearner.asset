@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowLearner
   m_EditorClassIdentifier: 
   id: 2e6ef202-7f9d-4fd0-bd47-a9e91e990845
-  DisplayName: SlowLearner
+  DisplayName: Slow Learner
   Description: Horses with this trait require substantial patience due to their notably
     slower progression and somewhat reduced effectiveness in stat gains during training
     sessions.

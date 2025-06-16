@@ -1,21 +1,42 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using System.Linq;
+using UnityEngine;
 
+[Serializable]
+public class HorseDTO
+{
+    public string id;
+    public string horseName;
+    public bool favorite;
+    public string tierID;
+    public string visualID;
+    public List<string> traitIDs;
+    public int currentTrainingEnergy;
+    public Stat[] Current;
+    public Stat[] Max;
+}
+
+[Serializable]
+public class PlayerDataDTO
+{
+    public long emeralds;
+    public List<HorseDTO> horses = new List<HorseDTO>();
+}
+
+[DefaultExecutionOrder(-100)]
 public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem Instance { get; private set; }
     public PlayerData Current { get; private set; }
 
     [SerializeField] private PlayerData template;
-
     private string SavePath => Path.Combine(Application.persistentDataPath, "player.json");
 
-    // Event for any UI or logic to subscribe to when data changes
-    public event System.Action<PlayerData> OnPlayerDataChanged;
+    public event Action<PlayerData> OnPlayerDataChanged;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -24,66 +45,96 @@ public class SaveSystem : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start()
+    {
         Load();
     }
 
-    /// <summary>
-    /// Loads saved JSON into the existing Current instance (or creates it once).
-    /// </summary>
-    public void Load()
+    public void Save()
     {
-        // Only instantiate once; after that, reuse the same ScriptableObject instance
-        if (Current == null)
+        var dto = new PlayerDataDTO
         {
-            Current = Instantiate(template);
-        }
+            emeralds = Current.emeralds,
+            horses = Current.horses.Select(h => new HorseDTO
+            {
+                id = h.Id.ToString(),
+                horseName = h.horseName,
+                favorite = h.favorite,
+                tierID = h.Tier.ID,
+                visualID = h.Visual.ID,
+                traitIDs = new List<string>(h.Traits.Select(t => t.ID)),
+                currentTrainingEnergy = h.currentTrainingEnergy,
+                Current = h.Current,
+                Max = h.Max
+            }).ToList()
+        };
 
-        // Overwrite fields on the existing instance
-        if (File.Exists(SavePath))
-        {
-            var json = File.ReadAllText(SavePath);
-            JsonUtility.FromJsonOverwrite(json, Current);
-        }
+        string json = JsonUtility.ToJson(dto, true);
+        File.WriteAllText(SavePath, json);
 
-        // Notify listeners that data is fresh
         OnPlayerDataChanged?.Invoke(Current);
     }
 
-    /// <summary>
-    /// Saves the Current instance to disk and refreshes it in-place.
-    /// </summary>
-    public void Save()
+    public void Load()
     {
-        var json = JsonUtility.ToJson(Current, true);
-        File.WriteAllText(SavePath, json);
+        if (Current == null)
+            Current = Instantiate(template);
 
-        // Refresh in-place so any binding to Current sees updates
-        Load();
+        if (File.Exists(SavePath))
+        {
+            string json = File.ReadAllText(SavePath);
+            PlayerDataDTO dto = JsonUtility.FromJson<PlayerDataDTO>(json);
+
+            Current.emeralds = dto.emeralds;
+            Current.horses.Clear();
+
+            foreach (HorseDTO h in dto.horses)
+            {
+                TierDef tier = HorseMarketDatabase.Instance.GetTier(h.tierID);
+                VisualDef visual = HorseMarketDatabase.Instance.GetVisual(h.visualID);
+                List<TraitDef> traits = h.traitIDs
+                    .Select(id => HorseMarketDatabase.Instance.GetTrait(id))
+                    .Where(t => t != null)
+                    .ToList();
+
+                Horse horse = new Horse(Guid.Parse(h.id), tier, visual, traits)
+                {
+                    horseName = h.horseName,
+                    favorite = h.favorite,
+                    currentTrainingEnergy = h.currentTrainingEnergy,
+                    Current = h.Current,
+                    Max = h.Max
+                };
+
+                Current.AddHorse(horse);
+            }
+        }
+
+        OnPlayerDataChanged?.Invoke(Current);
     }
 
-    /// <summary>
-    /// Helper: add a horse, persist, and notify.
-    /// </summary>
-    public void AddHorse(Horse horse)
+    public void AddHorse(Horse h)
     {
-        Current.AddHorse(horse);
+        Current.AddHorse(h);
         Save();
     }
 
-    /// <summary>
-    /// Helper: remove a horse, persist, and notify.
-    /// </summary>
-    public void RemoveHorse(Horse horse)
+    public void RemoveHorse(Horse h)
     {
-        Current.RemoveHorse(horse);
+        Current.RemoveHorse(h);
         Save();
     }
 
-    void OnApplicationQuit() => Save();
-
-    void OnApplicationPause(bool pause)
+    private void OnApplicationQuit()
     {
-        if (pause) Save();
+        Save();
+    }
+
+    private void OnApplicationPause(bool paused)
+    {
+        if (paused)
+            Save();
     }
 }

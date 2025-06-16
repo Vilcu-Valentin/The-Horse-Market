@@ -22,7 +22,6 @@ public class HorseInventoryPanelUI : MonoBehaviour
     public Button infoButton;
     public Button favoriteButton;
 
-    public Slider trainingBar;
     public TextMeshProUGUI trainingAmount;
 
     public event Action<Horse> OnClicked;
