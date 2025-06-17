@@ -16,6 +16,15 @@ public class CrateDef : ScriptableObject
     {
         new WeightedTier { Tier = null, Tickets = 1 }   // assign real tiers in Inspector
     };
+
+    public float getTierChance(WeightedTier weightedTier)
+    {
+        float ticketSum = 0;
+        foreach (var tier in TierChances)
+            ticketSum += tier.Tickets;
+
+        return weightedTier.Tickets / ticketSum;
+    }
 }
 
 [Serializable]

@@ -8,6 +8,7 @@ public class HorseMarketDatabase : MonoBehaviour
     public List<TierDef> _allTiers;
     public List<TraitDef> _allTraits;
     public List<CrateDef> _allCrates;
+    public List<CompetitionDef> _allCompetitions;
 
     public static HorseMarketDatabase Instance { get; private set; }
 

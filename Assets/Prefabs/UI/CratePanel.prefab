@@ -66,6 +66,7 @@ MonoBehaviour:
   price: {fileID: 6277940912025215410}
   crateSprite: {fileID: 2234492619216783930}
   backgroundColor: {fileID: 734573607717054118}
+  infoButton: {fileID: 2294195599131085660}
   buyButton: {fileID: 8279024801727833859}
 --- !u!1 &1200526367954576045
 GameObject:

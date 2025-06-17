@@ -34,7 +34,7 @@ MonoBehaviour:
     Modifier: 0.1
   StartingStats: []
   StartingBonusRandomness: 0
-  CompetitionBuffPct: 20
+  CompetitionBuffPct: 1.2
   PriceScalar: 1.25
   Venerable: 1
   conflictedTraits:

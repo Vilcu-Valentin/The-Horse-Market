@@ -32,7 +32,7 @@ MonoBehaviour:
   StatCapMods: []
   StartingStats: []
   StartingBonusRandomness: 0
-  CompetitionBuffPct: -10
+  CompetitionBuffPct: 0.9
   PriceScalar: 0.99
   Venerable: 1
   conflictedTraits:

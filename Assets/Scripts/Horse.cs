@@ -113,6 +113,23 @@ public class Horse
     }
 
     /// <summary>
+    /// Calculates the competition multiplier from the horses traits
+    /// </summary>
+    /// <returns>A multiplicative multiplier (x1.)</returns>
+    public float GetCompetitionMultiplier()
+    {
+        float multiplier = 1f;
+        foreach(TraitDef trait in _traits)
+        {
+            if (trait.CompetitionBuffPct != 0)
+                multiplier *= trait.CompetitionBuffPct;
+        }
+
+        Debug.Log("Competition Multiplier: " + multiplier);
+        return multiplier;
+    }
+
+    /// <summary>
     /// Calculates the horses max possible market price (when it's fully trained) based on it's stats and traits
     /// </summary>
     /// <returns>An long value representing the price in emerald</returns>

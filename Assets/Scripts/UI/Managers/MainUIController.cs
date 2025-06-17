@@ -24,13 +24,13 @@ public class MainUIController : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject breedingPanel;
     public GameObject shopPanel;
-    //public GameObject competitionPanel;
+    public GameObject competitionPanel;
 
     [Header("Mode Managers")]
     public InventoryUIManager inventoryUI;
     public BreedingUIManager breedingUI;
     public ShopSystemUIManager shopUI;   
-    //public CompetitionUIManager competitionUI; // assume exists
+    public CompetitionUIManager competitionUI; 
 
     private AppState currentState;
 
@@ -43,7 +43,7 @@ public class MainUIController : MonoBehaviour
         competitionButton.onClick.AddListener(() => SetState(AppState.Competition));
 
         // Start in inventory
-        SetState(AppState.Inventory);
+        SetState(AppState.Shop);
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class MainUIController : MonoBehaviour
         inventoryPanel.SetActive(newState == AppState.Inventory);
         breedingPanel.SetActive(newState == AppState.Breeding);
         shopPanel.SetActive(newState == AppState.Shop);
-        //competitionPanel.SetActive(newState == AppState.Competition);
+        competitionPanel.SetActive(newState == AppState.Competition);
 
         // 2) Toggle nav buttons
         inventoryButton.interactable = newState != AppState.Inventory;
@@ -73,6 +73,9 @@ public class MainUIController : MonoBehaviour
                 break;
             case AppState.Breeding:
                 breedingUI.InitUI();
+                break;
+            case AppState.Competition:
+                competitionUI.RefreshUI();
                 break;
         }
     }

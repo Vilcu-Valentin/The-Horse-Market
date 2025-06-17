@@ -12,6 +12,8 @@ public class CrateSystemUIManager : MonoBehaviour
     [SerializeField] private CrateOpeningUI opener;
     [SerializeField] private GameObject horseInfoPanel;
 
+    public CrateInfoUIPanel crateInfoPanel;
+
     // Keep a reference so we can unsubscribe later:
     private Action _onFinishedHandler;
 
@@ -32,6 +34,7 @@ public class CrateSystemUIManager : MonoBehaviour
             panel.InitCrateUI(crate);
             // When this button is clicked, call the logic in CrateSystem
             panel.OnClicked += OpenCrate;
+            panel.OnInfoClicked += OpenCrateInfo;
         }
     }
 
@@ -60,5 +63,11 @@ public class CrateSystemUIManager : MonoBehaviour
     {
         horseInfoPanel.SetActive(true);
         horseInfoPanel.GetComponent<HorseInfoPanelUI>().HorseUIInit(openedHorse, true);
+    }
+
+    private void OpenCrateInfo(CrateDef crate)
+    {
+        crateInfoPanel.gameObject.SetActive(true);
+        crateInfoPanel.InitUI(crate);
     }
 }

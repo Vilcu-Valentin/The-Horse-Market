@@ -1,25 +1,58 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "HorseGame/Competition")]
 public class CompetitionDef : ScriptableObject
 {
+    [Header("General Info")]
     public string CompetitionName = "Sprint Derby";
     public Sprite Icon;
-    public int EntryFee = 25;
+    public Color backgroundColor;
+    public Color foregroundColor;
 
-    [Header("Scoring")]
-    public StatType PrimaryStat = StatType.Speed;
-    public StatType SecondaryStat = StatType.Stamina;
-    [Range(0, 1)] public float PrimaryWeight = 0.7f;  // 0.7 * P + 0.3 * S
-    [Range(0, 1)] public float SecondaryWeight = 0.3f;
+    [Header("Scoring (stat -> weight)")]
+    public List<CompetitionStats> competitionStats;
 
-    [Header("Payout")]
-    public AnimationCurve RewardCurve = AnimationCurve.Linear(0, 10, 1, 100);
-    // X-axis = percentile rank (0 worst .. 1 best)
-    // Y-axis = emerald reward
+    [Header("Per-Tier Settings")]
+    public List<TierSettings> tierSettings = new();
 
-    [Header("Cooldown")]
-    [Min(0)] public float CooldownMinutes = 5f;        // per horse
+    /// <summary>
+    /// Helper: look up the settings for a given tier
+    /// </summary>
+    public TierSettings GetSettingsFor(TierDef tier)
+    {
+        return tierSettings.Find(t => t.tier == tier)
+            ?? throw new Exception($"No settings for tier {tier.TierName} in {name}");
+    }
+}
+
+[Serializable]
+public class TierSettings
+{
+    [Tooltip("Must match one of your TierDef assets")]
+    public TierDef tier;
+
+    [Tooltip("Represents percentage of horses over your horse (on average) 0.1 means 10% of the horses will be better than your horse")]
+    [Range(0,1f)]public float difficulty;
+
+    [Tooltip("Entry fee for this competition at this tier")]
+    public long entryFee;
+
+    [Tooltip("Reward per finishing place (index 0 = 1st place, ..., index 7 = 8th place)")]
+    public List<PlaceReward> placeRewards = new List<PlaceReward>(8);
+}
+
+[Serializable]
+public struct PlaceReward
+{
+    public long emeralds;   // emerald payout
+    // you can add `public List<ItemStack> items;` here later
+}
+
+[Serializable]
+public struct CompetitionStats
+{
+    public StatType Stat;
+    [Range(0, 1)] public float weight;
 }
