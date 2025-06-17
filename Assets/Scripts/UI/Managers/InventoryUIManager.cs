@@ -63,14 +63,14 @@ public class InventoryUIManager : MonoBehaviour
     public void OpenForSelecting(
         Action<Horse> onPick,
         TierDef requiredTier = null,
-        Horse excludedHorse = null      // ← new
+        Horse excludedHorse = null    
     )
     {
         closePanelButton.gameObject.SetActive(true);
         currentMode = InventoryMode.Selecting;
         onSelectCallback = onPick;
         selectionTier = requiredTier;
-        selectionExcludedHorse = excludedHorse;   // ← new
+        selectionExcludedHorse = excludedHorse;  
         gameObject.SetActive(true);
         RefreshList();
     }
@@ -82,6 +82,7 @@ public class InventoryUIManager : MonoBehaviour
         currentMode = InventoryMode.Inventory;
         onSelectCallback = null;
         selectionTier = null;
+        gameObject.SetActive(true);
         RefreshList();
     }
 
@@ -140,7 +141,6 @@ public class InventoryUIManager : MonoBehaviour
     /// </summary>
     private void RefreshList()
     {
-        gameObject.SetActive(true);
         if(SaveSystem.Instance.Current.horses.Count <= 0)
             noHorsePanel.SetActive(true);
         else
@@ -252,7 +252,6 @@ public class InventoryUIManager : MonoBehaviour
     {
         horseInfoPanel.gameObject.SetActive(true);
         horseInfoPanel.HorseUIInit(horse, inventoryMode);
-        gameObject.SetActive(false);
     }
 
     private void HandleNameChanged(Horse horse)

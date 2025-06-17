@@ -40,6 +40,7 @@ public class HorseShopPanelUI : MonoBehaviour
 
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() => HandleBuyClick(horse));
+        infoButton.onClick.RemoveAllListeners();
         infoButton.onClick.AddListener(() => HandleInfoClick(horse, false));
     }
 
