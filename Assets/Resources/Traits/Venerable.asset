@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 52801b3f-a4a3-4600-84a6-7659ea8867e4
   DisplayName: Venerable
-  Description: Venerable horses gain increasing prestige and value as they age, especially
-    appealing to collectors and exhibition enthusiasts.
+  Description: Highly respected and valuable, exhibiting enhanced competition performance
+    and aging gracefully; prized for high market value and competitive excellence.
   ModifiersDescription: 
   rarityTickets: 14
   Icon: {fileID: 21300000, guid: e22f1bd7596ee504c976d8c78cee4f28, type: 3}

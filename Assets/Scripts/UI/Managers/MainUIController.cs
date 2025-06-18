@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public enum AppState
@@ -14,6 +16,7 @@ public enum AppState
 /// </summary>
 public class MainUIController : MonoBehaviour
 {
+    public AudioClip buttonPress;
     [Header("Nav Buttons")]
     public Button inventoryButton;
     public Button breedingButton;
@@ -34,13 +37,21 @@ public class MainUIController : MonoBehaviour
 
     private AppState currentState;
 
+    public static MainUIController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
+
     private void Start()
     {
         // Wire nav buttons
-        inventoryButton.onClick.AddListener(() => SetState(AppState.Inventory));
-        breedingButton.onClick.AddListener(() => SetState(AppState.Breeding));
-        shopButton.onClick.AddListener(() => SetState(AppState.Shop));
-        competitionButton.onClick.AddListener(() => SetState(AppState.Competition));
+        inventoryButton.onClick.AddListener(() => { SetState(AppState.Inventory); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
+        breedingButton.onClick.AddListener(() => { SetState(AppState.Breeding); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
+        shopButton.onClick.AddListener(() => { SetState(AppState.Shop); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
+        competitionButton.onClick.AddListener(() => { SetState(AppState.Competition); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
 
         // Start in inventory
         SetState(AppState.Shop);

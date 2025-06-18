@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fae212b8-bdf3-474e-8d90-5aa287fb98d2
   DisplayName: Nimble
-  Description: Nimble horses have modestly increased jump height capabilities, aiding
-    performance in obstacle courses and agility-focused competitions.
+  Description: Agile and precise jumper; excels particularly in disciplines requiring
+    agility, such as show jumping and obstacle courses.
   ModifiersDescription: 
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: 2d74abb88325a0c4580dca2f6fa8fd04, type: 3}

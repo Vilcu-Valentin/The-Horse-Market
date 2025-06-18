@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 41b1680b-76d1-4116-ad30-3df573cd3e25
   DisplayName: Extremely Adaptive
-  Description: This remarkable trait greatly enhances maximum stats across all areas,
-    creating exceptionally versatile horses capable of excelling broadly in competitive
-    events
+  Description: Exceptionally well-rounded with high potential across speed, stamina,
+    jumping, and strength; highly desirable for varied competitions and superior
+    adaptability.
   ModifiersDescription: 
   rarityTickets: 8
   Icon: {fileID: 21300000, guid: 001ede226a00b26478d88e5405550db5, type: 3}

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3b492f69-a1d6-4195-bc9e-7109819e3363
   DisplayName: Graceful
-  Description: Graceful horses enjoy increased jumping potential and a moderate competitive
-    boost, enhancing performance particularly in jump-based competitions and exhibitions.
+  Description: Elegant movement with a gentle agility boost; preferred choice for
+    aesthetic-focused competitions and those valuing elegance over raw power.
   ModifiersDescription: 
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 085762ed299ff8644b3397c06c88e5c8, type: 3}
@@ -34,7 +34,7 @@ MonoBehaviour:
     Modifier: 0.1
   StartingStats: []
   StartingBonusRandomness: 0
-  CompetitionBuffPct: 1.2
+  CompetitionBuffPct: 1.5
   PriceScalar: 1.25
   Venerable: 1
   conflictedTraits:

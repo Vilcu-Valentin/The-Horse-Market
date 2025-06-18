@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2e6ef202-7f9d-4fd0-bd47-a9e91e990845
   DisplayName: Slow Learner
-  Description: Horses with this trait require substantial patience due to their notably
-    slower progression and somewhat reduced effectiveness in stat gains during training
-    sessions.
+  Description: Notoriously slow at acquiring new skills, complicating and prolonging
+    training efforts; generally undesirable due to its limited competitive prospects
+    and market appeal.
   ModifiersDescription: 
   rarityTickets: 45
   Icon: {fileID: 21300000, guid: 44b9b6884498b1247ad123cf96ff7e94, type: 3}

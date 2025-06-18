@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4adc0f89-cc83-465d-bbe7-e478507e29fa
   DisplayName: Adaptive
-  Description: Adaptive horses modestly boost maximum stat limits across all areas,
-    making them versatile and capable competitors across multiple event types.
+  Description: Highly versatile horse, quickly adjusting to varied challenges, excelling
+    broadly due to enhanced speed, stamina, jumping, and strength.
   ModifiersDescription: 
   rarityTickets: 22
   Icon: {fileID: 21300000, guid: b20ab12e4115c804bb4a7b817349fde2, type: 3}

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ea23d4ce-d2b0-413e-84a4-f660e84d7b32
   DisplayName: Sedentary
-  Description: Sedentary horses suffer from modestly reduced maximum speed and stamina
-    capabilities, impacting their performance in most competitive events negatively.
+  Description: Limited energy and stamina; generally lethargic, making competitive
+    activities challenging; best suited for gentle tasks or companionship roles.
   ModifiersDescription: 
   rarityTickets: 70
   Icon: {fileID: 21300000, guid: d43bb4a6b78ac6f4aa4e814e4472ff3e, type: 3}

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1eb3e4fa-f61f-4c86-897d-ecbd3ce8f407
   DisplayName: Unadaptable
-  Description: Horses with this severe negative trait experience substantial reductions
-    in maximum potential across all performance stats.
+  Description: Severely limited in adaptability across key abilities; predominantly
+    a companion rather than a competitive or breeding-focused horse due to restrictive
+    attributes.
   ModifiersDescription: 
   rarityTickets: 7
   Icon: {fileID: 21300000, guid: 76403bc50693b0f4d8cbb65066de1e9a, type: 3}

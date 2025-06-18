@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 41a292ac-a1df-4f70-9035-f25385b7f990
   DisplayName: Mutagenic
-  Description: Mutagenic horses greatly increase the chances of genetic mutations,
-    providing breeders opportunities to achieve unique and rare trait combinations.
+  Description: Remarkably high genetic mutation potential, creating highly variable
+    offspring; intriguing for breeders interested in experimental and distinctive
+    breeding outcomes.
   ModifiersDescription: 
   rarityTickets: 12
   Icon: {fileID: 21300000, guid: 7e02899922fdad141a9d5db5f600e509, type: 3}

@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 89159245-ea6c-4d5e-b947-d409b5121f75
   DisplayName: Eager
-  Description: Eager horses consistently perform better during training, modestly
-    improving the rate at which they gain stats, making them more efficient to train
-    overall.
+  Description: Quick learner, trains rapidly without fail; common but steady horse
+    that maintains typical market value through effective training sessions.
   ModifiersDescription: 
   rarityTickets: 75
   Icon: {fileID: 21300000, guid: d50e5255cf9256547b6b1c97fc72eca8, type: 3}

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1744e346-fa48-4d5d-928e-dd8aadbedb63
   DisplayName: Surefooted
-  Description: Surefooted horses excel significantly in jump events, navigating obstacles
-    with ease and agility.
+  Description: Exceptional jumping and obstacle-clearing skills; confidently handles
+    uneven terrain, ideal for agility-based competitions or trail riding adventures.
   ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 5ccaef7c977c78f499fd49192445f6bb, type: 3}

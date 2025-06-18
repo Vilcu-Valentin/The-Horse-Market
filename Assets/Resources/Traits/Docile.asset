@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: d0910b1e-82ac-4f07-9799-1cb545abb316
   DisplayName: Docile
-  Description: Docile horses respond well during training, moderately enhancing training
-    effectiveness and ensuring steady progress with fewer challenges.
+  Description: Easy-going and cooperative, accelerating training progression; perfect
+    for beginners or those looking for reliable, stress-free horse handling experiences.
   ModifiersDescription: 
   rarityTickets: 75
   Icon: {fileID: 21300000, guid: 7ccf6324157866641a3830691e45e10c, type: 3}

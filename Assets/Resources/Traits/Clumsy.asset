@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: b9b49661-b009-47ba-b925-c181ce0081be
   DisplayName: Clumsy
-  Description: Clumsy horses suffer from slightly reduced jumping capabilities, negatively
-    affecting their performance in obstacle-based events.
+  Description: Occasionally struggles with agility, especially jumping; lower market
+    value due to diminished athletic finesse but manageable with proper training.
   ModifiersDescription: 
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: 54f3b744c4b64a94eac3e36fac827621, type: 3}

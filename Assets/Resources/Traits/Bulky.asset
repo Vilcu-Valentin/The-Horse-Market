@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3ab904d5-59aa-4527-85a8-252dfe75f602
   DisplayName: Bulky
-  Description: Bulky horses possess significantly increased strength potential, though
-    their overall speed and jump capabilities are notably reduced, making them ideal
-    for strength-based competitions but disadvantaged elsewhere.
+  Description: Strong and sturdy, but cumbersome; excels in strength-based tasks
+    while significantly hampered in speed, stamina, and jumping agility.
   ModifiersDescription: 
   rarityTickets: 16
   Icon: {fileID: 21300000, guid: 1699bb2ae74a3ce46984b164b2fc9ade, type: 3}

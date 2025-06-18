@@ -162,7 +162,7 @@ public class CrateOpeningUI : MonoBehaviour
 
             if (overlap && _lastHighlightedItem != rt)
             {
-                AudioManager.Instance.PlaySound(openingAnimAudio, 0.5f, 0.5f);
+                AudioManager.Instance.PlaySound(openingAnimAudio, 0.5f, 0.2f);
                 _lastHighlightedItem = rt;
             }
             else if (!overlap && _lastHighlightedItem == rt)

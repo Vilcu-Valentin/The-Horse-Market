@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: c3e2881b-1439-407e-8aa9-184356602e79
   DisplayName: Stable Genetics
-  Description: Horses with Stable Genetics reduce the likelihood of mutations, offering
-    breeders predictability and consistency in trait inheritance, ideal for focused
-    breeding programs.
+  Description: Rarely experiences mutations; consistently delivers predictable offspring;
+    preferred by breeders desiring stable and reliable genetic continuity.
   ModifiersDescription: 
   rarityTickets: 35
   Icon: {fileID: 21300000, guid: 8d07c1aa6e589b747859e939d91fd203, type: 3}

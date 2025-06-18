@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9ca1120a-04b5-49f1-af9a-8dfbf8dbb1d2
   DisplayName: Robust
-  Description: Robust horses dramatically reduce the likelihood of breeding downgrades,
-    offering security and reliability in maintaining stable tier quality.
+  Description: Strong resistance to negative genetic influences; reliable for consistent
+    performance and stable breeding, with moderate market attractiveness.
   ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 44a189fa506ec9d4680bb6f5578275c6, type: 3}

@@ -8,7 +8,9 @@ using System.Linq;
 using System;
 
 public class HorseInfoPanelUI : MonoBehaviour
-{ 
+{
+    public AudioClip enterAudio;
+
     [Header("MainInfo")]
     public TMP_Text tierText;
     public Image imageForeground;
@@ -62,6 +64,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     /// <param name="inventoryMode"></param>
     public void HorseUIInit(Horse horse, bool inventoryMode)
     {
+        AudioManager.Instance.PlaySound(enterAudio, 0.65f, 0.25f);
         closeButton.onClick.RemoveAllListeners();
         if(inventoryMode)
         {
@@ -179,8 +182,7 @@ public class HorseInfoPanelUI : MonoBehaviour
         {
             breedButton.onClick.AddListener(() =>
             {
-                breedingUIManager.gameObject.SetActive(true);
-                breedingUIManager.InitUI();
+                MainUIController.Instance.SetState(AppState.Breeding);
                 breedingUIManager.AddParentA(horse);
                 gameObject.SetActive(false);
             });

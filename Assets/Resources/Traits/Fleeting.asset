@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: d2ce022c-f991-40f1-8314-d998786cc430
   DisplayName: Fleeting
-  Description: Horses with this trait start with significantly higher initial stats
-    but have considerably lower maximum potential in all areas, quickly reaching
-    their limits with limited long-term potential.
+  Description: Initially shows impressive potential but rapidly hits a performance
+    ceiling; quickly becomes undesirable due to limited growth.
   ModifiersDescription: 
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 7f7f04a66897a4b49bab25e507c4a657, type: 3}

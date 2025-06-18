@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 85955b62-d662-4152-acbf-1f96fadf9123
   DisplayName: Impulsive
-  Description: Impulsive horses suffer from significantly decreased training speed
-    and reduced training effectiveness, as their unpredictable behavior frequently
-    disrupts training routines.
+  Description: Challenging to train with moderate failure rates, struggles in competitions;
+    challenging for trainers aiming for steady, reliable performance.
   ModifiersDescription: 
   rarityTickets: 9
   Icon: {fileID: 21300000, guid: 9d0af3e32ef49464cb98ee0368bf77c5, type: 3}

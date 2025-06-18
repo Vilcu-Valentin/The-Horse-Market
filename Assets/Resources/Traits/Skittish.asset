@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 6a34d6fa-df19-44a6-a188-f0dfc3179d3e
   DisplayName: Skittish
-  Description: Skittish horses can be challenging, as their nervous temperament moderately
-    reduces training effectiveness, requiring additional effort to achieve progress.
+  Description: Easily startled and cautious, slightly reducing training effectiveness;
+    its shy nature also creates a subtle disadvantage during competitions, decreasing
+    overall value.
   ModifiersDescription: 
   rarityTickets: 70
   Icon: {fileID: 21300000, guid: 63b79e0a6cfe68c459bf2598c46cac6f, type: 3}

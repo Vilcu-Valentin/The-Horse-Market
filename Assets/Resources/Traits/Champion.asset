@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ec8954b8-9029-4edf-8ac5-ce72eaa4c780
   DisplayName: Champion
-  Description: Champion horses represent the pinnacle of equine genetics, offering
-    dramatically increased stat caps across all areas, an immense boost to competitive
-    performance, increased value as they age, and premium pricing, making them unmatched
-    in market and exhibitions alike.
+  Description: Elite performer boasting remarkable agility and strength across all
+    abilities; highly valuable in competitions and breeding, commanding premium prices.
   ModifiersDescription: 
   rarityTickets: 3
   Icon: {fileID: 21300000, guid: 9aa8d06cad7a0da4c93b62e8f619da17, type: 3}

@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 74bb8c51-b9f5-48a9-868d-35b90cd4135a
   DisplayName: Pedestrian
-  Description: Pedestrian horses carry notably reduced market value, greatly limited
-    competitive potential, and negligible benefit from age-based price increases,
-    making them challenging to profit from or showcase effectively.
+  Description: Significantly below-average performance, strongly disadvantaged across
+    all capabilities; best suited for non-competitive roles or leisurely companionship.
   ModifiersDescription: 
   rarityTickets: 12
   Icon: {fileID: 21300000, guid: 4b0ce70b1a0bed948846f127fa555229, type: 3}

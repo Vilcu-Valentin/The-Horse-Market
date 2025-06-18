@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3b2ba68b-1091-464f-a5f9-ff6b88dc6b5a
   DisplayName: Lucky
-  Description: Lucky horses are prized by breeders for their remarkable breeding
-    potential, offering significantly higher odds of tier upgrades, stronger initial
-    stats, and reduced risk of tier downgrades, greatly enhancing breeding outcomes.
+  Description: Brings fortunate outcomes, enhancing competitive results and resisting
+    negative consequences; appealing for those embracing chance and favorable outcomes.
   ModifiersDescription: 
   rarityTickets: 10
   Icon: {fileID: 21300000, guid: cca1d512e9db7cc4b84a573a40468c1b, type: 3}

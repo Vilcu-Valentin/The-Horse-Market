@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2936754c-3083-4f57-be9e-9b36aa32501d
   DisplayName: Stubborn
-  Description: Stubborn horses actively resist training, leading to moderately reduced
-    training speeds and requiring consistent management and patience to progress
-    efficiently.
+  Description: Uncooperative and resistant to training; persistently undesirable
+    as it consistently hampers progress and competitive potential.
   ModifiersDescription: 
   rarityTickets: 46
   Icon: {fileID: 21300000, guid: 2e70a07a0de34f444a1a6d32ead46599, type: 3}

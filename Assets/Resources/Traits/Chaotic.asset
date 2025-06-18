@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9dd2e181-37e8-4c0f-8a0f-8aad0f2aa7e8
   DisplayName: Chaotic
-  Description: Horses with the Chaotic trait drastically increase both genetic mutation
-    rates and breeding volatility. Breeding these horses can yield exceptionally
-    rare offspring with surprising traits or significantly altered tiers, but the
-    unpredictability poses a considerable risk.
+  Description: Unpredictable and genetically volatile, resulting in unexpected offspring
+    traits; an intriguing gamble for adventurous breeders and trainers.
   ModifiersDescription: 
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 5a0dfc798bb962e4aac65533ded621c9, type: 3}

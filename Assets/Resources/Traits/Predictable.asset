@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 44548b91-63ad-4809-bd41-5d4b9ec1263b
   DisplayName: Predictable
-  Description: Horses possessing the Predictable trait noticeably reduce both mutation
-    chances, producing consistently predictable offspring. Ideal for breeders seeking
-    steady progress and reliability over unpredictable outcomes.
+  Description: Stable genetic traits, minimizing surprises in offspring; reliable
+    choice for breeders who value consistent results and predictable breeding outcomes.
   ModifiersDescription: 
   rarityTickets: 42
   Icon: {fileID: 21300000, guid: 45acd148f5411ef499972453708f59e0, type: 3}

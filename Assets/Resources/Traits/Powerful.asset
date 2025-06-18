@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: b8f8913f-7f3d-44ec-8ae3-4c302061c0a7
   DisplayName: Powerful
-  Description: Powerful horses significantly increase their maximum strength potential,
-    making them top contenders in strength-focused events and greatly enhancing market
-    value.
+  Description: Demonstrates exceptional strength, excelling in power-focused activities;
+    ideal for strength-centric competitions and physically demanding tasks.
   ModifiersDescription: 
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: adff3d143405046448af0db3d4f2bb7f, type: 3}

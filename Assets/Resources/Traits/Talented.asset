@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fc061243-49fe-4177-9bfc-4e631a6c5d69
   DisplayName: Talented
-  Description: Talented horses possess exceptional natural abilities, providing a
-    substantial boost to their competition performance, alongside improved training
-    effectiveness and speed. Additionally, they benefit from moderately increased
-    maximum potential across all stats, making them versatile and highly valuable
-    in both competitive events and breeding programs.
+  Description: Remarkably skilled across all major attributes, highly competitive
+    and trainable; significantly valuable for ambitious competitors and breeding
+    programs.
   ModifiersDescription: 
   rarityTickets: 5
   Icon: {fileID: 21300000, guid: 686394a638a41f34dbe0915fd18e0e7c, type: 3}
