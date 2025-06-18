@@ -40,4 +40,13 @@ public class EconomySystem : MonoBehaviour
             return false;
         }
     }
+
+    public bool EnoughEmeralds(long amount)
+    {
+        long cur = SaveSystem.Instance.Current.emeralds;
+        if ((cur -= amount) >= 0)
+            return true;
+        else
+            return false;
+    }
 }

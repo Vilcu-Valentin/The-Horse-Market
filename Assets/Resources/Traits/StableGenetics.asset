@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Horses with Stable Genetics reduce the likelihood of mutations, offering
     breeders predictability and consistency in trait inheritance, ideal for focused
     breeding programs.
+  ModifiersDescription: 
   rarityTickets: 35
   Icon: {fileID: 21300000, guid: 8d07c1aa6e589b747859e939d91fd203, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -25,7 +26,7 @@ MonoBehaviour:
   DowngradeMult: 1
   TierVolatility: 0
   BaseInheritChance: 0.5
-  MutationMultiplier: 0.3
+  MutationMultiplier: 0.15
   TrainingMult: 1
   TrainingSpeed: 1
   canFailTraining: 0

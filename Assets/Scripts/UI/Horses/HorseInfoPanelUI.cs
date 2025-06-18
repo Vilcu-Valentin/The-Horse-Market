@@ -142,6 +142,9 @@ public class HorseInfoPanelUI : MonoBehaviour
         else
             trainButton.interactable = true;
 
+        if (horse.IsHorseFullyTrained())
+            trainButton.interactable = false;
+
         if (inventoryMode)
         {
             trainButton.onClick.AddListener(() =>

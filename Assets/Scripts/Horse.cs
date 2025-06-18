@@ -81,6 +81,19 @@ public class Horse
         return true;
     }
 
+    public void RefillEnergy()
+    {
+        currentTrainingEnergy = GetTrainingEnergy();
+    }
+
+    public bool IsHorseFullyTrained()
+    {
+        foreach (var stat in Current)
+            if (GetCurrent(stat._Stat) < GetMax(stat._Stat))
+                return false;
+        return true;
+    }
+
     public int GetTrainingRate()
     {
         float trainMultiplier = 1f;

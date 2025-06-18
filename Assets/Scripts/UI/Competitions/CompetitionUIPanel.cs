@@ -35,7 +35,7 @@ public class CompetitionUIPanel : MonoBehaviour
 
     public Action<CompetitionDef> OnCompeteClicked;
 
-    public void InitUI(CompetitionDef competition, TierDef selectedTier)
+    public void InitUI(CompetitionDef competition, TierDef selectedTier, float leagueModifier)
     {
         competitionIcon.sprite = competition.Icon;
         background.color = competition.backgroundColor;
@@ -56,7 +56,10 @@ public class CompetitionUIPanel : MonoBehaviour
         // Payout ranks
         for (int i = 0; i < settings.placeRewards.Count && i < ranks.Count; i++)
             if (settings.placeRewards[i].emeralds > 0)
-                ranks[i].text = settings.placeRewards[i].emeralds.ToShortString();
+            {
+                long modifiedReward = Mathf.FloorToInt(settings.placeRewards[i].emeralds * leagueModifier);
+                ranks[i].text = modifiedReward.ToShortString(); 
+            }
             else
                 ranks[i].text = "-";
 

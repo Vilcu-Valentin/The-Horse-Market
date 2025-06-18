@@ -27,7 +27,7 @@ MonoBehaviour:
   DowngradeMult: 1
   TierVolatility: 1
   BaseInheritChance: 0.35
-  MutationMultiplier: 1.65
+  MutationMultiplier: 2
   TrainingMult: 1
   TrainingSpeed: 1
   canFailTraining: 0

@@ -9,6 +9,11 @@ public class CompetitionLobbyUI : MonoBehaviour
 {
     public TMP_Text competitionName;
 
+    public InventoryUIManager inventoryManager;
+    public Button startCompetition;
+
+    public CompetitionWinnersUI competitionWinners;
+
     [Header("Horse")]
     public Button selectHorseButton;
     public TMP_Text horsePowerIndex;
@@ -26,17 +31,18 @@ public class CompetitionLobbyUI : MonoBehaviour
     [Tooltip("We need exactly 5 colors, first one is for superior, last one is for outclassed")]
     public List<Color> ratingColors=  new List<Color>(5);
 
-    public InventoryUIManager inventoryManager;
-    public Button startCompetition;
+    public DialogPanelUI notEnoughEmeraldsDialog;
 
     private TierDef selectedTier;
     private List<HorseAI> aiHorses;
     private CompetitionDef competition;
+    private float leagueModifier;
 
-    public void InitUI(CompetitionDef competition, TierDef selectedTier)
+    public void InitUI(CompetitionDef competition, TierDef selectedTier, float leagueModifier)
     {
         this.selectedTier = selectedTier;
         this.competition = competition;
+        this.leagueModifier = leagueModifier;
         competitionName.text = competition.CompetitionName;
 
         startCompetition.onClick.RemoveAllListeners();
@@ -55,11 +61,14 @@ public class CompetitionLobbyUI : MonoBehaviour
         removeHorseButton.onClick.RemoveAllListeners();
         removeHorseButton.onClick.AddListener(RemoveHorse);
 
+        startCompetition.onClick.RemoveAllListeners();
+        startCompetition.onClick.AddListener(StartCompetition);
+
         horsePowerIndex.text = "-";
 
         for(int i = 0; i < competitorsName.Count; i++)
         {
-            HorseAI generateHorse = CompetitionSystem.GenerateAIHorse(selectedTier, competition.GetSettingsFor(selectedTier).difficulty);
+            HorseAI generateHorse = CompetitionSystem.GenerateAIHorse(selectedTier, competition.GetSettingsFor(selectedTier).difficulty, leagueModifier);
             aiHorses.Add(generateHorse);
 
             competitorsName[i].text = generateHorse.horseName;
@@ -95,6 +104,8 @@ public class CompetitionLobbyUI : MonoBehaviour
             competitorRating[i].text = rating;
             competitorRating[i].color = ratingColors[colorIndex];
         }
+
+        startCompetition.interactable = true;
     }
 
     public void RemoveHorse()
@@ -108,6 +119,32 @@ public class CompetitionLobbyUI : MonoBehaviour
         {
             competitorRating[i].text = "-";
             competitorRating[i].color = ratingColors[2];
+        }
+
+        horsePowerIndex.text = "-";
+
+        startCompetition.interactable = false;
+    }
+
+    public void StartCompetition()
+    {
+        if (EconomySystem.Instance.EnoughEmeralds(competition.GetSettingsFor(selectedTier).entryFee))
+        {
+            EconomySystem.Instance.RemoveEmeralds(competition.GetSettingsFor(selectedTier).entryFee);
+            gameObject.SetActive(false);
+            competitionWinners.gameObject.SetActive(true);
+            competitionWinners.InitUI(horse, aiHorses, competition, leagueModifier);
+        }
+        else
+        {
+            notEnoughEmeraldsDialog.Show(
+    $"You don't have enough emeralds to enter the competition!",
+    () =>
+    {
+    },
+    () => {
+    }
+);
         }
     }
 }

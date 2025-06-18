@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CrateOpeningUI : MonoBehaviour
 {
+    public AudioClip openingAnimAudio;
     [Tooltip("Speed in pixels per second (right→left).")]
     public float speed = 100f;
 
@@ -54,6 +55,7 @@ public class CrateOpeningUI : MonoBehaviour
 
     private Sprite selectedTier;
     private List<(WeightedTier tier, int weight)> crateValues;
+    private RectTransform _lastHighlightedItem;
 
     void Awake()
     {
@@ -154,8 +156,20 @@ public class CrateOpeningUI : MonoBehaviour
         {
             var img = rt.GetComponent<Image>();
             if (img == null) continue;
+
             float halfW = _itemWidth * 0.5f;
             bool overlap = Mathf.Abs(rt.anchoredPosition.x - selectorX) <= halfW;
+
+            if (overlap && _lastHighlightedItem != rt)
+            {
+                AudioManager.Instance.PlaySound(openingAnimAudio, 0.5f, 0.5f);
+                _lastHighlightedItem = rt;
+            }
+            else if (!overlap && _lastHighlightedItem == rt)
+            {
+                _lastHighlightedItem = null;
+            }
+
             Color.RGBToHSV(img.color, out float h, out float s, out float v);
             img.color = Color.HSVToRGB(h, s, overlap ? 1f : 0.5f);
         }
