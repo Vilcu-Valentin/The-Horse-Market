@@ -58,6 +58,8 @@ public sealed class TraitDef : ScriptableObject
     [Header("Competitions & Price")]
     [Tooltip("Percent boost to all competition scores (± %)")]
     public float CompetitionBuffPct = 0f;        // e.g. Talented = +5 % Deviant = -5%
+    [Tooltip("Applies a modifier to how many competitions a horse can participate in consecutively")]
+    public float CompetitionEnergyMultiplier = 1f;
     [Tooltip("Scalar on market price (1 = neutral)")] 
     public float PriceScalar = 1f; // such as for Champion or Venerable
     [Tooltip("Gains a higher premium price based on the current stats. 1 - no multiplier")]

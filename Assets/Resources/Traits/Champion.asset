@@ -33,7 +33,10 @@ MonoBehaviour:
     <color=#B0FF31>++
     Competition Bonus</color>
 
-    <color=#B0FF31>+++Price Value</color>
+    <color=#B0FF31>++ Competition Energy</color>
+
+    <color=#B0FF31>+++Price
+    Value</color>
 
     <color=#FFA916>Valuable</color>'
   rarityTickets: 3
@@ -68,6 +71,7 @@ MonoBehaviour:
     Modifier: 0.25
   StartingBonusRandomness: 0.1
   CompetitionBuffPct: 1.3
+  CompetitionEnergyMultiplier: 1.75
   PriceScalar: 3.5
   Venerable: 2.5
   conflictedTraits:

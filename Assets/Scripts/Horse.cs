@@ -19,6 +19,7 @@ public class Horse
 
     // Training
     public int currentTrainingEnergy;
+    public int remainingCompetitions;
 
     // Stats
     public Stat[] Current;
@@ -46,10 +47,40 @@ public class Horse
         Current.Set(s, sb);
     }
 
+    public void Compete()
+    {
+        if (remainingCompetitions <= 0)
+            return;
+
+        remainingCompetitions--;
+    }
+
+    public bool CanCompete()
+    {
+        if (remainingCompetitions > 0)
+            return true;
+        return false; 
+    }
+
+    public void RefillCompetitions()
+    {
+        if (remainingCompetitions < GetMaxCompetitions())
+            remainingCompetitions++;
+    }
+
+    public int GetMaxCompetitions()
+    {
+        float competitionMult = 1f;
+        foreach (TraitDef trait in _traits)
+            competitionMult *= trait.CompetitionEnergyMultiplier;
+
+        return Mathf.RoundToInt(Mathf.Clamp((Tier.TierIndex * 0.5f + 1) * competitionMult, 1, 7));
+    }
+
     /// <summary>
     /// This method will train the horse provided enough energy is left
     /// </summary>
-    /// <returns>A bool stating if training was succesfull(true) or not(false)</returns>
+    /// <returns>A bool stating if training was succesful(true) or not(false)</returns>
     public bool Train()
     {
         if (currentTrainingEnergy <= 0)
@@ -372,6 +403,7 @@ public class Horse
         Current = currentStats.ToArray();
 
         currentTrainingEnergy = GetTrainingEnergy();
+        remainingCompetitions = GetMaxCompetitions();
 
         Debug.Log($"[BuildStats] Finished. Generated {Max.Length} max-stats and {Current.Length} current-stats.");
     }

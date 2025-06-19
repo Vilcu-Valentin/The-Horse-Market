@@ -21,6 +21,7 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_InputField horseName;
     public Button favoriteButton;
     public Button closeButton;
+    public EnergyBarUI remainingCompetitions;
 
     [Header("Value")]
     public InfoBarUI emeraldBar;
@@ -110,6 +111,9 @@ public class HorseInfoPanelUI : MonoBehaviour
         horseColor.text = horse.Visual.horseColor.ToString();
         horseColor.color = horse.Visual.textColor;
         horseColorMultiplier.text = "x" + horse.Visual.PriceScalar.ToString("#.##") + " Price";
+
+        remainingCompetitions.SetMaxEnergy(horse.GetMaxCompetitions());
+        remainingCompetitions.SetEnergy(horse.remainingCompetitions);
 
         //Value
         emeraldBar.UpdateBar("Emeralds", horse.GetCurrentPrice(), horse.GetMinPrice(), horse.GetMaxPrice(), true);

@@ -79,7 +79,7 @@ public class CompetitionLobbyUI : MonoBehaviour
 
     private void OpenInventory()
     {
-        inventoryManager.OpenForSelecting(AddParent, selectedTier);
+        inventoryManager.OpenForSelecting(AddParent, selectedTier, true);
     }
 
     public void AddParent(Horse horse)

@@ -56,6 +56,20 @@ public class PlayerData : ScriptableObject
         RebuildLookup();
     }
 
+
+    /// <summary>
+    /// Updates the reamining competitions of all the horses that didn't participate
+    /// </summary>
+    /// <param name="horse">The horse that participated</param>
+    public void UpdateHorseCompetition(Horse horse)
+    {
+        foreach(var _horse in horses)
+        {
+            if (_horse != horse)
+                _horse.RefillCompetitions();
+        }
+    }
+
     /// <summary>
     /// Rebuild the GUID->Horse lookup table.
     /// </summary>

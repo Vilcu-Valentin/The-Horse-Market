@@ -29,15 +29,18 @@ MonoBehaviour:
 
     <color=#FF3131>-  Stamina</color>
 
-    <color=#FF3131>- 
-    Jump Height</color>
+    <color=#FF3131>-  Jump
+    Height</color>
 
     <color=#FF3131>-  Strength</color>
 
     <color=#FF3131>--
     Competition Bonus</color>
 
-    <color=#FF3131>---Price Value</color>'
+    <color=#FF3131>---Competition Energy</color>
+
+    <color=#FF3131>---Price
+    Value</color>'
   rarityTickets: 5
   Icon: {fileID: 21300000, guid: f2d5da9833e7b2a4d92ffa4a36e5e2ed, type: 3}
   BorderIcon: {fileID: 21300000, guid: 99edff7e0c2078f4a9c848e568665b5a, type: 3}
@@ -62,6 +65,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0.7
+  CompetitionEnergyMultiplier: 0.25
   PriceScalar: 0.4
   Venerable: 1
   conflictedTraits:

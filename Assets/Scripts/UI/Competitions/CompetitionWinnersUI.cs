@@ -71,5 +71,7 @@ public class CompetitionWinnersUI : MonoBehaviour
             EconomySystem.Instance.AddEmeralds(_emeraldsReward);
         gameObject.SetActive(false);
         horse.RefillEnergy();
+        horse.Compete();
+        SaveSystem.Instance.Current.UpdateHorseCompetition(horse);
     }
 }

@@ -41,6 +41,7 @@ public class InventoryUIManager : MonoBehaviour
     private enum SortField { Name = 0, Tier = 1, Price = 2, Stats = 3 }
     private SortField currentSortField = SortField.Name;
     private bool isAscending = true;
+    private bool selectionRequireCompete = false;
 
     private TierDef selectionTier;
     private Horse selectionExcludedHorse;
@@ -71,6 +72,19 @@ public class InventoryUIManager : MonoBehaviour
         onSelectCallback = onPick;
         selectionTier = requiredTier;
         selectionExcludedHorse = excludedHorse;  
+        gameObject.SetActive(true);
+        RefreshList();
+    }
+
+    public void OpenForSelecting(Action<Horse> onPick,
+        TierDef requiredTier = null,
+        bool requireCompete = false)
+    {
+        closePanelButton.gameObject.SetActive(true);
+        currentMode = InventoryMode.Selecting;
+        onSelectCallback = onPick;
+        selectionTier = requiredTier;
+        selectionRequireCompete = requireCompete; 
         gameObject.SetActive(true);
         RefreshList();
     }
@@ -163,10 +177,14 @@ public class InventoryUIManager : MonoBehaviour
             .Where(h => currentMode != InventoryMode.Selecting
                         || selectionTier == null
                         || h.Tier == selectionTier)
-            // **NEW**: drop the excluded horse
+            // drop the excluded horse
             .Where(h => currentMode != InventoryMode.Selecting
                         || selectionExcludedHorse == null
                         || h != selectionExcludedHorse)
+            // drop horses that can’t compete when required
+            .Where(h => currentMode != InventoryMode.Selecting
+                        || !selectionRequireCompete
+                        || h.CanCompete())
             .ToList();
     }
 

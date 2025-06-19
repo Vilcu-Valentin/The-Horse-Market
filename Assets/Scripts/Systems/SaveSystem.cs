@@ -14,6 +14,7 @@ public class HorseDTO
     public string visualID;
     public List<string> traitIDs;
     public int currentTrainingEnergy;
+    public int remainingCompetitions;
     public Stat[] Current;
     public Stat[] Max;
 }
@@ -66,6 +67,7 @@ public class SaveSystem : MonoBehaviour
                 visualID = h.Visual.ID,
                 traitIDs = new List<string>(h.Traits.Select(t => t.ID)),
                 currentTrainingEnergy = h.currentTrainingEnergy,
+                remainingCompetitions = h.remainingCompetitions,
                 Current = h.Current,
                 Max = h.Max
             }).ToList()
@@ -104,6 +106,7 @@ public class SaveSystem : MonoBehaviour
                     horseName = h.horseName,
                     favorite = h.favorite,
                     currentTrainingEnergy = h.currentTrainingEnergy,
+                    remainingCompetitions = h.remainingCompetitions,
                     Current = h.Current,
                     Max = h.Max
                 };
