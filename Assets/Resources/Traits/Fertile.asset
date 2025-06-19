@@ -16,7 +16,15 @@ MonoBehaviour:
   DisplayName: Fertile
   Description: Excellent breeding potential with a significant chance of offspring
     improvements, slightly enhancing its market price and overall desirability.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+++Upgrade
+    Chance</color>
+
+    <color=#FF3131>-  Downgrade Chance</color>
+
+    <color=#B0FF31>+ 
+    Price Value</color>'
   rarityTickets: 65
   Icon: {fileID: 21300000, guid: e82ff634006851d45bebb489471dd108, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

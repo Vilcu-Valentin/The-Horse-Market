@@ -16,7 +16,12 @@ MonoBehaviour:
   DisplayName: Sprinter
   Description: Naturally excels in short-distance speed events; advantageous for
     trainers targeting fast-paced competitive races and rapid bursts of performance.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+ 
+    Speed</color>
+
+    <color=#B0FF31>+  Price Value</color>'
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: b24cca8b0aca8214a9d06696c832a9b6, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

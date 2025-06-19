@@ -16,7 +16,12 @@ MonoBehaviour:
   DisplayName: Clumsy
   Description: Occasionally struggles with agility, especially jumping; lower market
     value due to diminished athletic finesse but manageable with proper training.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#FF3131>- 
+    Jump Height</color>
+
+    <color=#FF3131>-  Price Value</color>'
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: 54f3b744c4b64a94eac3e36fac827621, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}

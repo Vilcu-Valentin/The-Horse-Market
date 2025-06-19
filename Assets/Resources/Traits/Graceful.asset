@@ -16,7 +16,15 @@ MonoBehaviour:
   DisplayName: Graceful
   Description: Elegant movement with a gentle agility boost; preferred choice for
     aesthetic-focused competitions and those valuing elegance over raw power.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#B0FF31>+ 
+    Jump Height</color>
+
+    <color=#B0FF31>++ Competition Buff</color>
+
+    <color=#B0FF31>++
+    Price Value</color>'
   rarityTickets: 30
   Icon: {fileID: 21300000, guid: 085762ed299ff8644b3397c06c88e5c8, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

@@ -16,7 +16,12 @@ MonoBehaviour:
   DisplayName: Robust
   Description: Strong resistance to negative genetic influences; reliable for consistent
     performance and stable breeding, with moderate market attractiveness.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>---Downgrade
+    Chance</color>
+
+    <color=#B0FF31>+  Price Value</color>'
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 44a189fa506ec9d4680bb6f5578275c6, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

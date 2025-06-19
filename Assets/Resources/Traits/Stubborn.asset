@@ -16,7 +16,20 @@ MonoBehaviour:
   DisplayName: Stubborn
   Description: Uncooperative and resistant to training; persistently undesirable
     as it consistently hampers progress and competitive potential.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#FF3131>Starting
+    Nerf</color>
+
+    <color=#FF3131>-- Training Speed</color>
+
+    <color=#FF3131>Can
+    Fail Training</color>
+
+    <color=#FF3131>-  Competition Buff</color>
+
+    <color=#FF3131>- 
+    Price Value</color>'
   rarityTickets: 46
   Icon: {fileID: 21300000, guid: 2e70a07a0de34f444a1a6d32ead46599, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}

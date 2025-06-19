@@ -1,23 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TraitUI : MonoBehaviour, ITooltipProvider
+[RequireComponent(typeof(TooltipOnHover))]
+public class HelpUI : MonoBehaviour, ITooltipProvider
 {
     public GameObject tooltipPrefab;
-    public Image traitImage;
-    public Image borderImage;
-
-    private TraitDef trait;
-
-    public void InitTrait(TraitDef trait)
-    {
-        traitImage.sprite = trait.Icon;
-        borderImage.sprite = trait.BorderIcon;
-
-        this.trait = trait;
-    }
+    [TextArea]public string Information;
 
     public GameObject GetTooltipPrefab()
     {
@@ -27,13 +17,13 @@ public class TraitUI : MonoBehaviour, ITooltipProvider
     public void PopulateTooltip(GameObject tooltipInstance)
     {
 
-        var ui = tooltipInstance.GetComponent<TraitTooltipUI>();
+        var ui = tooltipInstance.GetComponent<HelpTooltipUI>();
         if (ui == null)
         {
             Debug.LogWarning($"PopulateTooltip: The instantiated prefab does not have a TraitTooltipUI component.");
             return;
         }
 
-        ui.InitTraitUI(trait);
+        ui.InitUI(Information);
     }
 }

@@ -16,7 +16,26 @@ MonoBehaviour:
   DisplayName: Champion
   Description: Elite performer boasting remarkable agility and strength across all
     abilities; highly valuable in competitions and breeding, commanding premium prices.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
+
+    <color=#B0FF31>++
+    Upgrade Chance</color>
+
+    <color=#B0FF31>+++Speed</color>
+
+    <color=#B0FF31>+++Stamina</color>
+
+    <color=#B0FF31>+++Jump
+    Height</color>
+
+    <color=#B0FF31>+++Strength</color>
+
+    <color=#B0FF31>++
+    Competition Bonus</color>
+
+    <color=#B0FF31>+++Price Value</color>
+
+    <color=#FFA916>Valuable</color>'
   rarityTickets: 3
   Icon: {fileID: 21300000, guid: 9aa8d06cad7a0da4c93b62e8f619da17, type: 3}
   BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}

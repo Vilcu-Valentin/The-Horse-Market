@@ -17,7 +17,15 @@ MonoBehaviour:
   Description: Resistant against genetic shifts or fluctuations; maintains stability
     across generations, appealing for long-term breeding programs and predictable
     outcomes.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#FF3131>---Upgrade
+    Chance</color>
+
+    <color=#B0FF31>---Downgrade Chance</color>
+
+    <color=#FF3131>---Mutation
+    Chance</color>'
   rarityTickets: 55
   Icon: {fileID: 21300000, guid: 8e0c8e73da58cea42b9270caa24129a6, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

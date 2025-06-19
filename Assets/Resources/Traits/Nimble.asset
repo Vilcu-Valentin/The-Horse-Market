@@ -16,7 +16,12 @@ MonoBehaviour:
   DisplayName: Nimble
   Description: Agile and precise jumper; excels particularly in disciplines requiring
     agility, such as show jumping and obstacle courses.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+ 
+    Jump Height</color>
+
+    <color=#B0FF31>+  Price Value</color>'
   rarityTickets: 80
   Icon: {fileID: 21300000, guid: 2d74abb88325a0c4580dca2f6fa8fd04, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

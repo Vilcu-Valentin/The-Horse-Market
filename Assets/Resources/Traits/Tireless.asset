@@ -17,7 +17,12 @@ MonoBehaviour:
   Description: Remarkable stamina; performs impressively over extended periods, suitable
     for endurance racing and demanding competitive scenarios requiring sustained
     effort.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#B0FF31>++
+    Stamina</color>
+
+    <color=#B0FF31>+  Price Value</color>'
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 00847f8fa1e0e404192207204b8beb53, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}

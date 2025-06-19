@@ -16,7 +16,10 @@ MonoBehaviour:
   DisplayName: Stable Genetics
   Description: Rarely experiences mutations; consistently delivers predictable offspring;
     preferred by breeders desiring stable and reliable genetic continuity.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#FF3131>---Mutation
+    Chance</color>'
   rarityTickets: 35
   Icon: {fileID: 21300000, guid: 8d07c1aa6e589b747859e939d91fd203, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}

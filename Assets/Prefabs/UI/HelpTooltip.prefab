@@ -66,29 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Champion
-
-
-    Easy-going and cooperative, accelerating training progression;
-    perfect for beginners or those looking for reliable, stress-free horse handling
-    experiences.
-
-
-    Inherit Chance: Low
-
-    +++Competition Buff
-
-    +++Speed
-    Capacity
-
-    +++Stamina Capacity
-
-    +++Jump Height Capacity
-
-    +++Strength
-    Capacity
-
-    +++Price Value'
+  m_text: 'This is a very small tooltip '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c72f6757fe69026478dcefe9ec49b4e5, type: 2}
   m_sharedMaterial: {fileID: 7226386974059177192, guid: c72f6757fe69026478dcefe9ec49b4e5,
@@ -116,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -189,9 +167,9 @@ GameObject:
   - component: {fileID: 4064992303258857414}
   - component: {fileID: 4351269898980915590}
   - component: {fileID: 4036238496969131636}
-  - component: {fileID: 8147144563729209433}
+  - component: {fileID: 7756979214779222078}
   m_Layer: 5
-  m_Name: TraitTooltip
+  m_Name: HelpTooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 350, y: 226.91853}
-  m_SizeDelta: {x: 450, y: 450}
+  m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4351269898980915590
 CanvasRenderer:
@@ -238,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6289307, g: 0.4431869, b: 0.23139894, a: 1}
+  m_Color: {r: 0.627451, g: 0.44313726, b: 0.23137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -255,7 +233,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8147144563729209433
+--- !u!114 &7756979214779222078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,17 +242,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6066452695861244240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73746dd03b0e45e428a5f575daccae4d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4f4ab621152c1f47ae0e5c6d80f30be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   description: {fileID: 735977808603602014}
   backgroundRect: {fileID: 4064992303258857414}
-  minWidth: 350
-  maxWidth: 700
-  minHeight: 300
+  minWidth: 420
+  maxWidth: 600
+  minHeight: 65
   panelPadding: 20
-  titleColor: '#FFFFFF'
-  titleSize: 32
-  descriptionColor: '#E9D3AC'
-  descriptionSize: 24
-  modifierSize: 28

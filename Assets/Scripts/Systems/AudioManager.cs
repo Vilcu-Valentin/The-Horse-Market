@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<AudioClip> musicClips;
     [Tooltip("AudioSource used for BGM")]
     [SerializeField] private AudioSource musicSource;
+    private float _musicVolume = 1f;
+    private float _sfxVolume = 1f;
 
     [Header("SFX Settings")]
     [Tooltip("Prefab with an AudioSource (no clip assigned)")]
@@ -23,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private List<AudioClip> _shuffledPlaylist;
     private int _musicIndex = 0;
+
 
     void Awake()
     {
@@ -49,6 +52,20 @@ public class AudioManager : MonoBehaviour
             _shuffledPlaylist[r] = tmp;
         }
         _musicIndex = 0;
+    }
+
+    // called by your slider
+    public void SetMusicVolume(float volume)
+    {
+        _musicVolume = volume;
+        musicSource.volume = _musicVolume;
+    }
+
+    // called by your slider
+    public void SetSfxVolume(float volume)
+    {
+        _sfxVolume = volume;
+        // you’ll apply this multiplier on every one-shot
     }
 
     private IEnumerator MusicLoop()
@@ -91,7 +108,7 @@ public class AudioManager : MonoBehaviour
         var src = Instantiate(sfxSourcePrefab, transform);
         src.outputAudioMixerGroup = sfxMixerGroup;
         src.clip = clip;
-        src.volume = volume;
+        src.volume = volume * _sfxVolume;
         src.pitch = 1f + Random.Range(-pitchVariance, pitchVariance);
         src.Play();
 

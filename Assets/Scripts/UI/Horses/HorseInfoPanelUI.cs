@@ -109,7 +109,7 @@ public class HorseInfoPanelUI : MonoBehaviour
 
         horseColor.text = horse.Visual.horseColor.ToString();
         horseColor.color = horse.Visual.textColor;
-        horseColorMultiplier.text = "x" + horse.Visual.PriceScalar.ToString("#.##");
+        horseColorMultiplier.text = "x" + horse.Visual.PriceScalar.ToString("#.##") + " Price";
 
         //Value
         emeraldBar.UpdateBar("Emeralds", horse.GetCurrentPrice(), horse.GetMinPrice(), horse.GetMaxPrice(), true);

@@ -17,7 +17,10 @@ MonoBehaviour:
   Description: Remarkably high genetic mutation potential, creating highly variable
     offspring; intriguing for breeders interested in experimental and distinctive
     breeding outcomes.
-  ModifiersDescription: 
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+++Mutation
+    Chance</color>'
   rarityTickets: 12
   Icon: {fileID: 21300000, guid: 7e02899922fdad141a9d5db5f600e509, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
