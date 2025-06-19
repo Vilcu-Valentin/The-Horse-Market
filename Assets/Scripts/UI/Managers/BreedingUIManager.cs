@@ -39,7 +39,7 @@ public class BreedingUIManager : MonoBehaviour
     public InventoryUIManager inventoryManager;
 
     public DialogPanelUI confirmDialog;
-    public DialogPanelUI resultDialog;
+    public BreedingUpgradeDialogPanelUI resultDialog;
     public HorseInfoPanelUI foalInfoPanel;
 
     public Slider upOdds;
@@ -247,16 +247,18 @@ public class BreedingUIManager : MonoBehaviour
 
         string body;
         if (upgraded)
-            body = $"<b>UPGRADE!</b>\n<color=#{parentA.Tier.HighlightColor.ToHexString()}>{fromTier}</color> -> <color=#{foal.Tier.HighlightColor.ToHexString()}>{toTier}</color>";
+            body = $"<b>UPGRADE!</b>";
         else if (downgraded)
-            body = $"<b>DOWNGRADE :(</b>\n<color=#{parentA.Tier.HighlightColor.ToHexString()}>{fromTier}</color> -> <color=#{foal.Tier.HighlightColor.ToHexString()}>{toTier}</color>";
+            body = $"<b>DOWNGRADE :(</b>";
         else
-            body = $"<b>SAME TIER</b>\n<color=#{parentA.Tier.HighlightColor.ToHexString()}>{fromTier}</color> -> <color=#{foal.Tier.HighlightColor.ToHexString()}>{toTier}</color>";
+            body = $"<b>SAME TIER</b>";
 
         // 4) Show result dialog
         bool done = false;
         resultDialog.Show(
             body,
+            oldTier: $"<color=#{parentA.Tier.HighlightColor.ToHexString()}>{fromTier}</color>",
+            newTier: $"<color=#{foal.Tier.HighlightColor.ToHexString()}>{toTier}</color>",
             () => done = true,    // confirm
             null                  // no-need to cancel
         );

@@ -124,8 +124,6 @@ public static class BreedingSystem
     private static List<TraitDef> CalculateTraits(Horse parentA, Horse parentB)
     {
         Dictionary<TraitDef, float> potentialTraits = new Dictionary<TraitDef, float>();
-        List<TraitDef> foalTraits = new List<TraitDef>();
-
         foreach (TraitDef trait in parentA.Traits)
             potentialTraits[trait] = trait.BaseInheritChance;
         foreach (TraitDef trait in parentB.Traits)
@@ -135,11 +133,26 @@ public static class BreedingSystem
             else
                 potentialTraits[trait] = trait.BaseInheritChance;
         }
-     
-        foreach(var kvp in potentialTraits)
+
+        List<TraitDef> foalTraits = new List<TraitDef>();
+
+        //Sort by highest chance first
+        foreach (var kvp in potentialTraits.OrderByDescending(k => k.Value))
         {
-            if (Random.value < kvp.Value)
-                foalTraits.Add(kvp.Key);
+            var trait = kvp.Key;
+            var chance = kvp.Value;
+
+            // roll inheritance
+            if (Random.value < chance)
+            {
+                // check against all already‐added traits for conflicts in either direction
+                bool conflicts = foalTraits.Any(existing =>
+                    existing.IsConflict(trait) || trait.IsConflict(existing));
+
+                if (!conflicts)
+                    foalTraits.Add(trait);
+                // else: skip this trait because it would clash
+            }
         }
 
         // Roll mutations if necessary
