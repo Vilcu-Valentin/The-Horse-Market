@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Bulky
+  m_EditorClassIdentifier: 
+  id: 3ab904d5-59aa-4527-85a8-252dfe75f602
+  DisplayName: Bulky
+  Description: Strong and sturdy, but cumbersome; excels in strength-based tasks
+    while significantly hampered in speed, stamina, and jumping agility.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#FF3131>--
+    Speed</color>
+
+    <color=#FF3131>-  Stamina</color>
+
+    <color=#FF3131>---Jump
+    Height</color>
+
+    <color=#B0FF31>++ Strength</color>
+
+    <color=#FF3131>- 
+    Price Value</color>'
+  rarityTickets: 16
+  Icon: {fileID: 21300000, guid: 1699bb2ae74a3ce46984b164b2fc9ade, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
+  quality: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.35
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.5
+  - Stat: 1
+    Modifier: -0.2
+  - Stat: 2
+    Modifier: -0.7
+  - Stat: 3
+    Modifier: 0.5
+  StartingStats:
+  - Stat: 0
+    Modifier: -0.15
+  - Stat: 1
+    Modifier: -0.1
+  - Stat: 2
+    Modifier: -0.25
+  - Stat: 3
+    Modifier: 0.15
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 0.9
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 6ee0a7ad325b1d34db36ee30716212ff, type: 2}
+  - {fileID: 11400000, guid: 448093cdaafe5bd4bbeb2f44402afda0, type: 2}
+  - {fileID: 11400000, guid: ac855fd369cb1c24e9b10330f96d2008, type: 2}
+  - {fileID: 11400000, guid: 99f26a7f69641a24caabdbb288adf9f8, type: 2}
+  - {fileID: 11400000, guid: b6af2c271a88fb142b561c1edb401b7e, type: 2}

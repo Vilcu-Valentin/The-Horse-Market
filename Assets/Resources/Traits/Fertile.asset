@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Fertile
+  m_EditorClassIdentifier: 
+  id: 9ed8e57a-fdeb-49c7-9b5c-e5c7a9f3d3c1
+  DisplayName: Fertile
+  Description: Excellent breeding potential with a significant chance of offspring
+    improvements, slightly enhancing its market price and overall desirability.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+++Upgrade
+    Chance</color>
+
+    <color=#FF3131>-  Downgrade Chance</color>
+
+    <color=#B0FF31>+ 
+    Price Value</color>'
+  rarityTickets: 65
+  Icon: {fileID: 21300000, guid: e82ff634006851d45bebb489471dd108, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  quality: 2
+  UpgradeMult: 2
+  DowngradeMult: 0.8
+  TierVolatility: 0
+  BaseInheritChance: 0.5
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 1.02
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: c5d126b2a6bf6604ba94e70039204279, type: 2}
+  - {fileID: 11400000, guid: e2899f7c9d70216439453691dce904fe, type: 2}

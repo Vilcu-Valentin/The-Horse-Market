@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879bea5844189cc43bbf16fb9b4a0a1b, type: 3}
+  m_Name: RidersCrate
+  m_EditorClassIdentifier: 
+  CrateName: Rider's Crate
+  Icon: {fileID: 21300000, guid: 1a3964a20ad22444ca4386ed279e0ffe, type: 3}
+  crateColor: {r: 0.90588236, g: 0.69803923, b: 0.5019608, a: 1}
+  CostInEmeralds: 7500
+  TierChances:
+  - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
+    Tickets: 12
+    MinTraits: 2
+    MaxTraits: 5
+  - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
+    Tickets: 35
+    MinTraits: 3
+    MaxTraits: 6
+  - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
+    Tickets: 9
+    MinTraits: 3
+    MaxTraits: 6
+  - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
+    Tickets: 2
+    MinTraits: 3
+    MaxTraits: 7

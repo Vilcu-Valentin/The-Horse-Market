@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
+  m_Name: Tier VI
+  m_EditorClassIdentifier: 
+  id: 06dedc29-7d87-4a06-9286-2b9af582f53b
+  TierName: Tier VI
+  tierIcon: {fileID: 21300000, guid: d3e87ca393e14354c9b4e0e6aca9a766, type: 3}
+  TierIndex: 6
+  HighlightColor: {r: 0.16078432, g: 0.88235295, b: 0.8666667, a: 1}
+  ForegroundColor: {r: 0.22745098, g: 0.6745098, b: 0.6156863, a: 1}
+  BackgroundColor: {r: 0.14117648, g: 0.2901961, b: 0.34509805, a: 1}
+  StatCap: 320
+  UpgradeChance: 0.15
+  DowngradeChance: 0.25
+  MutationChance: 0.025

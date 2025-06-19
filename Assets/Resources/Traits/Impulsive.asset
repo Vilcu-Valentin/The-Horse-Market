@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Impulsive
+  m_EditorClassIdentifier: 
+  id: 85955b62-d662-4152-acbf-1f96fadf9123
+  DisplayName: Impulsive
+  Description: Challenging to train with moderate failure rates, struggles in competitions;
+    challenging for trainers aiming for steady, reliable performance.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#FF3131>--
+    Training Multiplier</color>
+
+    <color=#FF3131>-- Training Speed</color>
+
+    <color=#FF3131>Can
+    Fail Training</color>
+
+    <color=#FF3131>-  Speed</color>
+
+    <color=#FF3131>- 
+    Stamina</color>
+
+    <color=#FF3131>-  Jump Height</color>
+
+    <color=#FF3131>- 
+    Strength</color>
+
+    <color=#FF3131>-  Competition Bonus</color>
+
+    <color=#FF3131>--
+    Price Value</color>'
+  rarityTickets: 9
+  Icon: {fileID: 21300000, guid: 9d0af3e32ef49464cb98ee0368bf77c5, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 99edff7e0c2078f4a9c848e568665b5a, type: 3}
+  quality: -1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.35
+  MutationMultiplier: 1
+  TrainingMult: 0.5
+  TrainingSpeed: 0.5
+  canFailTraining: 1
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.1
+  - Stat: 1
+    Modifier: -0.1
+  - Stat: 2
+    Modifier: -0.1
+  - Stat: 3
+    Modifier: -0.1
+  StartingStats:
+  - Stat: 0
+    Modifier: -0.1
+  - Stat: 1
+    Modifier: -0.1
+  - Stat: 2
+    Modifier: -0.1
+  - Stat: 3
+    Modifier: -0.1
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0.9
+  PriceScalar: 0.75
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 3073af48b6c1a0541a1f882d551cb6aa, type: 2}

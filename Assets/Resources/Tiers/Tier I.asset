@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b91fa76a9853a34193d9e80a36c7aa6, type: 3}
   m_Name: Tier I
   m_EditorClassIdentifier: 
+  id: 9be0035f-d6eb-4391-b0ae-781c775adc78
   TierName: Tier I
+  tierIcon: {fileID: 21300000, guid: a858be52e542e874b9fc31c98095f99f, type: 3}
   TierIndex: 1
-  UIColour: {r: 1, g: 1, b: 1, a: 1}
-  BasePriceMultiplier: 1
-  SpeedCap: 10
-  StaminaCap: 10
-  JumpHeightCap: 10
-  StrengthCap: 10
-  UpgradeChance: 0.3
-  DowngradeChance: 0.2
-  MutationChance: 0.02
+  HighlightColor: {r: 0.38039216, g: 0.3372549, b: 0.3019608, a: 1}
+  ForegroundColor: {r: 0.53333336, g: 0.4745098, b: 0.42352942, a: 1}
+  BackgroundColor: {r: 0.21960784, g: 0.19607843, b: 0.1764706, a: 1}
+  StatCap: 10
+  UpgradeChance: 0.5
+  DowngradeChance: 0
+  MutationChance: 0.35

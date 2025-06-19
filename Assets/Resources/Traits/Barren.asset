@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Barren
+  m_EditorClassIdentifier: 
+  id: 65ff3a87-fdf8-47e9-98ce-7af57178a147
+  DisplayName: Barren
+  Description: Struggles with reproduction; a less valuable breeding horse, reflecting
+    limited hereditary benefits and reduced market desirability.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#FF3131>---Upgrade
+    Chance</color>
+
+    <color=#B0FF31>+++Downgrade Chance</color>
+
+    <color=#FF3131>- 
+    Price Value</color>'
+  rarityTickets: 20
+  Icon: {fileID: 21300000, guid: 4ecd1179f0708e649a4a2e7be73e42f8, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
+  quality: 0
+  UpgradeMult: 0.25
+  DowngradeMult: 2
+  TierVolatility: 0
+  BaseInheritChance: 0.5
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 0.85
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 0fc5b7ec7f7b29940aed976571e119dd, type: 2}
+  - {fileID: 11400000, guid: e2899f7c9d70216439453691dce904fe, type: 2}

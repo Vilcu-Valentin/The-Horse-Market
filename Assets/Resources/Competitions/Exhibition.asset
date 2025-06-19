@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f7b419feffb4f44bc13b74b7efebd8, type: 3}
+  m_Name: Exhibition
+  m_EditorClassIdentifier: 
+  CompetitionName: Exhibition
+  Icon: {fileID: 21300000, guid: 3395c92e1f70ea44f8deca1b69499492, type: 3}
+  backgroundColor: {r: 0.3254902, g: 0.14117648, b: 0.09411765, a: 1}
+  foregroundColor: {r: 0.6156863, g: 0.27058825, b: 0.25490198, a: 1}
+  competitionStats:
+  - Stat: 0
+    weight: 0.25
+  - Stat: 1
+    weight: 0.25
+  - Stat: 2
+    weight: 0.25
+  - Stat: 3
+    weight: 0.25
+  tierSettings:
+  - tier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
+    difficulty: 0.1
+    entryFee: 25
+    placeRewards:
+    - emeralds: 1000
+    - emeralds: 500
+    - emeralds: 100
+    - emeralds: 50
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+  - tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
+    difficulty: 0.15
+    entryFee: 100
+    placeRewards:
+    - emeralds: 5000
+    - emeralds: 2500
+    - emeralds: 1000
+    - emeralds: 500
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+  - tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
+    difficulty: 0.2
+    entryFee: 500
+    placeRewards:
+    - emeralds: 10000
+    - emeralds: 5000
+    - emeralds: 2500
+    - emeralds: 1000
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+  - tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
+    difficulty: 0.3
+    entryFee: 1500
+    placeRewards:
+    - emeralds: 20000
+    - emeralds: 12500
+    - emeralds: 7500
+    - emeralds: 5000
+    - emeralds: 3000
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+  - tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
+    difficulty: 0.4
+    entryFee: 5000
+    placeRewards:
+    - emeralds: 120000
+    - emeralds: 80000
+    - emeralds: 50000
+    - emeralds: 25000
+    - emeralds: 10000
+    - emeralds: 5000
+    - emeralds: 1000
+    - emeralds: 500
+  - tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
+    difficulty: 0.5
+    entryFee: 10000
+    placeRewards:
+    - emeralds: 60000
+    - emeralds: 300000
+    - emeralds: 125000
+    - emeralds: 65000
+    - emeralds: 30000
+    - emeralds: 17500
+    - emeralds: 10000
+    - emeralds: 5000
+  - tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
+    difficulty: 0.6
+    entryFee: 20000
+    placeRewards:
+    - emeralds: 3000000
+    - emeralds: 1500000
+    - emeralds: 850000
+    - emeralds: 400000
+    - emeralds: 125000
+    - emeralds: 50000
+    - emeralds: 20000
+    - emeralds: 10000
+  - tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
+    difficulty: 0.7
+    entryFee: 50000
+    placeRewards:
+    - emeralds: 15000000
+    - emeralds: 7500000
+    - emeralds: 3500000
+    - emeralds: 1250000
+    - emeralds: 750000
+    - emeralds: 350000
+    - emeralds: 125000
+    - emeralds: 50000

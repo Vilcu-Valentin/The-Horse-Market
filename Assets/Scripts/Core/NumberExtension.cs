@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class NumberExtensions
+{
+    public static string ToShortString(this long value)
+    {
+        const long THOUSAND = 1_000L;
+        const long MILLION = THOUSAND * THOUSAND;         // 1_000_000
+        const long BILLION = MILLION * THOUSAND;         // 1_000_000_000
+        const long TRILLION = BILLION * THOUSAND;         // 1_000_000_000_000
+
+        if (value >= TRILLION)
+            return value.ToString("0.##e+0");
+
+        if (value >= BILLION)
+            return (value / (double)BILLION).ToString("#.##0") + "b";
+
+        if (value >= MILLION)
+            return (value / (double)MILLION).ToString("#.##0") + "m";
+
+        // < 1 000 000 → default grouping
+        return value.ToString("#,##0");
+    }
+}

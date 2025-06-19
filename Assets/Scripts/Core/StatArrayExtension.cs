@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class StatArrayExtensions
+{
+    public static int Get(this Stat[] stats, StatType type)
+        => stats[(int)type].Value;
+
+    public static void Set(this Stat[] stats, StatType type, int value)
+        => stats[(int)type].Value = value;
+}

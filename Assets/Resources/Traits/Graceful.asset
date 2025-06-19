@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Graceful
+  m_EditorClassIdentifier: 
+  id: 3b492f69-a1d6-4195-bc9e-7109819e3363
+  DisplayName: Graceful
+  Description: Elegant movement with a gentle agility boost; preferred choice for
+    aesthetic-focused competitions and those valuing elegance over raw power.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#B0FF31>+ 
+    Jump Height</color>
+
+    <color=#B0FF31>++ Competition Buff</color>
+
+    <color=#B0FF31>++
+    Price Value</color>'
+  rarityTickets: 30
+  Icon: {fileID: 21300000, guid: 085762ed299ff8644b3397c06c88e5c8, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  quality: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.4
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 2
+    Modifier: 0.1
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 1.5
+  PriceScalar: 1.25
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 8b7a268522ecde04cbb12deac5b2f5c8, type: 2}
+  - {fileID: 11400000, guid: ce14c4a854ca10042948f64892e55e7e, type: 2}

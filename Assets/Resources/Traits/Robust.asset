@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Robust
+  m_EditorClassIdentifier: 
+  id: 9ca1120a-04b5-49f1-af9a-8dfbf8dbb1d2
+  DisplayName: Robust
+  Description: Strong resistance to negative genetic influences; reliable for consistent
+    performance and stable breeding, with moderate market attractiveness.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>---Downgrade
+    Chance</color>
+
+    <color=#B0FF31>+  Price Value</color>'
+  rarityTickets: 40
+  Icon: {fileID: 21300000, guid: 44a189fa506ec9d4680bb6f5578275c6, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  quality: 2
+  UpgradeMult: 1
+  DowngradeMult: 0.25
+  TierVolatility: 0
+  BaseInheritChance: 0.45
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 1.1
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: c5d126b2a6bf6604ba94e70039204279, type: 2}

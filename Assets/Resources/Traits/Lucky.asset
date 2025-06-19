@@ -12,20 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
   m_Name: Lucky
   m_EditorClassIdentifier: 
-  DisplayName: 
-  Description: 
-  Icon: {fileID: 0}
-  IsNegative: 0
-  UpgradeMult: 1
-  DowngradeMult: 1
+  id: 3b2ba68b-1091-464f-a5f9-ff6b88dc6b5a
+  DisplayName: Lucky
+  Description: Brings fortunate outcomes, enhancing competitive results and resisting
+    negative consequences; appealing for those embracing chance and favorable outcomes.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+
+    <color=#B0FF31>+++Upgrade
+    Chance</color>
+
+    <color=#B0FF31>---Downgrade Chance</color>
+
+    <color=#B0FF31>+ 
+    Speed</color>
+
+    <color=#B0FF31>+  Stamina</color>
+
+    <color=#B0FF31>+ 
+    Jump Height</color>
+
+    <color=#B0FF31>+  Strength</color>
+
+    <color=#B0FF31>+ 
+    Competition Buff</color>
+
+    <color=#B0FF31>+  Price Value</color>'
+  rarityTickets: 10
+  Icon: {fileID: 21300000, guid: cca1d512e9db7cc4b84a573a40468c1b, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 55cba07777843cf47b6e0ef21809826a, type: 3}
+  quality: 4
+  UpgradeMult: 2
+  DowngradeMult: 0.6
   TierVolatility: 0
-  BaseInheritChance: 0.25
-  MutationChance: 0
+  BaseInheritChance: 0.38
+  MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
   canFailTraining: 0
   StatCapMods: []
-  StartingStas: []
-  CompetitionBuffPct: 0
-  PriceScalar: 1
-  Venerable: 0
+  StartingStats:
+  - Stat: 0
+    Modifier: 0.2
+  - Stat: 1
+    Modifier: 0.2
+  - Stat: 2
+    Modifier: 0.2
+  - Stat: 3
+    Modifier: 0.2
+  StartingBonusRandomness: 0.15
+  CompetitionBuffPct: 1.05
+  PriceScalar: 1.1
+  Venerable: 1
+  conflictedTraits: []

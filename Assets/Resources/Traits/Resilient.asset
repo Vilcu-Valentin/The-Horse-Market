@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Resilient
+  m_EditorClassIdentifier: 
+  id: 72342c74-2870-43d9-9511-07d4db149b7b
+  DisplayName: Resilient
+  Description: Resistant against genetic shifts or fluctuations; maintains stability
+    across generations, appealing for long-term breeding programs and predictable
+    outcomes.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#FF3131>---Upgrade
+    Chance</color>
+
+    <color=#B0FF31>---Downgrade Chance</color>
+
+    <color=#FF3131>---Mutation
+    Chance</color>'
+  rarityTickets: 55
+  Icon: {fileID: 21300000, guid: 8e0c8e73da58cea42b9270caa24129a6, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  quality: 1
+  UpgradeMult: 0.2
+  DowngradeMult: 0.2
+  TierVolatility: 0
+  BaseInheritChance: 0.5
+  MutationMultiplier: 0.25
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  PriceScalar: 1
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 0fc5b7ec7f7b29940aed976571e119dd, type: 2}
+  - {fileID: 11400000, guid: c5d126b2a6bf6604ba94e70039204279, type: 2}
+  - {fileID: 11400000, guid: 43382b4e267280d40adcdc23a5e2a6ce, type: 2}
+  - {fileID: 11400000, guid: aa0b2e5084bc9b94a8c309db45c7b4d6, type: 2}
+  - {fileID: 11400000, guid: 92677cea91d48474f8b4015ce119fa8a, type: 2}
+  - {fileID: 11400000, guid: 23becf6ef56b85f4d8b561ff26ccabed, type: 2}

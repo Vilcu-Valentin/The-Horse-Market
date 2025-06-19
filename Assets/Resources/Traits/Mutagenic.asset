@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Mutagenic
+  m_EditorClassIdentifier: 
+  id: 41a292ac-a1df-4f70-9035-f25385b7f990
+  DisplayName: Mutagenic
+  Description: Remarkably high genetic mutation potential, creating highly variable
+    offspring; intriguing for breeders interested in experimental and distinctive
+    breeding outcomes.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+
+    <color=#B0FF31>+++Mutation
+    Chance</color>'
+  rarityTickets: 12
+  Icon: {fileID: 21300000, guid: 7e02899922fdad141a9d5db5f600e509, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
+  quality: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.5
+  MutationMultiplier: 5
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods: []
+  StartingStats: []
+  StartingBonusRandomness: 0.1
+  CompetitionBuffPct: 0
+  PriceScalar: 1
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 92677cea91d48474f8b4015ce119fa8a, type: 2}
+  - {fileID: 11400000, guid: 23becf6ef56b85f4d8b561ff26ccabed, type: 2}
+  - {fileID: 11400000, guid: e2899f7c9d70216439453691dce904fe, type: 2}

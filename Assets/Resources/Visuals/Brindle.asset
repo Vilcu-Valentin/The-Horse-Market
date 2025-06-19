@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded0b6382b5151f45ac95af523a65fbb, type: 3}
+  m_Name: Brindle
+  m_EditorClassIdentifier: 
+  id: 0af99f06-ea3e-49ae-bb5c-f710ba497e89
+  horseColor: 2
+  textColor: {r: 0.4862745, g: 0.33333334, b: 0.27450982, a: 1}
+  sprite2D: {fileID: 21300000, guid: 8913340c0058ed74998378ebf540c257, type: 3}
+  rarityTickets: 12
+  PriceScalar: 1.5

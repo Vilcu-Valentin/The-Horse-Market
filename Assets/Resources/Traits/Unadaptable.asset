@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10717e86f0f3847bdd7ac626ebf367, type: 3}
+  m_Name: Unadaptable
+  m_EditorClassIdentifier: 
+  id: 1eb3e4fa-f61f-4c86-897d-ecbd3ce8f407
+  DisplayName: Unadaptable
+  Description: Severely limited in adaptability across key abilities; predominantly
+    a companion rather than a competitive or breeding-focused horse due to restrictive
+    attributes.
+  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
+
+    <color=#FF3131>---Speed</color>
+
+    <color=#FF3131>---Stamina</color>
+
+    <color=#FF3131>---Jump
+    Height</color>
+
+    <color=#FF3131>---Strength</color>
+
+    <color=#FF3131>--
+    Price Value</color>'
+  rarityTickets: 7
+  Icon: {fileID: 21300000, guid: 76403bc50693b0f4d8cbb65066de1e9a, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 99edff7e0c2078f4a9c848e568665b5a, type: 3}
+  quality: -1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.25
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: -0.6
+  - Stat: 1
+    Modifier: -0.6
+  - Stat: 2
+    Modifier: -0.6
+  - Stat: 3
+    Modifier: -0.6
+  StartingStats:
+  - Stat: 0
+    Modifier: -0.15
+  - Stat: 1
+    Modifier: -0.15
+  - Stat: 2
+    Modifier: -0.15
+  - Stat: 3
+    Modifier: -0.15
+  StartingBonusRandomness: 0.1
+  CompetitionBuffPct: 0
+  PriceScalar: 0.5
+  Venerable: 1
+  conflictedTraits:
+  - {fileID: 11400000, guid: 3dbb4925fd3f56c4bb1bdb7822c573c2, type: 2}
+  - {fileID: 11400000, guid: 246149833a1569d4db51ad6725e8a09e, type: 2}
+  - {fileID: 11400000, guid: 74ef36703804ca84c8bca8373cfa0fb6, type: 2}
