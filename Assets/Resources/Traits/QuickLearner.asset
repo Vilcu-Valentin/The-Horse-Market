@@ -16,15 +16,12 @@ MonoBehaviour:
   DisplayName: Quick Learner
   Description: Rapidly masters new skills, significantly accelerating training timelines;
     highly desirable for swift development in competitive or recreational contexts.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+  ModifiersDescription: '<color=#B0FF31>++ Training Multiplier</color>
 
-    <color=#B0FF31>++
-    Training Multiplier</color>
+    <color=#B0FF31>+++Training
+    Speed</color>
 
-    <color=#B0FF31>+++Training Speed</color>
-
-    <color=#B0FF31>+ 
-    Price Value</color>'
+    <color=#B0FF31>+  Price Value</color>'
   rarityTickets: 35
   Icon: {fileID: 21300000, guid: 2d7f8f065cf5a7f4d90a74a97d28c9be, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -32,7 +29,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.45
+  BaseInheritChance: 0.82
   MutationMultiplier: 1
   TrainingMult: 1.35
   TrainingSpeed: 1.6
@@ -49,6 +46,7 @@ MonoBehaviour:
     Modifier: 0.05
   StartingBonusRandomness: 0.05
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.1
   Venerable: 1.2
   conflictedTraits:

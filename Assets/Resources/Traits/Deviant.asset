@@ -17,20 +17,17 @@ MonoBehaviour:
   Description: Troublesome trait characterized by difficulty in training, and general
     undesirability; significantly impacts performance negatively, complicating handling
     for trainers.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#FF3131>-- Training Multiplier</color>
 
-    <color=#FF3131>--
-    Training Multiplier</color>
-
-    <color=#FF3131>---Training Speed</color>
-
-    <color=#FF3131>- 
+    <color=#FF3131>---Training
     Speed</color>
+
+    <color=#FF3131>-  Speed</color>
 
     <color=#FF3131>-  Stamina</color>
 
-    <color=#FF3131>-  Jump
-    Height</color>
+    <color=#FF3131>- 
+    Jump Height</color>
 
     <color=#FF3131>-  Strength</color>
 
@@ -48,7 +45,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.7
   MutationMultiplier: 1
   TrainingMult: 0.6
   TrainingSpeed: 0.35

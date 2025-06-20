@@ -16,10 +16,7 @@ MonoBehaviour:
   DisplayName: Sedentary
   Description: Limited energy and stamina; generally lethargic, making competitive
     activities challenging; best suited for gentle tasks or companionship roles.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
-
-    <color=#FF3131>- 
-    Speed</color>
+  ModifiersDescription: '<color=#FF3131>-  Speed</color>
 
     <color=#FF3131>-  Stamina</color>
 
@@ -32,7 +29,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.45
+  BaseInheritChance: 0.78
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -45,6 +42,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 0.9
   Venerable: 1
   conflictedTraits:

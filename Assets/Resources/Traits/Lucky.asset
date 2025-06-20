@@ -16,20 +16,17 @@ MonoBehaviour:
   DisplayName: Lucky
   Description: Brings fortunate outcomes, enhancing competitive results and resisting
     negative consequences; appealing for those embracing chance and favorable outcomes.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#B0FF31>+++Upgrade Chance</color>
 
-    <color=#B0FF31>+++Upgrade
+    <color=#B0FF31>---Downgrade
     Chance</color>
 
-    <color=#B0FF31>---Downgrade Chance</color>
-
-    <color=#B0FF31>+ 
-    Speed</color>
+    <color=#B0FF31>+  Speed</color>
 
     <color=#B0FF31>+  Stamina</color>
 
-    <color=#B0FF31>+  Jump
-    Height</color>
+    <color=#B0FF31>+ 
+    Jump Height</color>
 
     <color=#B0FF31>+  Strength</color>
 
@@ -47,7 +44,7 @@ MonoBehaviour:
   UpgradeMult: 2
   DowngradeMult: 0.6
   TierVolatility: 0
-  BaseInheritChance: 0.38
+  BaseInheritChance: 0.84
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

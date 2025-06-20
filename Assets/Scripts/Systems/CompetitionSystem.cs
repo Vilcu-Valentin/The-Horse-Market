@@ -113,14 +113,14 @@ public static class CompetitionSystem
         }
     }
 
-    public static HorseAI GenerateAIHorse(TierDef tier, float difficulty, float leagueModifier) // add the league modifier
+    public static HorseAI GenerateAIHorse(Horse horse, float difficulty, float leagueModifier) // add the league modifier
     {
         int speed;
         int stamina;
         int jump;
         int strength;
 
-        int statAvg = Mathf.RoundToInt((tier.StatCap * 1.4f * Mathf.Pow(difficulty, 0.15f) + 0.05f) * leagueModifier * 1.5f);
+        int statAvg = Mathf.RoundToInt((horse.GetAverageMax() * Random.Range(0.9f, 1.1f) * Mathf.Pow(difficulty, 0.15f) + 0.05f) * leagueModifier * 1.5f);
 
         float roll = Random.value;
         if(roll < difficulty)

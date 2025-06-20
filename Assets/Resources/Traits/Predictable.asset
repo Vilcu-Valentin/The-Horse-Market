@@ -16,10 +16,7 @@ MonoBehaviour:
   DisplayName: Predictable
   Description: Stable genetic traits, minimizing surprises in offspring; reliable
     choice for breeders who value consistent results and predictable breeding outcomes.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
-
-    <color=#FF3131>---Mutation
-    Chance</color>'
+  ModifiersDescription: <color=#FF3131>---Mutation Chance</color>
   rarityTickets: 42
   Icon: {fileID: 21300000, guid: 45acd148f5411ef499972453708f59e0, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -27,7 +24,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.78
   MutationMultiplier: 0.25
   TrainingMult: 1
   TrainingSpeed: 1
@@ -36,6 +33,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1
   Venerable: 1
   conflictedTraits:

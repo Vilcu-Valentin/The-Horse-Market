@@ -16,13 +16,10 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 9f6a9b8784059154e8920b267c123287, type: 3}
   crateColor: {r: 0.45882353, g: 0.36862746, b: 0.5372549, a: 1}
   CostInEmeralds: 250000
+  minHorseTier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
   TierChances:
-  - Tier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
-    Tickets: 1
-    MinTraits: 1
-    MaxTraits: 4
   - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
-    Tickets: 4
+    Tickets: 5
     MinTraits: 2
     MaxTraits: 5
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
@@ -30,22 +27,18 @@ MonoBehaviour:
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
-    Tickets: 15
+    Tickets: 32
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
-    Tickets: 20
+    Tickets: 40
     MinTraits: 3
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
-    Tickets: 15
+    Tickets: 3
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
-    Tickets: 5
+    Tickets: 1
     MinTraits: 4
     MaxTraits: 7
-  - Tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
-    Tickets: 2
-    MinTraits: 4
-    MaxTraits: 8

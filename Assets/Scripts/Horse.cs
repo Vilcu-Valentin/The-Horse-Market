@@ -183,15 +183,14 @@ public class Horse
         float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
@@ -221,15 +220,14 @@ public class Horse
         float avgCurrent = Current.Average(t => (float)t.Value);
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
@@ -263,16 +261,13 @@ public class Horse
         // 1) Compute average tiers (ensure no zero‐division)
         float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
 
-        // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
-
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;

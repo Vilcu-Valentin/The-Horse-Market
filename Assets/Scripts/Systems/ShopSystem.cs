@@ -68,7 +68,7 @@ public static class ShopSystem
         const float a = 50f;
         const float r = 2.8f;
         const float s = 1.26f;
-        const float k = -0.3f;
+        const float k = -0.99f;
 
         // do all math in floats
         float diff = x - v;                          // x and v are ints, promoted to float

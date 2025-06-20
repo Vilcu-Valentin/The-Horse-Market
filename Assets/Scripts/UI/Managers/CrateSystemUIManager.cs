@@ -25,16 +25,22 @@ public class CrateSystemUIManager : MonoBehaviour
     /// <summary>
     /// Handles all UI instantiation and wiring of button callbacks.
     /// </summary>
-    private void PopulateUI()
+    public void PopulateUI()
     {
+        foreach (Transform child in crateUIContents)
+            Destroy(child.gameObject);
+
         foreach (var crate in HorseMarketDatabase.Instance._allCrates)
         {
-            GameObject go = Instantiate(crateUIPrefab, crateUIContents);
-            var panel = go.GetComponent<CratePanelUI>();
-            panel.InitCrateUI(crate);
-            // When this button is clicked, call the logic in CrateSystem
-            panel.OnClicked += OpenCrate;
-            panel.OnInfoClicked += OpenCrateInfo;
+            if (crate.minHorseTier.TierIndex <= SaveSystem.Instance.Current.GetHighestHorseTier())
+            {
+                GameObject go = Instantiate(crateUIPrefab, crateUIContents);
+                var panel = go.GetComponent<CratePanelUI>();
+                panel.InitCrateUI(crate);
+                // When this button is clicked, call the logic in CrateSystem
+                panel.OnClicked += OpenCrate;
+                panel.OnInfoClicked += OpenCrateInfo;
+            }
         }
     }
 

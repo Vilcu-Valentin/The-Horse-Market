@@ -35,7 +35,7 @@ public sealed class TraitDef : ScriptableObject
 
     [Header("Traits Inheritence")]
     [Tooltip("How reliably this trait is inherited if ONE parent owns it")]
-    [Range(0f, 0.5f)] public float BaseInheritChance = 0.25f;
+    [Range(0.6f, 0.99f)] public float BaseInheritChance = 0.25f;
     [Tooltip("Multiplier changes the base mutation chance for a new trait to apper (1 - neutral)")]
     public float MutationMultiplier = 1f;
 

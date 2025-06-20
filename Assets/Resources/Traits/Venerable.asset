@@ -16,12 +16,10 @@ MonoBehaviour:
   DisplayName: Venerable
   Description: Highly respected and valuable, exhibiting enhanced competition performance
     and aging gracefully; prized for high market value and competitive excellence.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+  ModifiersDescription: '<color=#B0FF31>+ Competition Buff</color>
 
-    <color=#B0FF31>+
-    Competition Buff</color>
-
-    <color=#B0FF31>+++Price Value</color>
+    <color=#B0FF31>+++Price
+    Value</color>
 
     <color=#FFA916>Valuable</color>'
   rarityTickets: 14
@@ -31,7 +29,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.475
+  BaseInheritChance: 0.85
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -40,6 +38,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 1.1
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.8
   Venerable: 2
   conflictedTraits:

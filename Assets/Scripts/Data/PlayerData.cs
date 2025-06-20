@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "HorseGame/PlayerData")]
@@ -11,8 +12,12 @@ public class PlayerData : ScriptableObject
     [Header("Owned Horses")]
     public List<Horse> horses = new List<Horse>();
 
+    [Header("Owned Items")]
+    public List<Item> items = new List<Item>();
+
     // Lookup table for quick ID-based access
     private Dictionary<Guid, Horse> _lookup = new Dictionary<Guid, Horse>();
+    private Dictionary<Guid, Item> _lookupItem = new Dictionary<Guid, Item>();
 
     private void OnEnable() => RebuildLookup();
     private void OnValidate() => RebuildLookup();
@@ -21,6 +26,7 @@ public class PlayerData : ScriptableObject
     /// Get a horse by its GUID.
     /// </summary>
     public Horse GetHorse(Guid id) => _lookup.TryGetValue(id, out var h) ? h : null;
+    public Item GetItem(Guid id) => _lookupItem.TryGetValue(id, out var i) ? i : null; 
 
     /// <summary>
     /// Returns the highest tier index among owned horses (minimum 1).
@@ -56,6 +62,48 @@ public class PlayerData : ScriptableObject
         RebuildLookup();
     }
 
+    /// <summary>
+    /// Adds quantity of an item. 
+    /// If an item with the same definition already exists, just increments its quantity.
+    /// Otherwise creates a new Item with that quantity.
+    /// </summary>
+    public void AddItem(ItemDef def, int quantity = 1)
+    {
+        if (def == null || quantity <= 0) return;
+
+        // see if there’s already an Item with this Def
+        var existing = items.FirstOrDefault(i => i.Def.ID == def.ID);
+        if (existing != null)
+        {
+            existing.Quantity += quantity;
+        }
+        else
+        {
+            var newItem = new Item(Guid.NewGuid(), def, quantity);
+            items.Add(newItem);
+        }
+
+        RebuildLookup();
+    }
+
+    /// <summary>
+    /// Removes up to `quantity` from the stack. 
+    /// If quantity goes to zero or below, removes the Item entirely.
+    /// </summary>
+    public void RemoveItem(ItemDef def, int quantity = 1)
+    {
+        if (def == null || quantity <= 0) return;
+
+        var existing = items.FirstOrDefault(i => i.Def.ID == def.ID);
+        if (existing == null) return;
+
+        existing.Quantity -= quantity;
+        if (existing.Quantity <= 0)
+            items.Remove(existing);
+
+        RebuildLookup();
+    }
+
 
     /// <summary>
     /// Updates the reamining competitions of all the horses that didn't participate
@@ -81,5 +129,10 @@ public class PlayerData : ScriptableObject
             if (horse != null)
                 _lookup[horse.Id] = horse;
         }
+
+        _lookupItem.Clear();
+        foreach (var item in items)
+            if (item != null)
+                _lookupItem[item.Id] = item;
     }
 }

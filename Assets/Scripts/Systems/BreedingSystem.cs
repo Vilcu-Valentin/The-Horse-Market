@@ -129,7 +129,7 @@ public static class BreedingSystem
         foreach (TraitDef trait in parentB.Traits)
         {
             if (potentialTraits.ContainsKey(trait))
-                potentialTraits[trait] += trait.BaseInheritChance * 1.2f;
+                potentialTraits[trait] = trait.BaseInheritChance + 0.20f;
             else
                 potentialTraits[trait] = trait.BaseInheritChance;
         }

@@ -24,13 +24,20 @@ public class HorseInventoryPanelUI : MonoBehaviour
 
     public TextMeshProUGUI trainingAmount;
 
+    public GameObject tiredPanel;
+
     public event Action<Horse> OnClicked;
     public event Action<Horse, bool> InfoClicked;
     public event Action<Horse, bool> FavoriteToggled;
     public event Action<Horse> SelectClicked;
 
-    public void InitHorseUI(Horse horse, InventoryMode mode)
+    public void InitHorseUI(Horse horse, InventoryMode mode, bool openForSelection)
     {
+        if (openForSelection)
+            tiredPanel.SetActive(!horse.CanCompete());
+        else
+            tiredPanel.SetActive(false);
+
         horseName.text = horse.horseName;
         horseTier.text = horse.Tier.TierName;
         horseTier.color = horse.Tier.HighlightColor;

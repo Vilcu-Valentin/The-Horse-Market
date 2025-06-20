@@ -32,7 +32,8 @@ public class MainUIController : MonoBehaviour
     [Header("Mode Managers")]
     public InventoryUIManager inventoryUI;
     public BreedingUIManager breedingUI;
-    public ShopSystemUIManager shopUI;   
+    public ShopSystemUIManager shopUI;
+    public CrateSystemUIManager crateUI;
     public CompetitionUIManager competitionUI; 
 
     private AppState currentState;
@@ -79,6 +80,9 @@ public class MainUIController : MonoBehaviour
         // 3) Initialize or refresh the active mode
         switch (newState)
         {
+            case AppState.Shop:
+                crateUI.PopulateUI();
+                break;
             case AppState.Inventory:
                 inventoryUI.OpenForInventory();
                 break;

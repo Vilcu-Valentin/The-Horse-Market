@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,10 +21,19 @@ public class HorseDTO
 }
 
 [Serializable]
+public class ItemDTO
+{
+    public string id;
+    public string itemDefId;
+    public int quantity;
+}
+
+[Serializable]
 public class PlayerDataDTO
 {
     public long emeralds;
     public List<HorseDTO> horses = new List<HorseDTO>();
+    public List<ItemDTO> items =  new List<ItemDTO>(); 
 }
 
 [DefaultExecutionOrder(-100)]
@@ -70,6 +80,12 @@ public class SaveSystem : MonoBehaviour
                 remainingCompetitions = h.remainingCompetitions,
                 Current = h.Current,
                 Max = h.Max
+            }).ToList(),
+            items = Current.items.Select(i => new ItemDTO
+            {
+                id = i.Id.ToString(),
+                itemDefId = i.Def.ID,
+                quantity = i.Quantity,
             }).ToList()
         };
 
@@ -112,6 +128,15 @@ public class SaveSystem : MonoBehaviour
                 };
 
                 Current.AddHorse(horse);
+            }
+
+            Current.items.Clear();
+            foreach(ItemDTO it in dto.items)
+            {
+                var def = ItemDatabase.Instance.GetItemDef(it.itemDefId);
+                if (def == null) continue;
+
+                Current.AddItem(def, it.quantity);
             }
         }
 

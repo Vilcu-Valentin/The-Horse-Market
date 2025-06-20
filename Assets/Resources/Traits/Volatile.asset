@@ -17,17 +17,15 @@ MonoBehaviour:
   Description: Exhibits extreme genetic variability and unpredictability, resulting
     in unexpected tier changes; offers an enticing risk for experimental breeders
     or adventurous trainers.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+  ModifiersDescription: '<color=#FF3131>Tier Volatility</color>
 
-    <color=#FF3131>Tier
-    Volatility</color>
+    <color=#FF3131>+++Downgrade
+    Chance</color>
 
-    <color=#B0FF31>+++Downgrade Chance</color>
+    <color=#B0FF31>++ Mutation Chance</color>
 
-    <color=#B0FF31>++
-    Mutation Chance</color>
-
-    <color=#FF3131>-  Price Value</color>'
+    <color=#FF3131>- 
+    Price Value</color>'
   rarityTickets: 60
   Icon: {fileID: 21300000, guid: 6be4f34199846254fafc208a96e92d27, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -35,7 +33,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1.85
   TierVolatility: 1
-  BaseInheritChance: 0.45
+  BaseInheritChance: 0.78
   MutationMultiplier: 1.5
   TrainingMult: 1
   TrainingSpeed: 1
@@ -44,6 +42,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0.03
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 0.95
   Venerable: 1
   conflictedTraits: []

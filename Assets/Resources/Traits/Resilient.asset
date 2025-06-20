@@ -17,15 +17,12 @@ MonoBehaviour:
   Description: Resistant against genetic shifts or fluctuations; maintains stability
     across generations, appealing for long-term breeding programs and predictable
     outcomes.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
+  ModifiersDescription: '<color=#FF3131>---Upgrade Chance</color>
 
-    <color=#FF3131>---Upgrade
+    <color=#B0FF31>---Downgrade
     Chance</color>
 
-    <color=#B0FF31>---Downgrade Chance</color>
-
-    <color=#FF3131>---Mutation
-    Chance</color>'
+    <color=#FF3131>---Mutation Chance</color>'
   rarityTickets: 55
   Icon: {fileID: 21300000, guid: 8e0c8e73da58cea42b9270caa24129a6, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -33,7 +30,7 @@ MonoBehaviour:
   UpgradeMult: 0.2
   DowngradeMult: 0.2
   TierVolatility: 0
-  BaseInheritChance: 0.5
+  BaseInheritChance: 0.8
   MutationMultiplier: 0.25
   TrainingMult: 1
   TrainingSpeed: 1
@@ -42,6 +39,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1
   Venerable: 1
   conflictedTraits:

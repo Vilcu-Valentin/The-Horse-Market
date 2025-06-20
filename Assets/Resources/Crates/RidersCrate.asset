@@ -15,21 +15,18 @@ MonoBehaviour:
   CrateName: Rider's Crate
   Icon: {fileID: 21300000, guid: 1a3964a20ad22444ca4386ed279e0ffe, type: 3}
   crateColor: {r: 0.90588236, g: 0.69803923, b: 0.5019608, a: 1}
-  CostInEmeralds: 7500
+  CostInEmeralds: 3500
+  minHorseTier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
   TierChances:
-  - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
-    Tickets: 12
-    MinTraits: 2
-    MaxTraits: 5
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
-    Tickets: 35
+    Tickets: 30
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
-    Tickets: 9
+    Tickets: 45
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
-    Tickets: 2
+    Tickets: 1
     MinTraits: 3
     MaxTraits: 7

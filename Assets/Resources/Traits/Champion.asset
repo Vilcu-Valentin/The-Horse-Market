@@ -16,10 +16,7 @@ MonoBehaviour:
   DisplayName: Champion
   Description: Elite performer boasting remarkable agility and strength across all
     abilities; highly valuable in competitions and breeding, commanding premium prices.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
-
-    <color=#B0FF31>++
-    Upgrade Chance</color>
+  ModifiersDescription: '<color=#B0FF31>++ Upgrade Chance</color>
 
     <color=#B0FF31>+++Speed</color>
 
@@ -46,7 +43,7 @@ MonoBehaviour:
   UpgradeMult: 1.5
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.25
+  BaseInheritChance: 0.85
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

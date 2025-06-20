@@ -16,9 +16,7 @@ MonoBehaviour:
   DisplayName: Pedestrian
   Description: Significantly below-average performance, strongly disadvantaged across
     all capabilities; best suited for non-competitive roles or leisurely companionship.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
-
-    <color=#FF3131>---Speed</color>
+  ModifiersDescription: '<color=#FF3131>---Speed</color>
 
     <color=#FF3131>---Stamina</color>
 
@@ -41,7 +39,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.5
+  BaseInheritChance: 0.72
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1

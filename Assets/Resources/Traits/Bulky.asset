@@ -16,10 +16,7 @@ MonoBehaviour:
   DisplayName: Bulky
   Description: Strong and sturdy, but cumbersome; excels in strength-based tasks
     while significantly hampered in speed, stamina, and jumping agility.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
-
-    <color=#FF3131>--
-    Speed</color>
+  ModifiersDescription: '<color=#FF3131>-- Speed</color>
 
     <color=#FF3131>-  Stamina</color>
 
@@ -37,7 +34,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.78
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -62,6 +59,7 @@ MonoBehaviour:
     Modifier: 0.15
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 0.9
   Venerable: 1
   conflictedTraits:

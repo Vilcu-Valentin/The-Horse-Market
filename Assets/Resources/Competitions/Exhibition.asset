@@ -30,10 +30,10 @@ MonoBehaviour:
     difficulty: 0.1
     entryFee: 25
     placeRewards:
-    - emeralds: 1000
-    - emeralds: 500
+    - emeralds: 200
     - emeralds: 100
     - emeralds: 50
+    - emeralds: 0
     - emeralds: 0
     - emeralds: 0
     - emeralds: 0
@@ -42,10 +42,10 @@ MonoBehaviour:
     difficulty: 0.15
     entryFee: 100
     placeRewards:
-    - emeralds: 5000
-    - emeralds: 2500
-    - emeralds: 1000
+    - emeralds: 1200
     - emeralds: 500
+    - emeralds: 250
+    - emeralds: 0
     - emeralds: 0
     - emeralds: 0
     - emeralds: 0
@@ -54,10 +54,10 @@ MonoBehaviour:
     difficulty: 0.2
     entryFee: 500
     placeRewards:
-    - emeralds: 10000
     - emeralds: 5000
-    - emeralds: 2500
+    - emeralds: 2000
     - emeralds: 1000
+    - emeralds: 0
     - emeralds: 0
     - emeralds: 0
     - emeralds: 0
@@ -66,11 +66,11 @@ MonoBehaviour:
     difficulty: 0.3
     entryFee: 1500
     placeRewards:
-    - emeralds: 20000
-    - emeralds: 12500
-    - emeralds: 7500
+    - emeralds: 10000
     - emeralds: 5000
     - emeralds: 3000
+    - emeralds: 0
+    - emeralds: 0
     - emeralds: 0
     - emeralds: 0
     - emeralds: 0
@@ -78,47 +78,47 @@ MonoBehaviour:
     difficulty: 0.4
     entryFee: 5000
     placeRewards:
-    - emeralds: 120000
-    - emeralds: 80000
-    - emeralds: 50000
+    - emeralds: 60000
     - emeralds: 25000
     - emeralds: 10000
-    - emeralds: 5000
-    - emeralds: 1000
-    - emeralds: 500
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
   - tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
     difficulty: 0.5
     entryFee: 10000
     placeRewards:
-    - emeralds: 60000
-    - emeralds: 300000
-    - emeralds: 125000
-    - emeralds: 65000
-    - emeralds: 30000
-    - emeralds: 17500
-    - emeralds: 10000
-    - emeralds: 5000
+    - emeralds: 100000
+    - emeralds: 45000
+    - emeralds: 20000
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
   - tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
     difficulty: 0.6
     entryFee: 20000
     placeRewards:
-    - emeralds: 3000000
-    - emeralds: 1500000
-    - emeralds: 850000
-    - emeralds: 400000
-    - emeralds: 125000
-    - emeralds: 50000
-    - emeralds: 20000
-    - emeralds: 10000
+    - emeralds: 250000
+    - emeralds: 100000
+    - emeralds: 40000
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
   - tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
     difficulty: 0.7
     entryFee: 50000
     placeRewards:
-    - emeralds: 15000000
-    - emeralds: 7500000
-    - emeralds: 3500000
-    - emeralds: 1250000
-    - emeralds: 750000
-    - emeralds: 350000
-    - emeralds: 125000
-    - emeralds: 50000
+    - emeralds: 1000000
+    - emeralds: 300000
+    - emeralds: 100000
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0
+    - emeralds: 0

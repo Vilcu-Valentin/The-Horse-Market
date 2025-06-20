@@ -33,16 +33,142 @@ public class CompetitionLobbyUI : MonoBehaviour
 
     public DialogPanelUI notEnoughEmeraldsDialog;
 
+    [Header("RewardsInfo")]
+    public TMP_Text entryFee;
+    public List<TMP_Text> ranks;
+
+    [Header("Tier Selector UI")]
+    public TMP_Dropdown tierDropdown;
+    public TMP_Dropdown leagueDropdown;
+    public List<Color> leagueColors;
+
+    private List<TierDef> allTiers;
     private TierDef selectedTier;
-    private List<HorseAI> aiHorses;
-    private CompetitionDef competition;
     private float leagueModifier;
 
-    public void InitUI(CompetitionDef competition, TierDef selectedTier, float leagueModifier)
+    private List<HorseAI> aiHorses;
+    private CompetitionDef competition;
+
+    private void OnTierChanged(int index)
     {
-        this.selectedTier = selectedTier;
+        selectedTier = allTiers[index];
+        entryFee.text = competition.GetSettingsFor(selectedTier).entryFee.ToShortString();
+        RemoveHorse();
+        RefreshUI();
+    }
+    private void OnLeagueChanged(int index)
+    {
+        if (index == 0)
+            leagueModifier = 0.05f;
+        if (index == 1)
+            leagueModifier = 0.2f;
+        if (index == 2)
+            leagueModifier = 0.45f;
+        if (index == 3)
+            leagueModifier = 0.7f;
+        if (index == 4)
+            leagueModifier = 1f;
+        if (index == 5)
+            leagueModifier = 1.25f;
+        if (index == 6)
+            leagueModifier = 2f;
+
+        if(horse != null)
+        {
+            UpdateRatings(horse);
+        }
+        else
+        {
+            for (int i = 0; i < competitorsName.Count; i++)
+            {
+                competitorsName[i].text = "-";
+                competitorRating[i].text = "-";
+                competitorRating[i].color = ratingColors[2];
+            }
+        }
+        RefreshUI();
+    }
+
+    private void Awake()
+    {
+        // Load all tiers from the database
+        allTiers = HorseMarketDatabase.Instance._allTiers;
+
+        // Prepare dropdown to support rich text
+        if (tierDropdown.captionText != null)
+            tierDropdown.captionText.richText = true;
+
+        if (leagueDropdown.captionText != null)
+            leagueDropdown.captionText.richText = true;
+
+        // Populate the dropdown with tier names colored by highlight color
+        tierDropdown.ClearOptions();
+        var options = new List<TMP_Dropdown.OptionData>();
+        foreach (var tier in allTiers)
+        {
+            // Convert color to hex
+            string hex = UnityEngine.ColorUtility.ToHtmlStringRGB(tier.HighlightColor);
+            // Wrap the name in a rich-text color tag
+            string coloredName = $"<color=#{hex}>{tier.TierName}</color>";
+            options.Add(new TMP_Dropdown.OptionData(coloredName));
+        }
+        tierDropdown.AddOptions(options);
+
+        leagueDropdown.ClearOptions();
+        var leagueOptions = new List<TMP_Dropdown.OptionData>();
+        for (int i = 0; i < 7; i++)
+        {
+            string entryName = "";
+            if (i == 0)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Novice</color>";
+            }
+            if (i == 1)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Rookie</color>";
+            }
+            if (i == 2)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Amateur</color>";
+            }
+            if (i == 3)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Skilled</color>";
+            }
+            if (i == 4)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Trained</color>";
+            }
+            if (i == 5)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Seasoned</color>";
+            }
+            if (i == 6)
+            {
+                entryName = $"<color=#{leagueColors[i].ToHexString()}>Champion</color>";
+            }
+
+            leagueOptions.Add(new TMP_Dropdown.OptionData(entryName));
+        }
+        leagueDropdown.AddOptions(leagueOptions);
+
+        // Select first tier by default
+        tierDropdown.value = 0;
+        selectedTier = allTiers[0];
+
+        leagueDropdown.value = 0;
+        leagueModifier = 0.05f;
+
+        tierDropdown.onValueChanged.RemoveAllListeners();
+        tierDropdown.onValueChanged.AddListener(OnTierChanged);
+
+        leagueDropdown.onValueChanged.RemoveAllListeners();
+        leagueDropdown.onValueChanged.AddListener(OnLeagueChanged);
+    }
+
+    public void InitUI(CompetitionDef competition)
+    {
         this.competition = competition;
-        this.leagueModifier = leagueModifier;
         competitionName.text = competition.CompetitionName;
 
         startCompetition.onClick.RemoveAllListeners();
@@ -66,20 +192,43 @@ public class CompetitionLobbyUI : MonoBehaviour
 
         horsePowerIndex.text = "-";
 
+        entryFee.text = competition.GetSettingsFor(selectedTier).entryFee.ToShortString();
+
         for(int i = 0; i < competitorsName.Count; i++)
         {
-            HorseAI generateHorse = CompetitionSystem.GenerateAIHorse(selectedTier, competition.GetSettingsFor(selectedTier).difficulty, leagueModifier);
-            aiHorses.Add(generateHorse);
-
-            competitorsName[i].text = generateHorse.horseName;
+            competitorsName[i].text = "-";
             competitorRating[i].text = "-";
             competitorRating[i].color = ratingColors[2];
+        }
+
+        RefreshUI();
+    }
+
+    public void RefreshUI()
+    {
+        var settings = competition.GetSettingsFor(selectedTier);
+
+       entryFee.text = settings.entryFee.ToShortString();
+
+        // Payout ranks
+        for (int i = 0; i < settings.placeRewards.Count && i < ranks.Count; i++)
+        {
+            long modifiedReward = Mathf.FloorToInt(settings.placeRewards[i].emeralds * CalculateRewardMultiplier(leagueModifier));
+            if (modifiedReward < 1)
+                modifiedReward = 0;
+            if (modifiedReward >= 1)
+            {
+                modifiedReward = modifiedReward.RoundToAdaptiveStep();
+                ranks[i].text = modifiedReward.ToShortString();
+            }
+            else
+                ranks[i].text = "-";
         }
     }
 
     private void OpenInventory()
     {
-        inventoryManager.OpenForSelecting(AddParent, selectedTier, true);
+        inventoryManager.OpenForSelecting(AddParent, selectedTier, openForCompetitions: true);
     }
 
     public void AddParent(Horse horse)
@@ -94,18 +243,30 @@ public class CompetitionLobbyUI : MonoBehaviour
         horseTier.color = horse.Tier.HighlightColor;
         horseVisual.sprite = horse.Visual.sprite2D;
 
+        UpdateRatings(horse);
+
+        startCompetition.interactable = true;
+    }
+
+    private void UpdateRatings(Horse horse)
+    {
         long powerIndex = CompetitionSystem.CalculateHorseIndex(horse, competition);
         horsePowerIndex.text = powerIndex.ToShortString();
+
+        aiHorses.Clear();
         for (int i = 0; i < competitorsName.Count; i++)
         {
+            HorseAI generateHorse = CompetitionSystem.GenerateAIHorse(horse, competition.GetSettingsFor(selectedTier).difficulty, leagueModifier);
+            aiHorses.Add(generateHorse);
+
+            competitorsName[i].text = aiHorses[i].horseName;
+
             string rating;
             int colorIndex;
             (rating, colorIndex) = CompetitionSystem.GetHorseRating(powerIndex, CompetitionSystem.CalculateHorseIndex(aiHorses[i], competition));
             competitorRating[i].text = rating;
             competitorRating[i].color = ratingColors[colorIndex];
         }
-
-        startCompetition.interactable = true;
     }
 
     public void RemoveHorse()
@@ -123,8 +284,31 @@ public class CompetitionLobbyUI : MonoBehaviour
 
         horsePowerIndex.text = "-";
 
+        for (int i = 0; i < competitorsName.Count; i++)
+        {
+            competitorsName[i].text = "-";
+            competitorRating[i].text = "-";
+            competitorRating[i].color = ratingColors[2];
+        }
+
         startCompetition.interactable = false;
     }
+
+    private float CalculateRewardMultiplier(float leagueModifier)
+    {
+        const float T = 2f;         // endpoint
+        const float k = 1.5f;       // “how exponential” you want
+        const float m = -1.1f;      // start point modifier
+
+        // if you really want the k→0 limit to be linear:
+        if (Mathf.Approximately(k, 0f))
+            return leagueModifier;
+
+        float num = Mathf.Exp(k * leagueModifier) - m;
+        float den = Mathf.Exp(k * T) - m;
+        return T * (num / den);
+    }
+
 
     public void StartCompetition()
     {
@@ -133,7 +317,8 @@ public class CompetitionLobbyUI : MonoBehaviour
             EconomySystem.Instance.RemoveEmeralds(competition.GetSettingsFor(selectedTier).entryFee);
             gameObject.SetActive(false);
             competitionWinners.gameObject.SetActive(true);
-            competitionWinners.InitUI(horse, aiHorses, competition, leagueModifier);
+
+            competitionWinners.InitUI(horse, aiHorses, competition, CalculateRewardMultiplier(leagueModifier));
         }
         else
         {

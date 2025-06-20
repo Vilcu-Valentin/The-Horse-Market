@@ -35,6 +35,11 @@ public class CompetitionWinnersUI : MonoBehaviour
         {
             horseNames[i].color = nameBaseColor;
             long emeraldsReward = Mathf.FloorToInt(competition.GetSettingsFor(horse.Tier).placeRewards[i].emeralds * rewardModifier);
+            if (emeraldsReward < 1)
+                emeraldsReward = 0;
+            else
+                emeraldsReward = emeraldsReward.RoundToAdaptiveStep();
+
             if (compIndexes[i] == 7)
             {
                 horseNames[i].color = playerHorseNameColor;
