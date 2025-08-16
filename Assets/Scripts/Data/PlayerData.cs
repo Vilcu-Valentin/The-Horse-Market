@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 [CreateAssetMenu(menuName = "HorseGame/PlayerData")]
 public class PlayerData : ScriptableObject
@@ -49,6 +50,13 @@ public class PlayerData : ScriptableObject
     {
         if (horse == null) return;
         horses.Add(horse);
+
+        AlmanachSystem.Instance.UnlockVisual(horse.Visual);
+        foreach (var trait in horse.Traits)
+        {
+            AlmanachSystem.Instance.UnlockTrait(trait);
+        }
+
         RebuildLookup();
     }
 

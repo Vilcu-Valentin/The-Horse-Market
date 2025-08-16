@@ -29,6 +29,8 @@ public class Horse
     private List<TraitDef> _traits;
     public IReadOnlyList<TraitDef> Traits => _traits;
 
+    private float priceModifier = 0.25f;
+
     public int GetCurrent(StatType s) => Current.Get(s);
     public int GetAverageCurrent()
     {
@@ -110,6 +112,14 @@ public class Horse
 
         currentTrainingEnergy--;
         return true;
+    }
+
+    public void BoostStartingStats(float multiplier)
+    {
+        foreach(var stat in Current)
+        {
+            AddCurrent(stat._Stat, Mathf.RoundToInt(stat.Value * multiplier));
+        }
     }
 
     public void RefillEnergy()
@@ -201,6 +211,7 @@ public class Horse
 
         float venerableScalar = 1f + 2f * vWarp;
         priceMultiplier *= venerableScalar;
+        priceMultiplier *= priceModifier;
 
         Debug.Log("Max Price: " + basePrice * priceMultiplier +
     " BasePrice: " + basePrice + " PriceMult: " + priceMultiplier);
@@ -242,6 +253,7 @@ public class Horse
 
         float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
         priceMultiplier *= venerableScalar;
+        priceMultiplier *= priceModifier;
 
         float trainingMultiplier = tierRatio * 0.5f + 0.5f;
 
@@ -271,6 +283,7 @@ public class Horse
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
+        priceMultiplier *= priceModifier;
 
         // 5) Final price
         return (long)Mathf.Round(basePrice * priceMultiplier * 0.5f);
@@ -359,10 +372,10 @@ public class Horse
                     $"percent={(m.Modifier * 100f):F1}% → factor={(1f + m.Modifier):F4}"
                 );
 
+
             // multiplicative stack of starting‐percent
             float startMultiplier = startModList
                 .Aggregate(1f, (acc, m) => acc * (1f + m.Modifier));
-
             // convert back to percent-of-base and clamp (0…90%)
             float startPercent = startMultiplier - 1f;
             float startPercentClamped = Mathf.Clamp(startPercent, 0f, 0.9f);

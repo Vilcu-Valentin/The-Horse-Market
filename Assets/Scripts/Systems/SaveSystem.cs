@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,11 +28,27 @@ public class ItemDTO
 }
 
 [Serializable]
+public class AlmanachItemDTO
+{
+    public string id;
+    public bool unlocked;
+}
+
+[Serializable]
+public class AlmanachDTO
+{
+    public List<AlmanachItemDTO> unlockedTraits = new List<AlmanachItemDTO>();
+    public List<AlmanachItemDTO> unlockedVisuals = new List<AlmanachItemDTO>();
+}
+
+[Serializable]
 public class PlayerDataDTO
 {
     public long emeralds;
     public List<HorseDTO> horses = new List<HorseDTO>();
-    public List<ItemDTO> items =  new List<ItemDTO>(); 
+    public List<ItemDTO> items = new List<ItemDTO>();
+
+    public AlmanachDTO almanach = new AlmanachDTO();
 }
 
 [DefaultExecutionOrder(-100)]
@@ -43,7 +58,11 @@ public class SaveSystem : MonoBehaviour
     public PlayerData Current { get; private set; }
 
     [SerializeField] private PlayerData template;
-    private string SavePath => Path.Combine(Application.persistentDataPath, "player.json");
+
+    public string CurrentSaveName { get; private set; } = "default"; // fallback
+
+    private string SaveDirectory => Application.persistentDataPath;
+    private string SavePath => Path.Combine(SaveDirectory, $"{CurrentSaveName}.json");
 
     public event Action<PlayerData> OnPlayerDataChanged;
 
@@ -55,12 +74,23 @@ public class SaveSystem : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        Load();
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManager missing!");
+            return;
+        }
+
+        string saveName = SaveManager.Instance.CurrentSaveName ?? "default";
+        Load(saveName);
+    }
+
+    public void SetCurrentSave(string saveName)
+    {
+        CurrentSaveName = saveName;
     }
 
     public void Save()
@@ -89,22 +119,38 @@ public class SaveSystem : MonoBehaviour
             }).ToList()
         };
 
+        if (AlmanachSystem.Instance != null)
+        {
+            dto.almanach.unlockedTraits = AlmanachSystem.Instance.unlockedTraits
+                .Select(t => new AlmanachItemDTO { id = t.definition.ID, unlocked = t.unlocked })
+                .ToList();
+
+            dto.almanach.unlockedVisuals = AlmanachSystem.Instance.unlockedVisuals
+                .Select(v => new AlmanachItemDTO { id = v.definition.ID, unlocked = v.unlocked })
+                .ToList();
+        }
+
         string json = JsonUtility.ToJson(dto, true);
         File.WriteAllText(SavePath, json);
 
         OnPlayerDataChanged?.Invoke(Current);
     }
 
-    public void Load()
+    public void Load(string saveName)
     {
+        CurrentSaveName = saveName;
+
         if (Current == null)
             Current = Instantiate(template);
 
-        if (File.Exists(SavePath))
+        string path = Path.Combine(SaveDirectory, $"{saveName}.json");
+
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(SavePath);
+            string json = File.ReadAllText(path);
             PlayerDataDTO dto = JsonUtility.FromJson<PlayerDataDTO>(json);
 
+            // Apply to Current...
             Current.emeralds = dto.emeralds;
             Current.horses.Clear();
 
@@ -131,16 +177,42 @@ public class SaveSystem : MonoBehaviour
             }
 
             Current.items.Clear();
-            foreach(ItemDTO it in dto.items)
+            foreach (ItemDTO it in dto.items)
             {
                 var def = ItemDatabase.Instance.GetItemDef(it.itemDefId);
                 if (def == null) continue;
 
                 Current.AddItem(def, it.quantity);
             }
+
+            AlmanachSystem almanach = AlmanachSystem.Instance ?? FindObjectOfType<AlmanachSystem>();
+            if (almanach != null)
+                almanach.Initialize(dto.almanach);
+        }
+        else
+        {
+            // First-time save
+            Current = Instantiate(template);
+
+            AlmanachSystem almanach = AlmanachSystem.Instance ?? FindObjectOfType<AlmanachSystem>();
+            if (almanach != null)
+            {
+                if (!almanach.HasSeededData())
+                    almanach.SeedLists();
+
+                almanach.Initialize(null);
+            }
+
+            Save(); // Immediately create a file
         }
 
         OnPlayerDataChanged?.Invoke(Current);
+    }
+
+    public static List<string> GetAllSaveNames()
+    {
+        var files = Directory.GetFiles(Application.persistentDataPath, "*.json");
+        return files.Select(Path.GetFileNameWithoutExtension).ToList();
     }
 
     public void AddHorse(Horse h)

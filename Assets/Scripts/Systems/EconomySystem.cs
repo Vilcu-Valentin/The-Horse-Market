@@ -20,7 +20,6 @@ public class EconomySystem : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void AddEmeralds(long amount)

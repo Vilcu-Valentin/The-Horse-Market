@@ -26,10 +26,15 @@ public static class BreedingSystem
         // Calculates trait inheritence
         List<TraitDef> childTraits = CalculateTraits(parentA, parentB);
 
+        float avgCurrent = (parentA.GetAverageCurrent() + parentB.GetAverageCurrent()) / 2f;
+        float avgMax = (parentA.GetAverageMax() + parentB.GetAverageMax()) / 2f;
+        float ratio = avgCurrent / avgMax;
+
         // Remove parents and add new foal to the player inventory
         SaveSystem.Instance.RemoveHorse(parentA);
         SaveSystem.Instance.RemoveHorse(parentB);
         Horse breededFoal = HorseFactory.CreateFoal(childTier, childVisual, childTraits);
+        breededFoal.BoostStartingStats(1 + ratio / 4f);
         SaveSystem.Instance.AddHorse(breededFoal);
         return breededFoal;
     }

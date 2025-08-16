@@ -91,7 +91,7 @@ public static class ShopSystem
 
         double expoExp = Math.Pow(u, 0.95) * (x / 10.0);
         double powPart = Math.Pow(x, expoExp);
-        double cubicPart = 50.0 * x * Math.Pow(u, 3.2);
+        double cubicPart = 50.0 * x * Math.Pow(u, 2);
 
         double rawOffer = powPart + cubicPart;
 

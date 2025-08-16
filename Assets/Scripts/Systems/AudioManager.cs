@@ -33,12 +33,11 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             InitPlaylist();
             StartCoroutine(MusicLoop());
         }
         else Destroy(gameObject);
-    }
+}
 
     private void InitPlaylist()
     {

@@ -20,7 +20,6 @@ public class HorseMarketDatabase : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         tierMap = new Dictionary<string, TierDef>();
         visualMap = new Dictionary<string, VisualDef>();
