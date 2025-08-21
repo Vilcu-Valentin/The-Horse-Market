@@ -20,6 +20,7 @@ MonoBehaviour:
   ForegroundColor: {r: 0.22745098, g: 0.6745098, b: 0.6156863, a: 1}
   BackgroundColor: {r: 0.14117648, g: 0.2901961, b: 0.34509805, a: 1}
   StatCap: 320
+  averageHorseValue: 600
   UpgradeChance: 0.15
   DowngradeChance: 0.25
   MutationChance: 0.025

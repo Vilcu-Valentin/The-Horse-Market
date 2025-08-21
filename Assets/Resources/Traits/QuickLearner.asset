@@ -16,7 +16,7 @@ MonoBehaviour:
   DisplayName: Quick Learner
   Description: Rapidly masters new skills, significantly accelerating training timelines;
     highly desirable for swift development in competitive or recreational contexts.
-  ModifiersDescription: '<color=#B0FF31>++ Training Multiplier</color>
+  ModifiersDescription: '<color=#B0FF31>++ Training Rate</color>
 
     <color=#B0FF31>+++Training
     Speed</color>

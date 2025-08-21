@@ -227,6 +227,18 @@ public class SaveSystem : MonoBehaviour
         Save();
     }
 
+    public void AddItem(ItemDef item)
+    {
+        Current.AddItem(item);
+        Save();
+    }
+
+    public void RemoveItem(ItemDef item)
+    {
+        Current.RemoveItem(item);
+        Save();
+    }
+
     private void OnApplicationQuit()
     {
         Save();

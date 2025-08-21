@@ -16,7 +16,7 @@ MonoBehaviour:
   DisplayName: Impulsive
   Description: Challenging to train with moderate failure rates, struggles in competitions;
     challenging for trainers aiming for steady, reliable performance.
-  ModifiersDescription: '<color=#FF3131>-- Training Multiplier</color>
+  ModifiersDescription: '<color=#FF3131>-- Training Rate</color>
 
     <color=#FF3131>--
     Training Speed</color>

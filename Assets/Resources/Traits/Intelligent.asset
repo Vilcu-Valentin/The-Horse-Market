@@ -16,7 +16,7 @@ MonoBehaviour:
   DisplayName: Intelligent
   Description: Highly trainable and quick-learning horse, excelling across disciplines;
     prized by trainers seeking consistent progress and competitive advantage.
-  ModifiersDescription: '<color=#B0FF31>+++Training Multiplier</color>
+  ModifiersDescription: '<color=#B0FF31>+++Training Rate</color>
 
     <color=#B0FF31>++
     Training Speed</color>
@@ -72,4 +72,5 @@ MonoBehaviour:
   CompetitionEnergyMultiplier: 1
   PriceScalar: 1.5
   Venerable: 1.5
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 552762a2400abf641b7b90802b1e64b5, type: 2}

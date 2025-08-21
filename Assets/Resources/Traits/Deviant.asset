@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Troublesome trait characterized by difficulty in training, and general
     undesirability; significantly impacts performance negatively, complicating handling
     for trainers.
-  ModifiersDescription: '<color=#FF3131>-- Training Multiplier</color>
+  ModifiersDescription: '<color=#FF3131>-- Training Rate</color>
 
     <color=#FF3131>---Training
     Speed</color>

@@ -22,6 +22,24 @@ public class EconomySystem : MonoBehaviour
         Instance = this;
     }
 
+    public void AddItems(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        { 
+            SaveSystem.Instance.AddItem(ItemSystem.PickItem());
+        }
+    }
+
+    public void RemoveItem(Item item)
+    {
+        SaveSystem.Instance.RemoveItem(item.Def);
+    }
+    public void RemoveItem(ItemDef item)
+    {
+        SaveSystem.Instance.RemoveItem(item);
+    }
+
+
     public void AddEmeralds(long amount)
     {
         AudioManager.Instance.PlaySound(sellingAudio, 0.5f, 0.25f);

@@ -35,7 +35,8 @@ public class CompetitionLobbyUI : MonoBehaviour
 
     [Header("RewardsInfo")]
     public TMP_Text entryFee;
-    public List<TMP_Text> ranks;
+    public List<TMP_Text> emeraldReward;
+    public List<TMP_Text> itemReward;
 
     [Header("Tier Selector UI")]
     public TMP_Dropdown tierDropdown;
@@ -49,12 +50,26 @@ public class CompetitionLobbyUI : MonoBehaviour
     private List<HorseAI> aiHorses;
     private CompetitionDef competition;
 
+    private Horse[] previousHorses = new Horse[9]; // index 0 unused
+
+    private void TryAddPreviousHorse()
+    {
+        if (previousHorses[selectedTier.TierIndex] != null)
+        {
+            Horse horse = previousHorses[selectedTier.TierIndex];
+            if (SaveSystem.Instance.Current.GetHorse(horse.Id) != null)
+                if (horse.CanCompete())
+                    AddHorse(horse);
+        }
+    }
+
     private void OnTierChanged(int index)
     {
         selectedTier = allTiers[index];
         entryFee.text = competition.GetSettingsFor(selectedTier).entryFee.ToShortString();
         RemoveHorse();
         RefreshUI();
+        TryAddPreviousHorse();
     }
     private void OnLeagueChanged(int index)
     {
@@ -202,6 +217,7 @@ public class CompetitionLobbyUI : MonoBehaviour
         }
 
         RefreshUI();
+        TryAddPreviousHorse();
     }
 
     public void RefreshUI()
@@ -211,7 +227,7 @@ public class CompetitionLobbyUI : MonoBehaviour
        entryFee.text = settings.entryFee.ToShortString();
 
         // Payout ranks
-        for (int i = 0; i < settings.placeRewards.Count && i < ranks.Count; i++)
+        for (int i = 0; i < settings.placeRewards.Count && i < emeraldReward.Count; i++)
         {
             long modifiedReward = Mathf.FloorToInt(settings.placeRewards[i].emeralds * CalculateRewardMultiplier(leagueModifier));
             if (modifiedReward < 1)
@@ -219,21 +235,37 @@ public class CompetitionLobbyUI : MonoBehaviour
             if (modifiedReward >= 1)
             {
                 modifiedReward = modifiedReward.RoundToAdaptiveStep();
-                ranks[i].text = modifiedReward.ToShortString();
+                emeraldReward[i].text = modifiedReward.ToShortString();
             }
             else
-                ranks[i].text = "-";
+                emeraldReward[i].text = "-";
+        }
+
+        for(int i = 0; i < settings.placeRewards.Count && i < itemReward.Count; i++)
+        {
+            int modifiedReward = Mathf.RoundToInt(settings.placeRewards[i].itemNumber * CalculateRewardMultiplier(leagueModifier));
+            if (modifiedReward < 1)
+                modifiedReward = 0;
+            if(modifiedReward >= 1)
+            {
+                itemReward[i].text = ((long)(modifiedReward)).ToShortString();
+            }
+            else
+            {
+                itemReward[i].text = "-";
+            }
         }
     }
 
     private void OpenInventory()
     {
-        inventoryManager.OpenForSelecting(AddParent, selectedTier, openForCompetitions: true);
+        inventoryManager.OpenForSelecting(AddHorse, selectedTier, openForCompetitions: true);
     }
 
-    public void AddParent(Horse horse)
+    public void AddHorse(Horse horse)
     {
         this.horse = horse;
+        previousHorses[horse.Tier.TierIndex] = horse;
 
         selectedHorsePanel.gameObject.SetActive(true);
         selectHorseButton.gameObject.SetActive(false);

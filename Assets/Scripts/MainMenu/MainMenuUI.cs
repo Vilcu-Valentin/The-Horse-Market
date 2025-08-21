@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuSaveUI : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class MainMenuSaveUI : MonoBehaviour
     public GameObject saveSlotPrefab;
     public Button backToMainButton;
     public TextMeshProUGUI noSavesText;
+    public DialogPanelUI confirmDeleteDialog;
 
     [Header("Main Menu Buttons")]
     public Button newGameButton;
@@ -133,7 +135,7 @@ public class MainMenuSaveUI : MonoBehaviour
             }
             else
             {
-                newGameErrorText.text = "✓ Valid name";
+                newGameErrorText.text = "Valid name";
                 newGameErrorText.color = Color.green;
             }
         }
@@ -240,8 +242,16 @@ public class MainMenuSaveUI : MonoBehaviour
 
     private void OnDeleteSaveClicked(SaveSlotInfo saveSlot)
     {
-        // You might want to add a confirmation dialog here
-        SaveManager.Instance.DeleteSave(saveSlot);
+        confirmDeleteDialog.Show(
+            // message
+            $"Are you sure you want to delete save “<color=#FFFFFF>{saveSlot.saveName}</color>” ? This action is not reversible!",
+            // onConfirm
+            () => {
+                SaveManager.Instance.DeleteSave(saveSlot);
+            },
+            // onCancel (optional—if you don’t need to do anything, you can omit this)
+            () => { /* user cancelled; nothing to do */ }
+        );
     }
 
     #endregion

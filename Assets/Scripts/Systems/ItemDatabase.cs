@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase Instance { get; private set; }
-    [SerializeField] private List<ItemDef> allItems;
+    public List<ItemDef> _allItems;
 
     private Dictionary<string, ItemDef> map;
 
@@ -17,8 +17,7 @@ public class ItemDatabase : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            map = allItems.ToDictionary(d => d.ID, d => d);
+            map = _allItems.ToDictionary(d => d.ID, d => d);
         }
     }
 

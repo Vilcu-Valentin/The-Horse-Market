@@ -15,7 +15,7 @@ MonoBehaviour:
   CrateName: Advanced Crate
   Icon: {fileID: 21300000, guid: 14708a43207bf0b468c0f315f075094f, type: 3}
   crateColor: {r: 0.6627451, g: 0.6117647, b: 0.54901963, a: 1}
-  CostInEmeralds: 500
+  CostInEmeralds: 150
   minHorseTier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
   TierChances:
   - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}

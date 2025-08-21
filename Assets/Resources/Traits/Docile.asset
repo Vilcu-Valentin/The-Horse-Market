@@ -16,7 +16,7 @@ MonoBehaviour:
   DisplayName: Docile
   Description: Easy-going and cooperative, accelerating training progression; perfect
     for beginners or those looking for reliable, stress-free horse handling experiences.
-  ModifiersDescription: '<color=#B0FF31>++ Training Multiplier</color>
+  ModifiersDescription: '<color=#B0FF31>++ Training Rate</color>
 
     <color=#B0FF31>+ 
     Price Value</color>'

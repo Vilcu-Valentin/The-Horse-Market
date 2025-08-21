@@ -24,6 +24,8 @@ public class TierDef : ScriptableObject
     [Tooltip("Base State Cap for all stats, without any traits")]
     [Min(1)] public int StatCap = 10;
 
+    [Tooltip("Value for average horses")]
+    [Min(1)] public int averageHorseValue = 10;
     public int GetCap()
     {
         return StatCap;

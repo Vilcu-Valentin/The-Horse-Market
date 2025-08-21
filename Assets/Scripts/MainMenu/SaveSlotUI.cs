@@ -33,13 +33,13 @@ public class SaveSlotUI : MonoBehaviour
             string timeText;
 
             if (timeDiff.TotalMinutes < 1)
-                timeText = "Just now";
+                timeText = "Last played: Just now";
             else if (timeDiff.TotalHours < 1)
-                timeText = $"{(int)timeDiff.TotalMinutes} minutes ago";
+                timeText = $"Last played: {(int)timeDiff.TotalMinutes} minutes ago";
             else if (timeDiff.TotalDays < 1)
-                timeText = $"{(int)timeDiff.TotalHours} hours ago";
+                timeText = $"Last played: {(int)timeDiff.TotalHours} hours ago";
             else if (timeDiff.TotalDays < 7)
-                timeText = $"{(int)timeDiff.TotalDays} days ago";
+                timeText = $"Last played: {(int)timeDiff.TotalDays} days ago";
             else
                 timeText = saveSlot.lastSaved.ToString("MMM dd, yyyy");
 
@@ -47,7 +47,7 @@ public class SaveSlotUI : MonoBehaviour
         }
 
         if (emeraldsText != null)
-            emeraldsText.text = $"{saveSlot.emeralds:N0}";
+            emeraldsText.text = $"{saveSlot.emeralds.ToShortString()}";
 
         if (horsesText != null)
             horsesText.text = $"{saveSlot.horseCount}"; 

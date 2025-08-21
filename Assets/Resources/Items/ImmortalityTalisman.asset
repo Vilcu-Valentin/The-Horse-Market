@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfc687bf4d3e5d41bf168837ab7fa90, type: 3}
+  m_Name: ImmortalityTalisman
+  m_EditorClassIdentifier: 
+  ID: item_immortality
+  DisplayName: Immortality Talisman
+  Icon: {fileID: 21300000, guid: e575a36b05e760946aa567ea9b414f28, type: 3}
+  Description: A rare charm treasured by trainers, ensuring parents remain after
+    breeding.
+  ModifiersDescription: <color=#FFA916>Breeding doesn't remove the parents</color>
+  rarityTickets: 2
+  BorderIcon: {fileID: 21300000, guid: d4f1fc0bb3bab2546a98c4263240caee, type: 3}
+  quality: 2
+  isTrainingItem: 0
+  AdditionalStatDelta: []
+  preventFailure: 0
+  noEnergyUse: 0
+  preventParentConsumption: 1
+  UpgradeMult: 1
+  DowngradeMult: 1
+  guaranteeUpgrade: 0
+  guaranteeSameTier: 0
+  guaranteeNoDowngrade: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0
+  - Stat: 1
+    Modifier: 0
+  - Stat: 2
+    Modifier: 0
+  - Stat: 3
+    Modifier: 0
+  randomVisuals: 0
+  mutationMultiplier: 1

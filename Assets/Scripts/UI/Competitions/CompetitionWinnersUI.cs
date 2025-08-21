@@ -15,7 +15,8 @@ public class CompetitionWinnersUI : MonoBehaviour
     public Color nameBaseColor;
     public List<TMP_Text> horseNames;
     public List<TMP_Text> horseRatings;
-    public List<TMP_Text> horseRewards;
+    public List<TMP_Text> horseEmeraldRewards;
+    public List<TMP_Text> horseItemRewards;
 
     [Tooltip("We need exactly 5 colors, first one is for superior, last one is for outclassed")]
     public List<Color> ratingColors = new List<Color>(5);
@@ -23,6 +24,7 @@ public class CompetitionWinnersUI : MonoBehaviour
     public Button continueButton;
 
     private long _emeraldsReward;
+    private int _itemRewards;
 
     public void InitUI(Horse horse, List<HorseAI> aiHorses, CompetitionDef competition, float rewardModifier)
     {
@@ -35,10 +37,15 @@ public class CompetitionWinnersUI : MonoBehaviour
         {
             horseNames[i].color = nameBaseColor;
             long emeraldsReward = Mathf.FloorToInt(competition.GetSettingsFor(horse.Tier).placeRewards[i].emeralds * rewardModifier);
+            int itemReward = Mathf.RoundToInt(competition.GetSettingsFor(horse.Tier).placeRewards[i].itemNumber * rewardModifier);
+
             if (emeraldsReward < 1)
                 emeraldsReward = 0;
             else
                 emeraldsReward = emeraldsReward.RoundToAdaptiveStep();
+
+            if (itemReward < 1)
+                itemReward = 0;
 
             if (compIndexes[i] == 7)
             {
@@ -47,6 +54,8 @@ public class CompetitionWinnersUI : MonoBehaviour
                 horseRatings[i].text = "-";
                 horseRatings[i].color = ratingColors[2];
                 _emeraldsReward = emeraldsReward;
+                _itemRewards = itemReward;
+
             }
             else
             {
@@ -60,7 +69,9 @@ public class CompetitionWinnersUI : MonoBehaviour
                 horseRatings[i].color = ratingColors[colorIndex];
             }
 
-            horseRewards[i].text = emeraldsReward.ToShortString();
+            horseEmeraldRewards[i].text = emeraldsReward.ToShortString();
+            horseItemRewards[i].text = ((long)(itemReward)).ToShortString();
+
         }
 
         continueButton.onClick.RemoveAllListeners();
@@ -74,6 +85,10 @@ public class CompetitionWinnersUI : MonoBehaviour
     {
         if(_emeraldsReward > 0)
             EconomySystem.Instance.AddEmeralds(_emeraldsReward);
+
+        if (_itemRewards > 0)
+            EconomySystem.Instance.AddItems(_itemRewards);
+
         gameObject.SetActive(false);
         horse.RefillEnergy();
         horse.Compete();

@@ -20,7 +20,7 @@ MonoBehaviour:
   ModifiersDescription: '<color=#FF3131>Starting Nerf</color>
 
     <color=#FF3131>---Training
-    Multiplier</color>
+    Rate</color>
 
     <color=#FF3131>---Training Speed</color>
 
@@ -57,3 +57,4 @@ MonoBehaviour:
   Venerable: 1
   conflictedTraits:
   - {fileID: 11400000, guid: 5a5067317c738c24ba5a0fbb96cf8036, type: 2}
+  - {fileID: 11400000, guid: 08fbd804a414af84c88082a123c91365, type: 2}

@@ -31,94 +31,158 @@ MonoBehaviour:
     entryFee: 25
     placeRewards:
     - emeralds: 200
+      itemNumber: 1
     - emeralds: 100
+      itemNumber: 0
     - emeralds: 50
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
     difficulty: 0.15
     entryFee: 100
     placeRewards:
     - emeralds: 1200
+      itemNumber: 2
     - emeralds: 500
+      itemNumber: 1
     - emeralds: 250
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
     difficulty: 0.2
     entryFee: 500
     placeRewards:
     - emeralds: 5000
+      itemNumber: 3
     - emeralds: 2000
+      itemNumber: 2
     - emeralds: 1000
+      itemNumber: 1
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
     difficulty: 0.3
     entryFee: 1500
     placeRewards:
     - emeralds: 10000
+      itemNumber: 4
     - emeralds: 5000
+      itemNumber: 2
     - emeralds: 3000
+      itemNumber: 1
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
     difficulty: 0.4
     entryFee: 5000
     placeRewards:
     - emeralds: 60000
+      itemNumber: 6
     - emeralds: 25000
+      itemNumber: 3
     - emeralds: 10000
+      itemNumber: 1
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
     difficulty: 0.5
     entryFee: 10000
     placeRewards:
     - emeralds: 100000
+      itemNumber: 7
     - emeralds: 45000
+      itemNumber: 5
     - emeralds: 20000
+      itemNumber: 2
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
     difficulty: 0.6
     entryFee: 20000
     placeRewards:
     - emeralds: 250000
+      itemNumber: 8
     - emeralds: 100000
+      itemNumber: 6
     - emeralds: 40000
+      itemNumber: 4
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
   - tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
     difficulty: 0.7
     entryFee: 50000
     placeRewards:
     - emeralds: 1000000
+      itemNumber: 12
     - emeralds: 300000
+      itemNumber: 7
     - emeralds: 100000
+      itemNumber: 3
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0
     - emeralds: 0
+      itemNumber: 0

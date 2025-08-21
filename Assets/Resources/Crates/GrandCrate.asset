@@ -15,7 +15,7 @@ MonoBehaviour:
   CrateName: Grand Crate
   Icon: {fileID: 21300000, guid: 518bd25f585ca084bba744a1a2399502, type: 3}
   crateColor: {r: 0.47843137, g: 0.56078434, b: 0.85882354, a: 1}
-  CostInEmeralds: 50000
+  CostInEmeralds: 25000
   minHorseTier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
   TierChances:
   - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
@@ -27,6 +27,6 @@ MonoBehaviour:
     MinTraits: 4
     MaxTraits: 7
   - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
-    Tickets: 1
+    Tickets: 2
     MinTraits: 4
     MaxTraits: 7

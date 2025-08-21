@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Easily startled and cautious, slightly reducing training effectiveness;
     its shy nature also creates a subtle disadvantage during competitions, decreasing
     overall value.
-  ModifiersDescription: '<color=#FF3131>-  Training Multiplier</color>
+  ModifiersDescription: '<color=#FF3131>-  Training Rate</color>
 
     <color=#FF3131>- 
     Competition Buff</color>

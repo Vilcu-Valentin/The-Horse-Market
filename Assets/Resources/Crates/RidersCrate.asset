@@ -15,7 +15,7 @@ MonoBehaviour:
   CrateName: Rider's Crate
   Icon: {fileID: 21300000, guid: 1a3964a20ad22444ca4386ed279e0ffe, type: 3}
   crateColor: {r: 0.90588236, g: 0.69803923, b: 0.5019608, a: 1}
-  CostInEmeralds: 3500
+  CostInEmeralds: 1000
   minHorseTier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
   TierChances:
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}

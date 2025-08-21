@@ -83,34 +83,63 @@ public class Horse
     /// This method will train the horse provided enough energy is left
     /// </summary>
     /// <returns>A bool stating if training was succesful(true) or not(false)</returns>
-    public bool Train()
+    public bool Train(Item trainingItem = null)
     {
-        if (currentTrainingEnergy <= 0)
+        bool preventFailure = false;
+        bool noEnergyUse = false;
+        List<StatDelta> statDeltas = null;
+
+        if (trainingItem != null)
+        {
+            SaveSystem.Instance.RemoveItem(trainingItem.Def);
+            preventFailure = trainingItem.Def.preventFailure;
+            noEnergyUse = trainingItem.Def.noEnergyUse;
+            statDeltas = trainingItem.Def.AdditionalStatDelta;
+        }
+
+        if (currentTrainingEnergy <= 0 && noEnergyUse == false)
             return false;
 
         int canFailTraining = 0;
-        foreach(TraitDef trait in _traits)
-            if(trait.canFailTraining == true)
-                canFailTraining++;
+        if (!preventFailure)
+            foreach (TraitDef trait in _traits)
+                if (trait.canFailTraining == true)
+                    canFailTraining++;
 
         if (canFailTraining > 0)
         {
             float roll;
             roll = UnityEngine.Random.value;
 
-            float value = (Mathf.Pow(canFailTraining, 0.8f)) / 3f;
+            float value = (Mathf.Pow(canFailTraining, 0.95f)) / 3f;
             if (roll < value)
             {
-                currentTrainingEnergy--;
+                if (!noEnergyUse)
+                    currentTrainingEnergy--;
                 return false;
             }
         }
 
-        int amount = GetTrainingRate();
+        int baseAmount = GetTrainingRate();
         foreach (var stat in Current)
-            AddCurrent(stat._Stat, amount);
+        {
+            float finalAmount = baseAmount;
 
-        currentTrainingEnergy--;
+            if(statDeltas != null)
+            {
+                foreach(var delta in statDeltas)
+                    if(delta.Stat == stat._Stat)
+                    {
+                        finalAmount += delta.Delta;
+                    }
+            }
+
+            AddCurrent(stat._Stat, Mathf.CeilToInt(finalAmount));
+        }
+
+        if (!noEnergyUse)
+            currentTrainingEnergy--;
+
         return true;
     }
 
@@ -118,8 +147,18 @@ public class Horse
     {
         foreach(var stat in Current)
         {
-            AddCurrent(stat._Stat, Mathf.RoundToInt(stat.Value * multiplier));
+            int cur = GetCurrent(stat._Stat);
+            int max = GetMax(stat._Stat);
+            int addition = Mathf.RoundToInt(max * multiplier);
+
+            AddCurrent(stat._Stat, addition);
         }
+    }
+
+    public void BoostStartingStat(StatType stat, float multiplier)
+    {
+        int deltaAddition = Mathf.RoundToInt(GetCurrent(stat) * multiplier);
+        AddCurrent(stat, deltaAddition);
     }
 
     public void RefillEnergy()

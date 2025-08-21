@@ -11,7 +11,7 @@ public static class HorseNameGenerator
         "Valiant", "Quest", "Ranger", "Summit", "Noble", "Arrow", "Bravo", "Caden", "Dante", "Enzo",
         "Finn", "Gatsby", "Hunter", "Jaxon", "Kael", "Leo", "Maverick", "Nico", "Orion", "Pax",
         "Quinn", "Ryder", "Silas", "Titan", "Ursus", "Zenith", "Atlas", "Apollo", "Hercules", "Achilles",
-        "Pegasus", "Nimbus", "Everest", "Azrael", "Sirocco", "Cyclone", "Vortex", "Torrent", "Maestro", "Odyssey"
+        "Pegasus", "Nimbus", "Everest", "Azrael", "Sirocco", "Cyclone", "Vortex", "Torrent", "Maestro", "Odyssey", "Coco"
         // (Feel free to add more single names here)
     };
 
