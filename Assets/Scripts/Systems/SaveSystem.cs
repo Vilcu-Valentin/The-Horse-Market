@@ -10,6 +10,7 @@ public class HorseDTO
     public string id;
     public string horseName;
     public bool favorite;
+    public int ascensions;
     public string tierID;
     public string visualID;
     public List<string> traitIDs;
@@ -45,6 +46,7 @@ public class AlmanachDTO
 public class PlayerDataDTO
 {
     public long emeralds;
+    public long liquidEmeralds;
     public List<HorseDTO> horses = new List<HorseDTO>();
     public List<ItemDTO> items = new List<ItemDTO>();
 
@@ -98,11 +100,13 @@ public class SaveSystem : MonoBehaviour
         var dto = new PlayerDataDTO
         {
             emeralds = Current.emeralds,
+            liquidEmeralds = Current.liquidEmeralds,
             horses = Current.horses.Select(h => new HorseDTO
             {
                 id = h.Id.ToString(),
                 horseName = h.horseName,
                 favorite = h.favorite,
+                ascensions = h.ascensions,
                 tierID = h.Tier.ID,
                 visualID = h.Visual.ID,
                 traitIDs = new List<string>(h.Traits.Select(t => t.ID)),
@@ -152,6 +156,7 @@ public class SaveSystem : MonoBehaviour
 
             // Apply to Current...
             Current.emeralds = dto.emeralds;
+            Current.liquidEmeralds = dto.liquidEmeralds;
             Current.horses.Clear();
 
             foreach (HorseDTO h in dto.horses)
@@ -167,6 +172,7 @@ public class SaveSystem : MonoBehaviour
                 {
                     horseName = h.horseName,
                     favorite = h.favorite,
+                    ascensions = h.ascensions,
                     currentTrainingEnergy = h.currentTrainingEnergy,
                     remainingCompetitions = h.remainingCompetitions,
                     Current = h.Current,

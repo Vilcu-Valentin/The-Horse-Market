@@ -27,7 +27,7 @@ MonoBehaviour:
     entryFee: 10
     placeRewards:
     - emeralds: 100
-      itemNumber: 2
+      itemNumber: 0
     - emeralds: 50
       itemNumber: 0
     - emeralds: 20
@@ -47,9 +47,9 @@ MonoBehaviour:
     entryFee: 50
     placeRewards:
     - emeralds: 600
-      itemNumber: 3
-    - emeralds: 300
       itemNumber: 1
+    - emeralds: 300
+      itemNumber: 0
     - emeralds: 125
       itemNumber: 0
     - emeralds: 50
@@ -67,11 +67,11 @@ MonoBehaviour:
     entryFee: 250
     placeRewards:
     - emeralds: 2500
-      itemNumber: 3
-    - emeralds: 1000
       itemNumber: 2
-    - emeralds: 500
+    - emeralds: 1000
       itemNumber: 1
+    - emeralds: 500
+      itemNumber: 0
     - emeralds: 250
       itemNumber: 0
     - emeralds: 0
@@ -87,9 +87,9 @@ MonoBehaviour:
     entryFee: 500
     placeRewards:
     - emeralds: 6000
-      itemNumber: 4
-    - emeralds: 2500
       itemNumber: 2
+    - emeralds: 2500
+      itemNumber: 1
     - emeralds: 1000
       itemNumber: 1
     - emeralds: 500
@@ -107,9 +107,9 @@ MonoBehaviour:
     entryFee: 1500
     placeRewards:
     - emeralds: 10000
-      itemNumber: 5
-    - emeralds: 5000
       itemNumber: 3
+    - emeralds: 5000
+      itemNumber: 1
     - emeralds: 3000
       itemNumber: 1
     - emeralds: 1500
@@ -127,13 +127,13 @@ MonoBehaviour:
     entryFee: 5000
     placeRewards:
     - emeralds: 50000
-      itemNumber: 6
+      itemNumber: 3
     - emeralds: 25000
-      itemNumber: 4
-    - emeralds: 10000
       itemNumber: 2
-    - emeralds: 5000
+    - emeralds: 10000
       itemNumber: 1
+    - emeralds: 5000
+      itemNumber: 0
     - emeralds: 2500
       itemNumber: 0
     - emeralds: 0
@@ -147,15 +147,15 @@ MonoBehaviour:
     entryFee: 10000
     placeRewards:
     - emeralds: 125000
-      itemNumber: 7
-    - emeralds: 60000
       itemNumber: 4
+    - emeralds: 60000
+      itemNumber: 2
     - emeralds: 35000
-      itemNumber: 3
+      itemNumber: 1
     - emeralds: 10000
-      itemNumber: 1
+      itemNumber: 0
     - emeralds: 5000
-      itemNumber: 1
+      itemNumber: 0
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -167,15 +167,15 @@ MonoBehaviour:
     entryFee: 25000
     placeRewards:
     - emeralds: 500000
-      itemNumber: 8
+      itemNumber: 5
     - emeralds: 200000
-      itemNumber: 6
-    - emeralds: 75000
       itemNumber: 3
-    - emeralds: 25000
+    - emeralds: 75000
       itemNumber: 2
-    - emeralds: 12500
+    - emeralds: 25000
       itemNumber: 1
+    - emeralds: 12500
+      itemNumber: 0
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0

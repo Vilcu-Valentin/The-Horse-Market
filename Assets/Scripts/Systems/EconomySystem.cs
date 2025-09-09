@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class EconomySystem : MonoBehaviour
@@ -60,6 +61,29 @@ public class EconomySystem : MonoBehaviour
         {
             AudioManager.Instance.PlaySound(notEnoughMoneyAudio, 0.5f);
             emeraldsUI.NotifyInsufficientEmeralds();
+            return false;
+        }
+    }
+
+    public void AddLiquidEmeralds(long amount)
+    {
+        AudioManager.Instance.PlaySound(sellingAudio, 0.5f, 0.25f);
+        SaveSystem.Instance.Current.liquidEmeralds += amount;
+        SaveSystem.Instance.Save();
+    }
+
+    public bool RemoveLiquidEmeralds(long amount)
+    {
+        AudioManager.Instance.PlaySound(buyingAudio, 0.5f, 0.25f);
+        long cur = SaveSystem.Instance.Current.liquidEmeralds;
+        if((cur -= amount) >= 0)
+        {
+            SaveSystem.Instance.Current.liquidEmeralds -= amount;
+            return true;
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(notEnoughMoneyAudio, 0.5f);
             return false;
         }
     }

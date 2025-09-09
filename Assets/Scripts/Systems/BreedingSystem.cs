@@ -89,8 +89,10 @@ public static class BreedingSystem
         float avgMax = (parentA.GetAverageMax() + parentB.GetAverageMax()) / 2f;
         float ratio = avgCurrent / avgMax;
 
+        int ascensionLevel = Mathf.FloorToInt((parentA.ascensions + parentB.ascensions) /2f);
+
         // Remove parents and add new foal to the player inventory
-        Horse breededFoal = HorseFactory.CreateFoal(childTier, childVisual, childTraits);
+        Horse breededFoal = HorseFactory.CreateFoal(childTier, childVisual, childTraits, ascensionLevel);
 
         if (!preventParentConsumption)
         {

@@ -38,7 +38,17 @@ public class HorseInfoPanelUI : MonoBehaviour
     public TMP_Text jumpTrainingBoost;
     public TMP_Text strengthTrainingBoost;
 
+    [Header("Ascensions")]
+    public GameObject ascBackground;
+    public GameObject ascensionNumber;
+    public TMP_Text ascensionNumberText;
+    public GameObject ascensionPanel;
+    public Button AscendHorseButton;
+    public TMP_Text LE_amountText;
+    public DialogPanelUI ascensionWarningDialog;
+
     [Header("Training")]
+    public GameObject trainingPanel;
     public EnergyBarUI trainingEnergyBar;
     public TMP_Text trainingMultiplierText;
     public Button trainButton;
@@ -145,6 +155,43 @@ public class HorseInfoPanelUI : MonoBehaviour
         jumpBar.UpdateBar("Jump Height", horse.GetCurrent(StatType.JumpHeight), 1, horse.GetMax(StatType.JumpHeight), false);
         strengthBar.UpdateBar("Strength", horse.GetCurrent(StatType.Strength), 1, horse.GetMax(StatType.Strength), false);
 
+
+        //Ascension
+        trainingPanel.SetActive(true);
+        ascensionPanel.SetActive(false);
+
+        ascBackground.SetActive(false);
+        ascensionNumber.SetActive(false);
+
+        if(horse.ascensions > 0)
+        {
+            ascBackground.SetActive(true);
+            ascensionNumber.SetActive(true);
+
+            ascensionNumberText.text = horse.ascensions.ToRomanString();
+        }
+
+        if(inventoryMode)
+        {
+            if(horse.CanAscend())
+            {
+                trainingPanel.SetActive(false);
+                ascensionPanel.SetActive(true);
+
+                AscendHorseButton.onClick.RemoveAllListeners();
+                AscendHorseButton.onClick.AddListener(() =>
+                {
+                ascensionWarningDialog.Show("Ascending a horse will reset it's tier!", () =>
+                {
+                    Horse ascendedHorse = AscensionSystem.AscendHorse(horse);
+                    HorseUIInit(ascendedHorse, inventoryMode);
+                });
+                });
+                   
+                LE_amountText.text = horse.GetLE_Reward().ToShortString();
+            }
+        }
+
         //Training 
         trainingEnergyBar.SetMaxEnergy(horse.GetTrainingEnergy());
         trainingEnergyBar.SetEnergy(horse.currentTrainingEnergy);
@@ -163,6 +210,7 @@ public class HorseInfoPanelUI : MonoBehaviour
         }
 
         trainButton.gameObject.SetActive(inventoryMode);
+
         trainButton.onClick.RemoveAllListeners();
         if (horse.currentTrainingEnergy <= 0)
             trainButton.interactable = false;
@@ -177,16 +225,25 @@ public class HorseInfoPanelUI : MonoBehaviour
             trainButton.onClick.AddListener(() =>
             {
                 // 1) Attempt to train
-                bool success = horse.Train(selectedTrainingItem);
+                int success = horse.Train(selectedTrainingItem);
 
                 // 2) If it failed, show the failure dialog
-                if (!success)
+                if (success == 1)
                 {
                     trainingFailDialog.Show(
                         "Training session failed, but consumed 1 energy!",
                         () => { /* nothing else to do on OK */ }
                     );
                 }
+
+                if(success == 0)
+                {
+                    trainingFailDialog.Show(
+                       "Training session failed, no energy was consumed!",
+                       () => { /* nothing else to do on OK */ }
+                   );
+                }
+
 
                 if (selectedTrainingItem != null)
                     RemoveItem();

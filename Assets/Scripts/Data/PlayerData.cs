@@ -9,6 +9,7 @@ public class PlayerData : ScriptableObject
 {
     [Header("Player Resources")]
     public long emeralds;
+    public long liquidEmeralds;
 
     [Header("Owned Horses")]
     public List<Horse> horses = new List<Horse>();
@@ -38,9 +39,21 @@ public class PlayerData : ScriptableObject
         foreach (var horse in horses)
         {
             if (horse != null && horse.Tier != null && horse.Tier.TierIndex > maxTier)
-                maxTier = horse.Tier.TierIndex;
+            {
+                if (horse.ascensions > 0)
+                    return 8;
+                maxTier = horse.Tier.TierIndex; 
+            }
         }
         return maxTier;
+    }
+
+    public bool AscensionUnlocked()
+    {
+        foreach (var horse in horses)
+            if (horse != null && horse.ascensions > 0)
+                return true;
+        return false;
     }
 
     /// <summary>

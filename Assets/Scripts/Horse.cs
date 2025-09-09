@@ -17,6 +17,8 @@ public class Horse
     public TierDef Tier;
     public VisualDef Visual;
 
+    public int ascensions = 0;
+
     // Training
     public int currentTrainingEnergy;
     public int remainingCompetitions;
@@ -79,11 +81,23 @@ public class Horse
         return Mathf.RoundToInt(Mathf.Clamp((Tier.TierIndex * 0.5f + 1) * competitionMult, 1, 7));
     }
 
+    public bool CanAscend()
+    {
+        if(Tier.TierIndex >= 8 && IsHorseFullyTrained())
+            return true;
+        return false;
+    }
+
+    public long GetLE_Reward()
+    {
+        return GetAverageMax() / 10;
+    }
+
     /// <summary>
     /// This method will train the horse provided enough energy is left
     /// </summary>
-    /// <returns>A bool stating if training was succesful(true) or not(false)</returns>
-    public bool Train(Item trainingItem = null)
+    /// <returns>A int stating the result -1 trained, 0 failed training but didn't consume items, 1 failed training</returns>
+    public int Train(Item trainingItem = null)
     {
         bool preventFailure = false;
         bool noEnergyUse = false;
@@ -98,7 +112,7 @@ public class Horse
         }
 
         if (currentTrainingEnergy <= 0 && noEnergyUse == false)
-            return false;
+            return 1;
 
         int canFailTraining = 0;
         if (!preventFailure)
@@ -115,8 +129,11 @@ public class Horse
             if (roll < value)
             {
                 if (!noEnergyUse)
+                {
                     currentTrainingEnergy--;
-                return false;
+                    return 1;
+                }
+                return 0;
             }
         }
 
@@ -140,7 +157,7 @@ public class Horse
         if (!noEnergyUse)
             currentTrainingEnergy--;
 
-        return true;
+        return -1;
     }
 
     public void BoostStartingStats(float multiplier)
@@ -342,10 +359,12 @@ public class Horse
         Guid g,  
         TierDef tier, 
         VisualDef visual,
-        List<TraitDef> traits)
+        List<TraitDef> traits,
+        int ascension = 0)
     {
         Id = g;
         Tier  = tier;
+        ascensions = ascension;
         Visual = visual;
         _traits = traits;
         BuildStats(tier, traits);
@@ -361,6 +380,11 @@ public class Horse
         int baseCap = tier.GetCap();
         float tierRadius = 0.18f * Mathf.Pow(1.17f, -tier.TierIndex);
         Debug.Log($"[BuildStats] Tier={tier.name} (Index={tier.TierIndex}) → baseCap={baseCap}, tierRadius={tierRadius:F4}");
+
+        // Adding ascension bonus
+        baseCap = baseCap + Mathf.RoundToInt((0.004f * Mathf.Pow(baseCap, 1.5f) + 10f) * ascensions);
+
+        Debug.Log($"NewBASECap with ascensions: {baseCap}, and ascensions: {ascensions}");
 
         foreach (StatType stat in Enum.GetValues(typeof(StatType)))
         {

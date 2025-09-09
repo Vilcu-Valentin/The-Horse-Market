@@ -53,7 +53,7 @@ MonoBehaviour:
     - emeralds: 1200
       itemNumber: 2
     - emeralds: 500
-      itemNumber: 1
+      itemNumber: 0
     - emeralds: 250
       itemNumber: 0
     - emeralds: 0
@@ -71,11 +71,11 @@ MonoBehaviour:
     entryFee: 500
     placeRewards:
     - emeralds: 5000
-      itemNumber: 3
-    - emeralds: 2000
       itemNumber: 2
-    - emeralds: 1000
+    - emeralds: 2000
       itemNumber: 1
+    - emeralds: 1000
+      itemNumber: 0
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -91,11 +91,11 @@ MonoBehaviour:
     entryFee: 1500
     placeRewards:
     - emeralds: 10000
-      itemNumber: 4
+      itemNumber: 3
     - emeralds: 5000
-      itemNumber: 2
-    - emeralds: 3000
       itemNumber: 1
+    - emeralds: 3000
+      itemNumber: 0
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -111,11 +111,11 @@ MonoBehaviour:
     entryFee: 5000
     placeRewards:
     - emeralds: 60000
-      itemNumber: 6
+      itemNumber: 4
     - emeralds: 25000
-      itemNumber: 3
+      itemNumber: 2
     - emeralds: 10000
-      itemNumber: 1
+      itemNumber: 0
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -131,11 +131,11 @@ MonoBehaviour:
     entryFee: 10000
     placeRewards:
     - emeralds: 100000
-      itemNumber: 7
-    - emeralds: 45000
       itemNumber: 5
+    - emeralds: 45000
+      itemNumber: 1
     - emeralds: 20000
-      itemNumber: 2
+      itemNumber: 1
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -151,11 +151,11 @@ MonoBehaviour:
     entryFee: 20000
     placeRewards:
     - emeralds: 250000
-      itemNumber: 8
+      itemNumber: 5
     - emeralds: 100000
-      itemNumber: 6
+      itemNumber: 2
     - emeralds: 40000
-      itemNumber: 4
+      itemNumber: 1
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0
@@ -171,11 +171,11 @@ MonoBehaviour:
     entryFee: 50000
     placeRewards:
     - emeralds: 1000000
-      itemNumber: 12
+      itemNumber: 6
     - emeralds: 300000
-      itemNumber: 7
-    - emeralds: 100000
       itemNumber: 3
+    - emeralds: 100000
+      itemNumber: 1
     - emeralds: 0
       itemNumber: 0
     - emeralds: 0

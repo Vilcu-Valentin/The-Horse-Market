@@ -59,4 +59,31 @@ public static class NumberExtensions
         long roundedQuotient = (long)Math.Round(quotient, MidpointRounding.AwayFromZero);
         return roundedQuotient * step;
     }
+
+    public static string ToRomanString(this int value)
+    {
+        if (value <= 0)
+            throw new ArgumentOutOfRangeException(nameof(value), "Roman numerals are only defined for positive integers.");
+        if (value > 3999)
+            throw new ArgumentOutOfRangeException(nameof(value), "This implementation supports values up to 3999.");
+
+        var map = new Dictionary<int, string>
+        {
+            {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"},
+            {100, "C"}, {90, "XC"}, {50, "L"}, {40, "XL"},
+            {10, "X"}, {9, "IX"}, {5, "V"}, {4, "IV"},
+            {1, "I"}
+        };
+
+        var result = string.Empty;
+        foreach (var pair in map)
+        {
+            while (value >= pair.Key)
+            {
+                result += pair.Value;
+                value -= pair.Key;
+            }
+        }
+        return result;
+    }
 }

@@ -9,6 +9,10 @@ using Unity.VisualScripting;
 
 public class HorseInventoryPanelUI : MonoBehaviour
 {
+    public GameObject ascensionPanel;
+    public GameObject ascensionBanner;
+    public TMP_Text ascensionNumber;
+
     public TextMeshProUGUI horseName;
     public TextMeshProUGUI horseTier;
     public TextMeshProUGUI price;
@@ -38,6 +42,15 @@ public class HorseInventoryPanelUI : MonoBehaviour
         else
             tiredPanel.SetActive(false);
 
+        ascensionPanel.SetActive(false);
+        ascensionBanner.SetActive(false);
+        if (horse.ascensions > 0)
+        { 
+            ascensionPanel.SetActive(true); 
+            ascensionBanner.SetActive(true);
+            ascensionNumber.text = horse.ascensions.ToRomanString();
+        }
+
         horseName.text = horse.horseName;
         horseTier.text = horse.Tier.TierName;
         horseTier.color = horse.Tier.HighlightColor;
@@ -49,7 +62,7 @@ public class HorseInventoryPanelUI : MonoBehaviour
         sellButton.onClick.RemoveAllListeners();
         sellButton.gameObject.SetActive(false);
         selectButton.onClick.RemoveAllListeners();
-        selectButton.gameObject.SetActive(false);
+        selectButton.interactable = false;
 
         infoButton.onClick.RemoveAllListeners();
         favoriteButton.onClick.RemoveAllListeners();
@@ -61,7 +74,7 @@ public class HorseInventoryPanelUI : MonoBehaviour
             sellButton.onClick.AddListener(() => HandleSellClick(horse));
         }else
         {
-            selectButton.gameObject.SetActive(true);
+            selectButton.interactable = true;
             selectButton.onClick.AddListener(() => HandleSelectClick(horse));
         }
 
