@@ -17,16 +17,21 @@ public class Horse
     public TierDef Tier;
     public VisualDef Visual;
 
+    public int ascensions = 0;
+
     // Training
     public int currentTrainingEnergy;
+    public int remainingCompetitions;
 
     // Stats
     public Stat[] Current;
     public Stat[] Max;
 
     // Traits
-    private List<TraitDef> _traits;
+    [SerializeField] private List<TraitDef> _traits;
     public IReadOnlyList<TraitDef> Traits => _traits;
+
+    private float priceModifier = 0.25f;
 
     public int GetCurrent(StatType s) => Current.Get(s);
     public int GetAverageCurrent()
@@ -46,39 +51,173 @@ public class Horse
         Current.Set(s, sb);
     }
 
+    public void Compete()
+    {
+        if (remainingCompetitions <= 0)
+            return;
+
+        bool radiant = false;
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.radiant)
+                    radiant = true;
+
+        if (radiant)
+            EconomySystem.Instance.AddLiquidEmeralds(5);
+
+        remainingCompetitions--;
+    }
+
+    public bool CanCompete()
+    {
+        if (remainingCompetitions > 0)
+            return true;
+        return false; 
+    }
+
+    public void RefillCompetitions()
+    {
+        if (remainingCompetitions < GetMaxCompetitions())
+            remainingCompetitions++;
+    }
+
+    public int GetMaxCompetitions()
+    {
+        float competitionMult = 1f;
+        foreach (TraitDef trait in _traits)
+            competitionMult *= trait.CompetitionEnergyMultiplier;
+
+        return Mathf.RoundToInt(Mathf.Clamp((Tier.TierIndex * 0.5f + 1) * competitionMult, 1, 7));
+    }
+
+    public bool CanAscend()
+    {
+        if(Tier.TierIndex >= 8 && IsHorseFullyTrained())
+            return true;
+        return false;
+    }
+
+    public long GetLE_Reward()
+    {
+        return GetAverageMax() / 10;
+    }
+
     /// <summary>
     /// This method will train the horse provided enough energy is left
     /// </summary>
-    /// <returns>A bool stating if training was succesfull(true) or not(false)</returns>
-    public bool Train()
+    /// <returns>A int stating the result -1 trained, 0 failed training but didn't consume items, 1 failed training</returns>
+    public int Train(Item trainingItem = null)
     {
-        if (currentTrainingEnergy <= 0)
-            return false;
+        bool preventFailure = false;
+        bool noEnergyUse = false;
+        List<StatDelta> statDeltas = null;
+
+        if (trainingItem != null)
+        {
+            SaveSystem.Instance.RemoveItem(trainingItem.Def);
+            preventFailure = trainingItem.Def.preventFailure;
+            noEnergyUse = trainingItem.Def.noEnergyUse;
+            statDeltas = trainingItem.Def.AdditionalStatDelta;
+        }
+
+        bool harbinger = false;
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                    harbinger = true;
+
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (!ascensionTrait.usesEnergy)
+                    noEnergyUse = true;
+
+        if (currentTrainingEnergy <= 0 && noEnergyUse == false)
+            return 1;
 
         int canFailTraining = 0;
-        foreach(TraitDef trait in _traits)
-            if(trait.canFailTraining == true)
-                canFailTraining++;
+        if (!preventFailure)
+            foreach (TraitDef trait in _traits)
+                if (trait.canFailTraining == true)
+                    canFailTraining++;
 
         if (canFailTraining > 0)
         {
             float roll;
             roll = UnityEngine.Random.value;
 
-            float value = (Mathf.Pow(canFailTraining, 0.8f)) / 3f;
+            float value = (Mathf.Pow(canFailTraining, 0.95f)) / 3f;
             if (roll < value)
             {
-                currentTrainingEnergy--;
-                return false;
+                if (!noEnergyUse)
+                {
+                    currentTrainingEnergy--;
+                    return 1;
+                }
+                return 0;
             }
         }
 
-        int amount = GetTrainingRate();
+        int baseAmount = GetTrainingRate();
         foreach (var stat in Current)
-            AddCurrent(stat._Stat, amount);
+        {
+            float finalAmount = baseAmount;
 
-        currentTrainingEnergy--;
-        return true;
+            if(statDeltas != null)
+            {
+                foreach(var delta in statDeltas)
+                    if(delta.Stat == stat._Stat)
+                    {
+                        finalAmount += delta.Delta;
+                    }
+            }
+
+            AddCurrent(stat._Stat, Mathf.CeilToInt(finalAmount));
+        }
+
+        if (!noEnergyUse)
+            currentTrainingEnergy--;
+
+        if (harbinger)
+            RerollTraits();
+
+        return -1;
+    }
+
+    public void RerollTraits()
+    {
+        int number = _traits.Count;
+        bool useAsc = false;
+        if (ascensions > 0)
+            useAsc = true;
+        TraitDef harbingerTrait = new TraitDef(); 
+
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                        harbingerTrait = ascensionTrait;
+
+        _traits = TraitSystem.PickTraits(Mathf.Max(number - 1, 1), useAsc);
+        _traits.Add(harbingerTrait);
+
+        BuildStats(Tier, _traits);
+    }
+
+    public void BoostStartingStats(float multiplier)
+    {
+        foreach(var stat in Current)
+        {
+            int cur = GetCurrent(stat._Stat);
+            int max = GetMax(stat._Stat);
+            int addition = Mathf.RoundToInt(max * multiplier);
+
+            AddCurrent(stat._Stat, addition);
+        }
+    }
+
+    public void BoostStartingStat(StatType stat, float multiplier)
+    {
+        int deltaAddition = Mathf.RoundToInt(GetCurrent(stat) * multiplier);
+        AddCurrent(stat, deltaAddition);
     }
 
     public void RefillEnergy()
@@ -88,6 +227,11 @@ public class Horse
 
     public bool IsHorseFullyTrained()
     {
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                    return false;
+
         foreach (var stat in Current)
             if (GetCurrent(stat._Stat) < GetMax(stat._Stat))
                 return false;
@@ -152,15 +296,14 @@ public class Horse
         float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
@@ -171,6 +314,7 @@ public class Horse
 
         float venerableScalar = 1f + 2f * vWarp;
         priceMultiplier *= venerableScalar;
+        priceMultiplier *= priceModifier;
 
         Debug.Log("Max Price: " + basePrice * priceMultiplier +
     " BasePrice: " + basePrice + " PriceMult: " + priceMultiplier);
@@ -190,15 +334,14 @@ public class Horse
         float avgCurrent = Current.Average(t => (float)t.Value);
 
         // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
 
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
@@ -213,6 +356,7 @@ public class Horse
 
         float venerableScalar = 1f + 2f * tierRatioSq * vWarp;
         priceMultiplier *= venerableScalar;
+        priceMultiplier *= priceModifier;
 
         float trainingMultiplier = tierRatio * 0.5f + 0.5f;
 
@@ -232,19 +376,17 @@ public class Horse
         // 1) Compute average tiers (ensure no zero‐division)
         float avgCaps = Mathf.Max(1f, (float)Max.Average(t => t.Value));
 
-        // 2) Base price = (0.75 * avgCaps)^2, rounded
-        float rawBase = 0.75f * avgCaps;
-        long basePrice = (long)Mathf.Round(Mathf.Pow(rawBase, 1.8f));
-
+        long basePrice = (long)Mathf.Round(0.75f * Mathf.Pow(avgCaps, 2.1f));
         // 3) Aggregate all flat multipliers from traits + visual
         float priceMultiplier = 1f;
         float venerableMultiplier = 1f;
         foreach (var trait in _traits)
         {
-            priceMultiplier *= 1f + trait.PriceScalar;
+            priceMultiplier *= trait.PriceScalar;
             venerableMultiplier *= trait.Venerable;
         }
         priceMultiplier *= Visual.PriceScalar;
+        priceMultiplier *= priceModifier;
 
         // 5) Final price
         return (long)Mathf.Round(basePrice * priceMultiplier * 0.5f);
@@ -264,14 +406,20 @@ public class Horse
         Guid g,  
         TierDef tier, 
         VisualDef visual,
-        List<TraitDef> traits)
+        List<TraitDef> traits,
+        int ascension = 0,
+        string name = "null")
     {
         Id = g;
         Tier  = tier;
+        ascensions = ascension;
         Visual = visual;
         _traits = traits;
         BuildStats(tier, traits);
-        horseName = HorseNameGenerator.GetRandomHorseName();
+        if(name == "null")
+            horseName = HorseNameGenerator.GetRandomHorseName();
+        else
+            horseName = name;
     }
 
     private void BuildStats(TierDef tier, List<TraitDef> traits)
@@ -283,6 +431,11 @@ public class Horse
         int baseCap = tier.GetCap();
         float tierRadius = 0.18f * Mathf.Pow(1.17f, -tier.TierIndex);
         Debug.Log($"[BuildStats] Tier={tier.name} (Index={tier.TierIndex}) → baseCap={baseCap}, tierRadius={tierRadius:F4}");
+
+        // Adding ascension bonus
+        baseCap = baseCap + Mathf.RoundToInt((0.004f * Mathf.Pow(baseCap, 1.5f) + 10f) * ascensions);
+
+        Debug.Log($"NewBASECap with ascensions: {baseCap}, and ascensions: {ascensions}");
 
         foreach (StatType stat in Enum.GetValues(typeof(StatType)))
         {
@@ -333,10 +486,10 @@ public class Horse
                     $"percent={(m.Modifier * 100f):F1}% → factor={(1f + m.Modifier):F4}"
                 );
 
+
             // multiplicative stack of starting‐percent
             float startMultiplier = startModList
                 .Aggregate(1f, (acc, m) => acc * (1f + m.Modifier));
-
             // convert back to percent-of-base and clamp (0…90%)
             float startPercent = startMultiplier - 1f;
             float startPercentClamped = Mathf.Clamp(startPercent, 0f, 0.9f);
@@ -372,6 +525,7 @@ public class Horse
         Current = currentStats.ToArray();
 
         currentTrainingEnergy = GetTrainingEnergy();
+        remainingCompetitions = GetMaxCompetitions();
 
         Debug.Log($"[BuildStats] Finished. Generated {Max.Length} max-stats and {Current.Length} current-stats.");
     }

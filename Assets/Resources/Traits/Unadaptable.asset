@@ -17,9 +17,7 @@ MonoBehaviour:
   Description: Severely limited in adaptability across key abilities; predominantly
     a companion rather than a competitive or breeding-focused horse due to restrictive
     attributes.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
-
-    <color=#FF3131>---Speed</color>
+  ModifiersDescription: '<color=#FF3131>---Speed</color>
 
     <color=#FF3131>---Stamina</color>
 
@@ -37,7 +35,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.25
+  BaseInheritChance: 0.7
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -62,6 +60,7 @@ MonoBehaviour:
     Modifier: -0.15
   StartingBonusRandomness: 0.1
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 0.5
   Venerable: 1
   conflictedTraits:

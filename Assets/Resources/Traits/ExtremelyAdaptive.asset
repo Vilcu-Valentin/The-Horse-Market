@@ -17,9 +17,7 @@ MonoBehaviour:
   Description: Exceptionally well-rounded with high potential across speed, stamina,
     jumping, and strength; highly desirable for varied competitions and superior
     adaptability.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
-
-    <color=#B0FF31>+++Speed</color>
+  ModifiersDescription: '<color=#B0FF31>+++Speed</color>
 
     <color=#B0FF31>+++Stamina</color>
 
@@ -39,7 +37,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.84
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -64,6 +62,7 @@ MonoBehaviour:
     Modifier: 0.15
   StartingBonusRandomness: 0.1
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.5
   Venerable: 1.5
   conflictedTraits:

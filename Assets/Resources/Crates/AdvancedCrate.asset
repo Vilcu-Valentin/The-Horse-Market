@@ -15,21 +15,18 @@ MonoBehaviour:
   CrateName: Advanced Crate
   Icon: {fileID: 21300000, guid: 14708a43207bf0b468c0f315f075094f, type: 3}
   crateColor: {r: 0.6627451, g: 0.6117647, b: 0.54901963, a: 1}
-  CostInEmeralds: 1000
+  CostInEmeralds: 150
+  minHorseTier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
   TierChances:
-  - Tier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
-    Tickets: 12
-    MinTraits: 1
-    MaxTraits: 4
   - Tier: {fileID: 11400000, guid: 34f619ea8fa32794cbe3b508fbbc3b5b, type: 2}
-    Tickets: 35
+    Tickets: 20
     MinTraits: 2
     MaxTraits: 5
   - Tier: {fileID: 11400000, guid: 56a8b2cc9e3c101429905d70ef98f158, type: 2}
-    Tickets: 9
+    Tickets: 35
     MinTraits: 3
     MaxTraits: 6
   - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
-    Tickets: 2
+    Tickets: 1
     MinTraits: 3
     MaxTraits: 6

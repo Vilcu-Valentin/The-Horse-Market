@@ -17,20 +17,17 @@ MonoBehaviour:
   Description: Notoriously slow at acquiring new skills, complicating and prolonging
     training efforts; generally undesirable due to its limited competitive prospects
     and market appeal.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: High</color>
-
-    <color=#FF3131>Starting
-    Nerf</color>
-
-    <color=#FF3131>---Training Multiplier</color>
+  ModifiersDescription: '<color=#FF3131>Starting Nerf</color>
 
     <color=#FF3131>---Training
-    Speed</color>
+    Rate</color>
 
-    <color=#FF3131>-  Competition Buff</color>
+    <color=#FF3131>---Training Speed</color>
 
     <color=#FF3131>- 
-    Price Value</color>'
+    Competition Buff</color>
+
+    <color=#FF3131>-  Price Value</color>'
   rarityTickets: 45
   Icon: {fileID: 21300000, guid: 44b9b6884498b1247ad123cf96ff7e94, type: 3}
   BorderIcon: {fileID: 21300000, guid: 9f7075834879ed54ea52cb88093983e4, type: 3}
@@ -38,7 +35,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.5
+  BaseInheritChance: 0.78
   MutationMultiplier: 1
   TrainingMult: 0.6
   TrainingSpeed: 0.35
@@ -55,7 +52,9 @@ MonoBehaviour:
     Modifier: -0.1
   StartingBonusRandomness: 0.1
   CompetitionBuffPct: 0.97
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 0.9
   Venerable: 1
   conflictedTraits:
   - {fileID: 11400000, guid: 5a5067317c738c24ba5a0fbb96cf8036, type: 2}
+  - {fileID: 11400000, guid: 08fbd804a414af84c88082a123c91365, type: 2}

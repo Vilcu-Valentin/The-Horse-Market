@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879bea5844189cc43bbf16fb9b4a0a1b, type: 3}
+  m_Name: SupremeCrate
+  m_EditorClassIdentifier: 
+  CrateName: Supreme Crate
+  Icon: {fileID: 21300000, guid: be6e108056b73ba4780f867a76db79f0, type: 3}
+  crateColor: {r: 0.5882353, g: 0.34901962, b: 0.7647059, a: 1}
+  CostInEmeralds: 750
+  minHorseTier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
+  ascensionCrate: 1
+  TierChances:
+  - Tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
+    Tickets: 45
+    MinTraits: 6
+    MaxTraits: 8
+  - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
+    Tickets: 20
+    MinTraits: 7
+    MaxTraits: 9
+  - Tier: {fileID: 11400000, guid: 11223cc72a641154388d450e8d80dd9d, type: 2}
+    Tickets: 3
+    MinTraits: 8
+    MaxTraits: 10

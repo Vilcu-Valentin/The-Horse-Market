@@ -14,13 +14,10 @@ public class CompetitionUIPanel : MonoBehaviour
     public Image foreground;
 
     public TMP_Text competitionName;
-    public TMP_Text entryFee;
 
     public Button competeButton;
 
     [Header("Information")]
-    public Image infoBackground;
-
     public TMP_Text speedImportance;
     public TMP_Text staminaImportance;
     public TMP_Text jumpImportance;
@@ -31,15 +28,12 @@ public class CompetitionUIPanel : MonoBehaviour
     public Color balancedImportance;
     public Color noImportance;
 
-    public List<TMP_Text> ranks;
-
     public Action<CompetitionDef> OnCompeteClicked;
 
-    public void InitUI(CompetitionDef competition, TierDef selectedTier, float leagueModifier)
+    public void InitUI(CompetitionDef competition)
     {
         competitionIcon.sprite = competition.Icon;
         background.color = competition.backgroundColor;
-        infoBackground.color = competition.foregroundColor;
         foreground.color = competition.foregroundColor;
         IconBackground.color = competition.backgroundColor;
 
@@ -50,18 +44,6 @@ public class CompetitionUIPanel : MonoBehaviour
         });
 
         competitionName.text = competition.CompetitionName;
-        var settings = competition.GetSettingsFor(selectedTier);
-        entryFee.text = settings.entryFee.ToShortString();
-
-        // Payout ranks
-        for (int i = 0; i < settings.placeRewards.Count && i < ranks.Count; i++)
-            if (settings.placeRewards[i].emeralds > 0)
-            {
-                long modifiedReward = Mathf.FloorToInt(settings.placeRewards[i].emeralds * leagueModifier);
-                ranks[i].text = modifiedReward.ToShortString(); 
-            }
-            else
-                ranks[i].text = "-";
 
         // Determine stat importance
         var statList = competition.competitionStats;

@@ -16,10 +16,7 @@ MonoBehaviour:
   DisplayName: Adaptive
   Description: Highly versatile horse, quickly adjusting to varied challenges, excelling
     broadly due to enhanced speed, stamina, jumping, and strength.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Low</color>
-
-    <color=#B0FF31>+ 
-    Speed</color>
+  ModifiersDescription: '<color=#B0FF31>+  Speed</color>
 
     <color=#B0FF31>+  Stamina</color>
 
@@ -37,7 +34,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.8
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -54,6 +51,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.35
   Venerable: 1.15
   conflictedTraits:

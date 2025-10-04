@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfc687bf4d3e5d41bf168837ab7fa90, type: 3}
+  m_Name: Haymilk
+  m_EditorClassIdentifier: 
+  ID: item_haymilk
+  DisplayName: Haymilk
+  Icon: {fileID: 21300000, guid: a316f6ca6a5d6644b873a7690b07497d, type: 3}
+  Description: "A nourishing mixture of hay and milk, strengthening every aspect
+    of a foal\u2019s growth evenly."
+  ModifiersDescription: '<color=#B0FF31>+  Speed</color>
+
+    <color=#B0FF31>+  Stamina</color>
+
+    <color=#B0FF31>+ 
+    Jump Height</color>
+
+    <color=#B0FF31>+  Strength</color>'
+  rarityTickets: 25
+  BorderIcon: {fileID: 21300000, guid: bf9b02c122ba8bc46b71b1b63b95d870, type: 3}
+  quality: 0
+  isTrainingItem: 0
+  AdditionalStatDelta: []
+  preventFailure: 0
+  noEnergyUse: 0
+  preventParentConsumption: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  guaranteeUpgrade: 0
+  guaranteeSameTier: 0
+  guaranteeNoDowngrade: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0.15
+  - Stat: 1
+    Modifier: 0.15
+  - Stat: 2
+    Modifier: 0.15
+  - Stat: 3
+    Modifier: 0.15
+  randomVisuals: 0
+  mutationMultiplier: 1
+  keepHigherThenQualityItems: 99

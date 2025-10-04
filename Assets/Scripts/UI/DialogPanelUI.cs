@@ -10,9 +10,9 @@ public class DialogPanelUI : MonoBehaviour
     public Button confirmButton;
     public Button cancelButton;
 
-    private Action onConfirm, onCancel;
+    protected Action onConfirm, onCancel;
 
-    public void Show(string message,
+    public virtual void Show(string message,
                      Action confirmCallback,
                      Action cancelCallback = null)
     {

@@ -74,21 +74,19 @@ MonoBehaviour:
     experiences.
 
 
-    Inherit Chance: Low
-
     +++Competition Buff
 
-    +++Speed
-    Capacity
+    +++Speed Capacity
 
-    +++Stamina Capacity
+    +++Stamina
+    Capacity
 
     +++Jump Height Capacity
 
-    +++Strength
-    Capacity
+    +++Strength Capacity
 
-    +++Price Value'
+    +++Price
+    Value'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c72f6757fe69026478dcefe9ec49b4e5, type: 2}
   m_sharedMaterial: {fileID: 7226386974059177192, guid: c72f6757fe69026478dcefe9ec49b4e5,
@@ -271,7 +269,7 @@ MonoBehaviour:
   backgroundRect: {fileID: 4064992303258857414}
   minWidth: 350
   maxWidth: 700
-  minHeight: 300
+  minHeight: 280
   panelPadding: 20
   titleColor: '#FFFFFF'
   titleSize: 32

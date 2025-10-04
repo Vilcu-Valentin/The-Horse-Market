@@ -16,12 +16,12 @@ MonoBehaviour:
   DisplayName: Graceful
   Description: Elegant movement with a gentle agility boost; preferred choice for
     aesthetic-focused competitions and those valuing elegance over raw power.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#B0FF31>+  Jump Height</color>
 
-    <color=#B0FF31>+ 
-    Jump Height</color>
+    <color=#B0FF31>++
+    Competition Buff</color>
 
-    <color=#B0FF31>++ Competition Buff</color>
+    <color=#B0FF31>++ Competition Energy</color>
 
     <color=#B0FF31>++
     Price Value</color>'
@@ -32,7 +32,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.8
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -43,6 +43,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 1.5
+  CompetitionEnergyMultiplier: 1.5
   PriceScalar: 1.25
   Venerable: 1
   conflictedTraits:

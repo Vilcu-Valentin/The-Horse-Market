@@ -13,6 +13,7 @@ public class ShopSystemUIManager : MonoBehaviour
 
     public HorseInfoPanelUI horseInfoPanel;
 
+    public CrateSystemUIManager crateSystem;
 
     void Start()
     {
@@ -80,6 +81,7 @@ public class ShopSystemUIManager : MonoBehaviour
             ShopSystem.BuyHorse(horse);
             uiPanel.SetSoldPanelTrue();
             refreshOffersPriceUI.text = "Free";
+            crateSystem.PopulateUI();
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuSystem : MonoBehaviour
@@ -10,6 +11,8 @@ public class MenuSystem : MonoBehaviour
     public Slider sfxSlider;
 
     private bool menuActive = false;
+
+    public string MenuScene;
 
     void Start()
     {
@@ -42,7 +45,7 @@ public class MenuSystem : MonoBehaviour
         PlayerPrefs.Save();
 
         SaveSystem.Instance.Save();
-        Application.Quit();
+        SceneManager.LoadScene(MenuScene);
     }
 }
 

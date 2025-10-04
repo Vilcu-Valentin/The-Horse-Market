@@ -4,58 +4,60 @@ using System.Collections;
 
 public class EmeraldsPanelUI : MonoBehaviour
 {
-    [Header("Emeralds Counter")]
+    public enum CurrencyMode { Emeralds, LE }
+    private CurrencyMode currentMode = CurrencyMode.Emeralds;
+
+    [Header("Counter")]
     public TextMeshProUGUI coinCounter;
+
+    [Header("Currency Images")]
+    public GameObject emeraldImg;
+    public GameObject LE_Img;
 
     [Header("Animation Settings")]
     public float animationDuration = 1.5f;
 
     [Header("Insufficient‐Funds Feedback")]
-    [Tooltip("Option A: assign a popup panel you want to show (could be a simple UI panel)")]
     public GameObject insufficientPopup;
-
-    [Tooltip("Option B: flash coinCounter between originalColor and this color")]
     public Color flashErrorColor = Color.red;
     public float flashDuration = 0.5f;
     public int flashRepeats = 3;
 
-    //–– internal state for the tween ––
-    private long initialNumber;     // where the animation started
-    private long targetNumber;      // the value we’re animating to
-    private float animationTimer;   // how far through the animation we are (0 → 1)
-    private long lastSavedEmeralds;
+    // internal state
+    private long initialNumber;
+    private long targetNumber;
+    private float animationTimer;
+    private long lastSavedValue;
     private Color baseColor;
 
     void Start()
     {
-        // init emerald count display
-        lastSavedEmeralds = SaveSystem.Instance.Current.emeralds;
-        initialNumber = lastSavedEmeralds;
-        targetNumber = lastSavedEmeralds;
-        animationTimer = 1f;   // already “complete”
-        coinCounter.text = lastSavedEmeralds.ToShortString();
+        // initialize from current mode
+        lastSavedValue = GetCurrentCurrency();
+        initialNumber = lastSavedValue;
+        targetNumber = lastSavedValue;
+        animationTimer = 1f;
+        coinCounter.text = lastSavedValue.ToShortString();
 
-        // cache the original text color for flashing
         baseColor = coinCounter.color;
 
-        // hide popup if assigned
         if (insufficientPopup != null)
             insufficientPopup.SetActive(false);
     }
 
     void Update()
     {
-        // 1) Poll the save system
-        var saved = SaveSystem.Instance.Current.emeralds;
-        if (saved != lastSavedEmeralds)
+        // poll current currency based on mode
+        long saved = GetCurrentCurrency();
+        if (saved != lastSavedValue)
         {
-            initialNumber = lastSavedEmeralds;
+            initialNumber = lastSavedValue;
             targetNumber = saved;
             animationTimer = 0f;
-            lastSavedEmeralds = saved;
+            lastSavedValue = saved;
         }
 
-        // 2) Animate counter
+        // animate
         if (animationTimer < 1f)
         {
             animationTimer += Time.deltaTime / animationDuration;
@@ -69,52 +71,76 @@ public class EmeraldsPanelUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Call this when the player tries to spend more emeralds than they have.
+    /// Returns the correct value depending on the active currency.
     /// </summary>
-    public void NotifyInsufficientEmeralds()
+    private long GetCurrentCurrency()
     {
-        // OPTION A: pop up a dialog
-        if (insufficientPopup != null)
-        {
-            StartCoroutine(ShowPopupCoroutine());
-        }
-        // OPTION B: flash the emerald counter text red
+        if (currentMode == CurrencyMode.Emeralds)
+            return SaveSystem.Instance.Current.emeralds;
         else
-        {
-            StartCoroutine(FlashCounterCoroutine());
-        }
+            return SaveSystem.Instance.Current.liquidEmeralds;
     }
 
-    // —— OPTION A: Popup Panel —— //
+    // insufficient feedback
+    public void NotifyInsufficientEmeralds()
+    {
+        if (insufficientPopup != null)
+            StartCoroutine(ShowPopupCoroutine());
+        else
+            StartCoroutine(FlashCounterCoroutine());
+    }
+
     private IEnumerator ShowPopupCoroutine()
     {
         insufficientPopup.SetActive(true);
-        // if your popup has its own animator/fade, you can yield until it's done.
-        // Here we'll just show it for 1.5 seconds.
         yield return new WaitForSeconds(1.5f);
         insufficientPopup.SetActive(false);
     }
 
-    // —— OPTION B: Flash Text —— //
     private IEnumerator FlashCounterCoroutine()
     {
         for (int i = 0; i < flashRepeats; i++)
         {
-            // lerp to error color
             float half = flashDuration * 0.5f;
             for (float t = 0f; t < half; t += Time.deltaTime)
             {
                 coinCounter.color = Color.Lerp(baseColor, flashErrorColor, t / half);
                 yield return null;
             }
-            // lerp back to base
             for (float t = 0f; t < half; t += Time.deltaTime)
             {
                 coinCounter.color = Color.Lerp(flashErrorColor, baseColor, t / half);
                 yield return null;
             }
         }
-        // ensure we end on the original color
         coinCounter.color = baseColor;
+    }
+
+    // mode switching
+    public void ToEmeralds()
+    {
+        currentMode = CurrencyMode.Emeralds;
+        emeraldImg.SetActive(true);
+        LE_Img.SetActive(false);
+        ForceRefreshCounter();
+    }
+
+    public void ToLE()
+    {
+        currentMode = CurrencyMode.LE;
+        emeraldImg.SetActive(false);
+        LE_Img.SetActive(true);
+        ForceRefreshCounter();
+    }
+
+    /// <summary>
+    /// Refresh display immediately when switching currencies.
+    /// </summary>
+    private void ForceRefreshCounter()
+    {
+        lastSavedValue = GetCurrentCurrency();
+        initialNumber = targetNumber = lastSavedValue;
+        animationTimer = 1f;
+        coinCounter.text = lastSavedValue.ToShortString();
     }
 }

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfc687bf4d3e5d41bf168837ab7fa90, type: 3}
+  m_Name: Saddle
+  m_EditorClassIdentifier: 
+  ID: item_saddle
+  DisplayName: Saddle
+  Icon: {fileID: 21300000, guid: 919329fb372404f4e8c51a2f5b6a858e, type: 3}
+  Description: A well-fitted saddle that balances training, ensuring steady growth
+    across all stats while keeping the rider and horse in harmony.
+  ModifiersDescription: '<color=#B0FF31>+  Speed Growth Rate</color>
+
+    <color=#B0FF31>+ 
+    Stamina Growth Rate</color>
+
+    <color=#B0FF31>+  Jump Height Growth Rate</color>
+
+    <color=#B0FF31>+ 
+    Strength Growth Rate</color>'
+  rarityTickets: 25
+  BorderIcon: {fileID: 21300000, guid: bf9b02c122ba8bc46b71b1b63b95d870, type: 3}
+  quality: 0
+  isTrainingItem: 1
+  AdditionalStatDelta:
+  - Stat: 0
+    Delta: 3
+  - Stat: 1
+    Delta: 3
+  - Stat: 2
+    Delta: 3
+  - Stat: 3
+    Delta: 3
+  preventFailure: 0
+  noEnergyUse: 0
+  preventParentConsumption: 0
+  UpgradeMult: 1
+  DowngradeMult: 1
+  guaranteeUpgrade: 0
+  guaranteeSameTier: 0
+  guaranteeNoDowngrade: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0
+  - Stat: 1
+    Modifier: 0
+  - Stat: 2
+    Modifier: 0
+  - Stat: 3
+    Modifier: 0
+  randomVisuals: 0
+  mutationMultiplier: 1

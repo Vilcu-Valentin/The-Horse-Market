@@ -8,10 +8,10 @@ using UnityEditor;
 
 
 [CreateAssetMenu(menuName = "HorseGame/Trait")]
-public sealed class TraitDef : ScriptableObject
+public class TraitDef : ScriptableObject
 {
-    [SerializeField, HideInInspector]
-    private string id;
+    [SerializeField]
+    protected string id;
     public string ID => id;
 
     [Header("Identity")]
@@ -35,7 +35,7 @@ public sealed class TraitDef : ScriptableObject
 
     [Header("Traits Inheritence")]
     [Tooltip("How reliably this trait is inherited if ONE parent owns it")]
-    [Range(0f, 0.5f)] public float BaseInheritChance = 0.25f;
+    [Range(0.6f, 0.99f)] public float BaseInheritChance = 0.25f;
     [Tooltip("Multiplier changes the base mutation chance for a new trait to apper (1 - neutral)")]
     public float MutationMultiplier = 1f;
 
@@ -58,6 +58,8 @@ public sealed class TraitDef : ScriptableObject
     [Header("Competitions & Price")]
     [Tooltip("Percent boost to all competition scores (± %)")]
     public float CompetitionBuffPct = 0f;        // e.g. Talented = +5 % Deviant = -5%
+    [Tooltip("Applies a modifier to how many competitions a horse can participate in consecutively")]
+    public float CompetitionEnergyMultiplier = 1f;
     [Tooltip("Scalar on market price (1 = neutral)")] 
     public float PriceScalar = 1f; // such as for Champion or Venerable
     [Tooltip("Gains a higher premium price based on the current stats. 1 - no multiplier")]
@@ -73,7 +75,7 @@ public sealed class TraitDef : ScriptableObject
     }
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    protected void OnValidate()
     {
         if (string.IsNullOrEmpty(id))
         {

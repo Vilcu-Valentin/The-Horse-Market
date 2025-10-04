@@ -16,12 +16,10 @@ MonoBehaviour:
   DisplayName: Surefooted
   Description: Exceptional jumping and obstacle-clearing skills; confidently handles
     uneven terrain, ideal for agility-based competitions or trail riding adventures.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#B0FF31>++ Jump Height</color>
 
-    <color=#B0FF31>++
-    Jump Height</color>
-
-    <color=#B0FF31>+  Price Value</color>'
+    <color=#B0FF31>+ 
+    Price Value</color>'
   rarityTickets: 40
   Icon: {fileID: 21300000, guid: 5ccaef7c977c78f499fd49192445f6bb, type: 3}
   BorderIcon: {fileID: 21300000, guid: 2df736aa211afc34d8932046b27e3748, type: 3}
@@ -29,7 +27,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.4
+  BaseInheritChance: 0.82
   MutationMultiplier: 1
   TrainingMult: 1
   TrainingSpeed: 1
@@ -42,6 +40,7 @@ MonoBehaviour:
     Modifier: 0.1
   StartingBonusRandomness: 0.05
   CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.2
   Venerable: 1.1
   conflictedTraits:

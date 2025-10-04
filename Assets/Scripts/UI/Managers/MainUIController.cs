@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public enum AppState
 {
+    Ascension,
     Inventory,
     Breeding,
     Shop,
@@ -16,23 +17,30 @@ public enum AppState
 /// </summary>
 public class MainUIController : MonoBehaviour
 {
+    public EmeraldsPanelUI emeraldsUI;
+
+
     public AudioClip buttonPress;
     [Header("Nav Buttons")]
+    public Button ascensionButton;
     public Button inventoryButton;
     public Button breedingButton;
     public Button shopButton;
     public Button competitionButton;
 
     [Header("Mode Panels")]
+    public GameObject ascensionPanel;
     public GameObject inventoryPanel;
     public GameObject breedingPanel;
     public GameObject shopPanel;
     public GameObject competitionPanel;
 
     [Header("Mode Managers")]
+    public AscensionManagerUI ascensionManagerUI;
     public InventoryUIManager inventoryUI;
     public BreedingUIManager breedingUI;
-    public ShopSystemUIManager shopUI;   
+    public ShopSystemUIManager shopUI;
+    public CrateSystemUIManager crateUI;
     public CompetitionUIManager competitionUI; 
 
     private AppState currentState;
@@ -48,6 +56,7 @@ public class MainUIController : MonoBehaviour
     private void Start()
     {
         // Wire nav buttons
+        ascensionButton.onClick.AddListener(() => { SetState(AppState.Ascension); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
         inventoryButton.onClick.AddListener(() => { SetState(AppState.Inventory); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
         breedingButton.onClick.AddListener(() => { SetState(AppState.Breeding); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
         shopButton.onClick.AddListener(() => { SetState(AppState.Shop); AudioManager.Instance.PlaySound(buttonPress, 0.75f, 0.3f); });
@@ -65,12 +74,16 @@ public class MainUIController : MonoBehaviour
         currentState = newState;
 
         // 1) Toggle panels
+        ascensionPanel.SetActive(newState == AppState.Ascension);
         inventoryPanel.SetActive(newState == AppState.Inventory);
         breedingPanel.SetActive(newState == AppState.Breeding);
         shopPanel.SetActive(newState == AppState.Shop);
         competitionPanel.SetActive(newState == AppState.Competition);
 
+        ascensionButton.gameObject.SetActive(SaveSystem.Instance.Current.AscensionUnlocked());
+
         // 2) Toggle nav buttons
+        ascensionButton.interactable = newState != AppState.Ascension;
         inventoryButton.interactable = newState != AppState.Inventory;
         breedingButton.interactable = newState != AppState.Breeding;
         shopButton.interactable = newState != AppState.Shop;
@@ -79,14 +92,25 @@ public class MainUIController : MonoBehaviour
         // 3) Initialize or refresh the active mode
         switch (newState)
         {
+            case AppState.Ascension:
+                emeraldsUI.ToLE();
+                ascensionManagerUI.RefreshUI();
+                break;
+            case AppState.Shop:
+                crateUI.PopulateUI();
+                emeraldsUI.ToEmeralds();
+                break;
             case AppState.Inventory:
                 inventoryUI.OpenForInventory();
+                emeraldsUI.ToEmeralds();
                 break;
             case AppState.Breeding:
                 breedingUI.InitUI();
+                emeraldsUI.ToEmeralds();
                 break;
             case AppState.Competition:
                 competitionUI.RefreshUI();
+                emeraldsUI.ToEmeralds();
                 break;
         }
     }
@@ -94,6 +118,7 @@ public class MainUIController : MonoBehaviour
     /// <summary>
     /// Exposed methods for other managers to activate modes.
     /// </summary>
+    public void ActivateAscension() => SetState(AppState.Ascension);
     public void ActivateInventory() => SetState(AppState.Inventory);
     public void ActivateBreeding() => SetState(AppState.Breeding);
     public void ActivateShop() => SetState(AppState.Shop);

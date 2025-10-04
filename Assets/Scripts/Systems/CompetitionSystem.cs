@@ -113,18 +113,25 @@ public static class CompetitionSystem
         }
     }
 
-    public static HorseAI GenerateAIHorse(TierDef tier, float difficulty, float leagueModifier) // add the league modifier
+    public static HorseAI GenerateAIHorse(Horse horse, float difficulty, float leagueModifier)
     {
         int speed;
         int stamina;
         int jump;
         int strength;
 
-        int statAvg = Mathf.RoundToInt((tier.StatCap * 1.4f * Mathf.Pow(difficulty, 0.15f) + 0.05f) * leagueModifier * 1.5f);
+        // Use averageChampionValues as the base reference (when leagueModifier = 2)
+        // leagueModifier acts as a multiplier: 1.0 = average horses, 2.0 = champion level horses
+        float baseCompetitionLevel = horse.Tier.averageHorseValue * (leagueModifier / 2.0f);
 
+        // Apply difficulty scaling and random variation like in original formula
+        int statAvg = Mathf.RoundToInt((baseCompetitionLevel * Random.Range(0.9f, 1.1f) * Mathf.Pow(difficulty, 0.15f) + 0.05f));
+
+        // Apply the same roll system as original
         float roll = Random.value;
-        if(roll < difficulty)
+        if (roll < difficulty)
         {
+            // Higher variance for difficult opponents
             speed = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.95f), Mathf.FloorToInt(statAvg * 1.25f)));
             stamina = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.95f), Mathf.FloorToInt(statAvg * 1.25f)));
             jump = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.95f), Mathf.FloorToInt(statAvg * 1.25f)));
@@ -132,8 +139,9 @@ public static class CompetitionSystem
         }
         else
         {
-            speed =Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
-            stamina = Mathf.Max(1,Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
+            // Lower variance for easier opponents
+            speed = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
+            stamina = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
             jump = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
             strength = Mathf.Max(1, Random.Range(Mathf.FloorToInt(statAvg * 0.75f), Mathf.FloorToInt(statAvg * 1.05f)));
         }
@@ -143,7 +151,7 @@ public static class CompetitionSystem
             horseName = HorseNameGenerator.GetRandomHorseName(),
             staminaStat = stamina,
             speedStat = speed,
-            jumpStat = jump,  
+            jumpStat = jump,
             strengthStat = strength
         };
 

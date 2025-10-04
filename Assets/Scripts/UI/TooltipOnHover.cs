@@ -194,4 +194,15 @@ public class TooltipOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             _tooltipRect = null;
         }
     }
+
+    private void OnDisable()
+    {
+        HideTooltip();
+    }
+
+    private void OnDestroy()
+    {
+        HideTooltip();
+    }
+
 }

@@ -41,6 +41,7 @@ public class InventoryUIManager : MonoBehaviour
     private enum SortField { Name = 0, Tier = 1, Price = 2, Stats = 3 }
     private SortField currentSortField = SortField.Name;
     private bool isAscending = true;
+    private bool openForCompetitions = false;
 
     private TierDef selectionTier;
     private Horse selectionExcludedHorse;
@@ -63,14 +64,16 @@ public class InventoryUIManager : MonoBehaviour
     public void OpenForSelecting(
         Action<Horse> onPick,
         TierDef requiredTier = null,
-        Horse excludedHorse = null    
+        Horse excludedHorse = null,
+        bool openForCompetitions = false
     )
     {
         closePanelButton.gameObject.SetActive(true);
         currentMode = InventoryMode.Selecting;
         onSelectCallback = onPick;
         selectionTier = requiredTier;
-        selectionExcludedHorse = excludedHorse;  
+        this.openForCompetitions = openForCompetitions;
+        selectionExcludedHorse = excludedHorse;
         gameObject.SetActive(true);
         RefreshList();
     }
@@ -82,6 +85,7 @@ public class InventoryUIManager : MonoBehaviour
         currentMode = InventoryMode.Inventory;
         onSelectCallback = null;
         selectionTier = null;
+        openForCompetitions = false;
         gameObject.SetActive(true);
         RefreshList();
     }
@@ -163,7 +167,7 @@ public class InventoryUIManager : MonoBehaviour
             .Where(h => currentMode != InventoryMode.Selecting
                         || selectionTier == null
                         || h.Tier == selectionTier)
-            // **NEW**: drop the excluded horse
+            // drop the excluded horse
             .Where(h => currentMode != InventoryMode.Selecting
                         || selectionExcludedHorse == null
                         || h != selectionExcludedHorse)
@@ -215,7 +219,7 @@ public class InventoryUIManager : MonoBehaviour
             {
                 var horse = pageItems[i];
                 horsePanels[i].gameObject.SetActive(true);
-                horsePanels[i].InitHorseUI(horse, currentMode);
+                horsePanels[i].InitHorseUI(horse, currentMode, openForCompetitions);
             }
             else
             {

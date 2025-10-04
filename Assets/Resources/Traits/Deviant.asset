@@ -17,15 +17,12 @@ MonoBehaviour:
   Description: Troublesome trait characterized by difficulty in training, and general
     undesirability; significantly impacts performance negatively, complicating handling
     for trainers.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#FF3131>-- Training Rate</color>
 
-    <color=#FF3131>--
-    Training Multiplier</color>
-
-    <color=#FF3131>---Training Speed</color>
-
-    <color=#FF3131>- 
+    <color=#FF3131>---Training
     Speed</color>
+
+    <color=#FF3131>-  Speed</color>
 
     <color=#FF3131>-  Stamina</color>
 
@@ -37,7 +34,10 @@ MonoBehaviour:
     <color=#FF3131>--
     Competition Bonus</color>
 
-    <color=#FF3131>---Price Value</color>'
+    <color=#FF3131>---Competition Energy</color>
+
+    <color=#FF3131>---Price
+    Value</color>'
   rarityTickets: 5
   Icon: {fileID: 21300000, guid: f2d5da9833e7b2a4d92ffa4a36e5e2ed, type: 3}
   BorderIcon: {fileID: 21300000, guid: 99edff7e0c2078f4a9c848e568665b5a, type: 3}
@@ -45,7 +45,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.3
+  BaseInheritChance: 0.7
   MutationMultiplier: 1
   TrainingMult: 0.6
   TrainingSpeed: 0.35
@@ -62,6 +62,7 @@ MonoBehaviour:
   StartingStats: []
   StartingBonusRandomness: 0
   CompetitionBuffPct: 0.7
+  CompetitionEnergyMultiplier: 0.25
   PriceScalar: 0.4
   Venerable: 1
   conflictedTraits:

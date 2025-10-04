@@ -16,27 +16,25 @@ MonoBehaviour:
   DisplayName: Intelligent
   Description: Highly trainable and quick-learning horse, excelling across disciplines;
     prized by trainers seeking consistent progress and competitive advantage.
-  ModifiersDescription: '<color=#C9BBAB>Inherit Chance: Medium</color>
+  ModifiersDescription: '<color=#B0FF31>+++Training Rate</color>
 
-    <color=#B0FF31>+++Training
-    Multiplier</color>
+    <color=#B0FF31>++
+    Training Speed</color>
 
-    <color=#B0FF31>++ Training Speed</color>
-
-    <color=#B0FF31>+ 
-    Speed</color>
-
-    <color=#B0FF31>+  Stamina</color>
+    <color=#B0FF31>+  Speed</color>
 
     <color=#B0FF31>+ 
-    Jump Height</color>
+    Stamina</color>
 
-    <color=#B0FF31>+  Strength</color>
+    <color=#B0FF31>+  Jump Height</color>
 
     <color=#B0FF31>+ 
-    Competition Buff</color>
+    Strength</color>
 
-    <color=#B0FF31>++ Price Value</color>
+    <color=#B0FF31>+  Competition Buff</color>
+
+    <color=#B0FF31>++
+    Price Value</color>
 
     <color=#FFA916>Valuable</color>'
   rarityTickets: 7
@@ -46,7 +44,7 @@ MonoBehaviour:
   UpgradeMult: 1
   DowngradeMult: 1
   TierVolatility: 0
-  BaseInheritChance: 0.35
+  BaseInheritChance: 0.85
   MutationMultiplier: 1
   TrainingMult: 2
   TrainingSpeed: 1.5
@@ -71,6 +69,8 @@ MonoBehaviour:
     Modifier: 0.1
   StartingBonusRandomness: 0.05
   CompetitionBuffPct: 1.05
+  CompetitionEnergyMultiplier: 1
   PriceScalar: 1.5
   Venerable: 1.5
-  conflictedTraits: []
+  conflictedTraits:
+  - {fileID: 11400000, guid: 552762a2400abf641b7b90802b1e64b5, type: 2}

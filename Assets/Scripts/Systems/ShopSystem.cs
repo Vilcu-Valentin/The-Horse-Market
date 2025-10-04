@@ -68,7 +68,7 @@ public static class ShopSystem
         const float a = 50f;
         const float r = 2.8f;
         const float s = 1.26f;
-        const float k = -0.3f;
+        const float k = -0.99f;
 
         // do all math in floats
         float diff = x - v;                          // x and v are ints, promoted to float
@@ -91,7 +91,7 @@ public static class ShopSystem
 
         double expoExp = Math.Pow(u, 0.95) * (x / 10.0);
         double powPart = Math.Pow(x, expoExp);
-        double cubicPart = 50.0 * x * Math.Pow(u, 3.2);
+        double cubicPart = 50.0 * x * Math.Pow(u, 2);
 
         double rawOffer = powPart + cubicPart;
 

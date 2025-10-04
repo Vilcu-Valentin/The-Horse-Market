@@ -47,7 +47,7 @@ public class TierSettings
 public struct PlaceReward
 {
     public long emeralds;   // emerald payout
-    // you can add `public List<ItemStack> items;` here later
+    public int itemNumber;
 }
 
 [Serializable]

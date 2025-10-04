@@ -11,6 +11,9 @@ public class CrateDef : ScriptableObject
     public Color crateColor;
     public int CostInEmeralds = 100;
 
+    public TierDef minHorseTier;
+    public bool ascensionCrate = false;
+
     [Header("Tier Probabilities")]
     public List<WeightedTier> TierChances = new()
     {
