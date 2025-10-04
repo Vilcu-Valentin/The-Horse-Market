@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83cd818c3d4dd8449577964037b3a37, type: 3}
+  m_Name: Paragon
+  m_EditorClassIdentifier: 
+  id: 099a8c96-d735-4f13-8a2f-0cd4f0f48d3a
+  DisplayName: Paragon
+  Description: The ultimate standard of equine perfection, commanding unmatched value,
+    potential, and breeding excellence.
+  ModifiersDescription: '<color=#B0FF31>+++ Upgrade Chance</color>
+
+    <color=#B0FF31>++++Speed</color>
+
+    <color=#B0FF31>++++Stamina</color>
+
+    <color=#B0FF31>++++Jump
+    Height</color>
+
+    <color=#B0FF31>++++Strength</color>
+
+    <color=#B0FF31>++
+    Competition Bonus</color>
+
+    <color=#B0FF31>++ Competition Energy</color>
+
+    <color=#B0FF31>++++Price
+    Value</color>
+
+    <color=#FFA916>Valuable</color>'
+  rarityTickets: 1
+  Icon: {fileID: 21300000, guid: b42f810f320cc51428a55b82f17b90da, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 8e061001cc5edac4086e8b30f3ecacab, type: 3}
+  quality: 8
+  UpgradeMult: 2.5
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.99
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 1.25
+  - Stat: 1
+    Modifier: 1.25
+  - Stat: 2
+    Modifier: 1.25
+  - Stat: 3
+    Modifier: 1.25
+  StartingStats:
+  - Stat: 0
+    Modifier: 0.5
+  - Stat: 1
+    Modifier: 0.5
+  - Stat: 2
+    Modifier: 0.5
+  - Stat: 3
+    Modifier: 0.5
+  StartingBonusRandomness: 0.1
+  CompetitionBuffPct: 1.5
+  CompetitionEnergyMultiplier: 2
+  PriceScalar: 10
+  Venerable: 3
+  conflictedTraits:
+  - {fileID: 11400000, guid: 11c013ba859f30c4ea413d38ef652605, type: 2}
+  usesEnergy: 1
+  immortal: 0
+  harbinger: 0
+  radiant: 0

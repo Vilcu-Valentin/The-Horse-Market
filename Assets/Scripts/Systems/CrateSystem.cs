@@ -26,4 +26,25 @@ public static class CrateSystem
 
         return (pickedH, values);
     }
+
+    public static (Horse, List<(WeightedTier tier, int weight)>) OpenAscensionCrate(CrateDef crate)
+    {
+        var values = new List<(WeightedTier tier, int weight)>();
+
+        foreach (var tier in crate.TierChances)
+        {
+            values.Add((tier, tier.Tickets));
+        }
+
+        WeightedTier chosen = WeightedSelector<WeightedTier>.Pick(values);
+        TierDef chosenTier = chosen.Tier;
+
+        int amount = Random.Range(chosen.MinTraits, chosen.MaxTraits);
+
+        Horse pickedH = HorseFactory.CreateRandomHorse(chosenTier, amount, 1);
+        SaveSystem.Instance.AddHorse(pickedH);
+
+        return (pickedH, values);
+    }
+
 }

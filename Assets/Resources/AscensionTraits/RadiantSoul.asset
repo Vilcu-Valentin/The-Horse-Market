@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83cd818c3d4dd8449577964037b3a37, type: 3}
+  m_Name: RadiantSoul
+  m_EditorClassIdentifier: 
+  id: 038a8c96-d735-4f13-8a2f-0cd4f0f48d3a
+  DisplayName: Radiant Soul
+  Description: Exuding divine brilliance, their victories inspire wealth, generating
+    Liquid Emeralds through triumph.
+  ModifiersDescription: <color=#50AEFF>Generates Liquid Emeralds after each competition
+    (+5LE)</color>
+  rarityTickets: 3
+  Icon: {fileID: 21300000, guid: e610252a1b7227641844e8b17f57cc51, type: 3}
+  BorderIcon: {fileID: 21300000, guid: 8e061001cc5edac4086e8b30f3ecacab, type: 3}
+  quality: 7
+  UpgradeMult: 1
+  DowngradeMult: 1
+  TierVolatility: 0
+  BaseInheritChance: 0.99
+  MutationMultiplier: 1
+  TrainingMult: 1
+  TrainingSpeed: 1
+  canFailTraining: 0
+  StatCapMods:
+  - Stat: 0
+    Modifier: 0
+  - Stat: 1
+    Modifier: 0
+  - Stat: 2
+    Modifier: 0
+  - Stat: 3
+    Modifier: 0
+  StartingStats:
+  - Stat: 0
+    Modifier: 0
+  - Stat: 1
+    Modifier: 0
+  - Stat: 2
+    Modifier: 0
+  - Stat: 3
+    Modifier: 0
+  StartingBonusRandomness: 0
+  CompetitionBuffPct: 0
+  CompetitionEnergyMultiplier: 1
+  PriceScalar: 1
+  Venerable: 1
+  conflictedTraits: []
+  usesEnergy: 1
+  immortal: 0
+  harbinger: 0
+  radiant: 1

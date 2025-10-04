@@ -10,7 +10,7 @@ using UnityEditor;
 [CreateAssetMenu(menuName = "HorseGame/Visual")]
 public class VisualDef : ScriptableObject
 {
-    [SerializeField, HideInInspector]
+    [SerializeField]
     private string id;
     public string ID => id;
 

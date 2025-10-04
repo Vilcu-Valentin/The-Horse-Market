@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879bea5844189cc43bbf16fb9b4a0a1b, type: 3}
+  m_Name: GreaterCrate
+  m_EditorClassIdentifier: 
+  CrateName: Greater Crate
+  Icon: {fileID: 21300000, guid: c357770369f62c8489d1a1c39d497091, type: 3}
+  crateColor: {r: 0.58431375, g: 0.35686275, b: 0.5647059, a: 1}
+  CostInEmeralds: 400
+  minHorseTier: {fileID: 11400000, guid: 9db9bafd45da2b44ca4f283fdde893bc, type: 2}
+  ascensionCrate: 1
+  TierChances:
+  - Tier: {fileID: 11400000, guid: 94660c6244cfd6745aabfd4931be458a, type: 2}
+    Tickets: 35
+    MinTraits: 3
+    MaxTraits: 6
+  - Tier: {fileID: 11400000, guid: d60e34001ac8ca245b13395b63cffb46, type: 2}
+    Tickets: 15
+    MinTraits: 4
+    MaxTraits: 8
+  - Tier: {fileID: 11400000, guid: 3bfbc05054b7a144e8a7cfdd7a14462d, type: 2}
+    Tickets: 3
+    MinTraits: 5
+    MaxTraits: 9
+  - Tier: {fileID: 11400000, guid: c4194656ce0de5a479b57725e7c17e47, type: 2}
+    Tickets: 1
+    MinTraits: 6
+    MaxTraits: 9

@@ -183,7 +183,7 @@ public class HorseInfoPanelUI : MonoBehaviour
                 {
                 ascensionWarningDialog.Show("Ascending a horse will reset it's tier!", () =>
                 {
-                    Horse ascendedHorse = AscensionSystem.AscendHorse(horse);
+                    Horse ascendedHorse = AscensionSystem.Instance.AscendHorse(horse);
                     HorseUIInit(ascendedHorse, inventoryMode);
                 });
                 });

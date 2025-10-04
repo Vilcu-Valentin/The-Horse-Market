@@ -51,6 +51,10 @@ public class PlayerDataDTO
     public List<ItemDTO> items = new List<ItemDTO>();
 
     public AlmanachDTO almanach = new AlmanachDTO();
+
+    public int chargeLevel;
+    public int mythicIndex;
+    public int currentRolls;
 }
 
 [DefaultExecutionOrder(-100)]
@@ -120,7 +124,11 @@ public class SaveSystem : MonoBehaviour
                 id = i.Id.ToString(),
                 itemDefId = i.Def.ID,
                 quantity = i.Quantity,
-            }).ToList()
+            }).ToList(),
+
+            chargeLevel = AscensionSystem.Instance != null ? AscensionSystem.Instance.chargeLevel : 0,
+            mythicIndex = AscensionSystem.Instance != null ? AscensionSystem.Instance.mythicIndex : 0,
+            currentRolls = AscensionSystem.Instance != null ? AscensionSystem.Instance.currentRolls : 0,
         };
 
         if (AlmanachSystem.Instance != null)
@@ -189,6 +197,13 @@ public class SaveSystem : MonoBehaviour
                 if (def == null) continue;
 
                 Current.AddItem(def, it.quantity);
+            }
+
+            if(AscensionSystem.Instance != null)
+            {
+                AscensionSystem.Instance.chargeLevel = dto.chargeLevel;
+                AscensionSystem.Instance.mythicIndex = Mathf.Clamp(dto.mythicIndex, 0, AscensionSystem.Instance.mythicHorses.Count - 1);
+                AscensionSystem.Instance.currentRolls = dto.currentRolls;
             }
 
             AlmanachSystem almanach = AlmanachSystem.Instance ?? FindObjectOfType<AlmanachSystem>();

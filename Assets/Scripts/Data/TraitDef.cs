@@ -8,10 +8,10 @@ using UnityEditor;
 
 
 [CreateAssetMenu(menuName = "HorseGame/Trait")]
-public sealed class TraitDef : ScriptableObject
+public class TraitDef : ScriptableObject
 {
-    [SerializeField, HideInInspector]
-    private string id;
+    [SerializeField]
+    protected string id;
     public string ID => id;
 
     [Header("Identity")]
@@ -75,7 +75,7 @@ public sealed class TraitDef : ScriptableObject
     }
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    protected void OnValidate()
     {
         if (string.IsNullOrEmpty(id))
         {

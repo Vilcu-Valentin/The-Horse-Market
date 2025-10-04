@@ -28,7 +28,7 @@ public class Horse
     public Stat[] Max;
 
     // Traits
-    private List<TraitDef> _traits;
+    [SerializeField] private List<TraitDef> _traits;
     public IReadOnlyList<TraitDef> Traits => _traits;
 
     private float priceModifier = 0.25f;
@@ -55,6 +55,15 @@ public class Horse
     {
         if (remainingCompetitions <= 0)
             return;
+
+        bool radiant = false;
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.radiant)
+                    radiant = true;
+
+        if (radiant)
+            EconomySystem.Instance.AddLiquidEmeralds(5);
 
         remainingCompetitions--;
     }
@@ -111,6 +120,17 @@ public class Horse
             statDeltas = trainingItem.Def.AdditionalStatDelta;
         }
 
+        bool harbinger = false;
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                    harbinger = true;
+
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (!ascensionTrait.usesEnergy)
+                    noEnergyUse = true;
+
         if (currentTrainingEnergy <= 0 && noEnergyUse == false)
             return 1;
 
@@ -157,7 +177,29 @@ public class Horse
         if (!noEnergyUse)
             currentTrainingEnergy--;
 
+        if (harbinger)
+            RerollTraits();
+
         return -1;
+    }
+
+    public void RerollTraits()
+    {
+        int number = _traits.Count;
+        bool useAsc = false;
+        if (ascensions > 0)
+            useAsc = true;
+        TraitDef harbingerTrait = new TraitDef(); 
+
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                        harbingerTrait = ascensionTrait;
+
+        _traits = TraitSystem.PickTraits(Mathf.Max(number - 1, 1), useAsc);
+        _traits.Add(harbingerTrait);
+
+        BuildStats(Tier, _traits);
     }
 
     public void BoostStartingStats(float multiplier)
@@ -185,6 +227,11 @@ public class Horse
 
     public bool IsHorseFullyTrained()
     {
+        foreach (var trait in _traits)
+            if (trait is AscensionTraitDef ascensionTrait)
+                if (ascensionTrait.harbinger)
+                    return false;
+
         foreach (var stat in Current)
             if (GetCurrent(stat._Stat) < GetMax(stat._Stat))
                 return false;
@@ -360,7 +407,8 @@ public class Horse
         TierDef tier, 
         VisualDef visual,
         List<TraitDef> traits,
-        int ascension = 0)
+        int ascension = 0,
+        string name = "null")
     {
         Id = g;
         Tier  = tier;
@@ -368,7 +416,10 @@ public class Horse
         Visual = visual;
         _traits = traits;
         BuildStats(tier, traits);
-        horseName = HorseNameGenerator.GetRandomHorseName();
+        if(name == "null")
+            horseName = HorseNameGenerator.GetRandomHorseName();
+        else
+            horseName = name;
     }
 
     private void BuildStats(TierDef tier, List<TraitDef> traits)

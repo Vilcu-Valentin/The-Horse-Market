@@ -14,6 +14,8 @@ public class CrateSystemUIManager : MonoBehaviour
 
     public CrateInfoUIPanel crateInfoPanel;
 
+    public bool ascensionSystem = false;
+
     // Keep a reference so we can unsubscribe later:
     private Action _onFinishedHandler;
 
@@ -32,25 +34,41 @@ public class CrateSystemUIManager : MonoBehaviour
 
         foreach (var crate in HorseMarketDatabase.Instance._allCrates)
         {
-            if (crate.minHorseTier.TierIndex <= SaveSystem.Instance.Current.GetHighestHorseTier())
-            {
-                GameObject go = Instantiate(crateUIPrefab, crateUIContents);
-                var panel = go.GetComponent<CratePanelUI>();
-                panel.InitCrateUI(crate);
-                // When this button is clicked, call the logic in CrateSystem
-                panel.OnClicked += OpenCrate;
-                panel.OnInfoClicked += OpenCrateInfo;
-            }
+            if (crate.ascensionCrate == ascensionSystem)
+                if (crate.minHorseTier.TierIndex <= SaveSystem.Instance.Current.GetHighestHorseTier())
+                {
+                    GameObject go = Instantiate(crateUIPrefab, crateUIContents);
+                    var panel = go.GetComponent<CratePanelUI>();
+                    panel.InitCrateUI(crate);
+                    // When this button is clicked, call the logic in CrateSystem
+                    panel.OnClicked += OpenCrate;
+                    panel.OnInfoClicked += OpenCrateInfo;
+                }
         }
     }
 
     private void OpenCrate(CrateDef selectedCrate)
     {
-        if (EconomySystem.Instance.RemoveEmeralds(selectedCrate.CostInEmeralds))
+        bool open = false;
+        if (ascensionSystem)
+        {
+            if (EconomySystem.Instance.RemoveLiquidEmeralds(selectedCrate.CostInEmeralds))
+                open = true;
+        }
+        else
+        {
+            if (EconomySystem.Instance.RemoveEmeralds(selectedCrate.CostInEmeralds))
+                open = true;
+        }
+
+        if (open)
         {
             Horse horse;
             List<(WeightedTier tier, int weight)> values;
-            (horse, values) = CrateSystem.OpenCrate(selectedCrate);
+            if (ascensionSystem)
+                (horse, values) = CrateSystem.OpenAscensionCrate(selectedCrate);
+            else
+                (horse, values) = CrateSystem.OpenCrate(selectedCrate);
 
             // Create a one‐time handler that "captures" `horse`:
             _onFinishedHandler = () =>

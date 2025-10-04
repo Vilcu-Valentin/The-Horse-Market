@@ -17,6 +17,9 @@ public enum AppState
 /// </summary>
 public class MainUIController : MonoBehaviour
 {
+    public EmeraldsPanelUI emeraldsUI;
+
+
     public AudioClip buttonPress;
     [Header("Nav Buttons")]
     public Button ascensionButton;
@@ -33,6 +36,7 @@ public class MainUIController : MonoBehaviour
     public GameObject competitionPanel;
 
     [Header("Mode Managers")]
+    public AscensionManagerUI ascensionManagerUI;
     public InventoryUIManager inventoryUI;
     public BreedingUIManager breedingUI;
     public ShopSystemUIManager shopUI;
@@ -88,17 +92,25 @@ public class MainUIController : MonoBehaviour
         // 3) Initialize or refresh the active mode
         switch (newState)
         {
+            case AppState.Ascension:
+                emeraldsUI.ToLE();
+                ascensionManagerUI.RefreshUI();
+                break;
             case AppState.Shop:
                 crateUI.PopulateUI();
+                emeraldsUI.ToEmeralds();
                 break;
             case AppState.Inventory:
                 inventoryUI.OpenForInventory();
+                emeraldsUI.ToEmeralds();
                 break;
             case AppState.Breeding:
                 breedingUI.InitUI();
+                emeraldsUI.ToEmeralds();
                 break;
             case AppState.Competition:
                 competitionUI.RefreshUI();
+                emeraldsUI.ToEmeralds();
                 break;
         }
     }

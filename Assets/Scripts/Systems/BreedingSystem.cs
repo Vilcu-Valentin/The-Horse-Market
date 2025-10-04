@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.ParticleSystem;
 
 public static class BreedingSystem 
 {
@@ -94,10 +95,26 @@ public static class BreedingSystem
         // Remove parents and add new foal to the player inventory
         Horse breededFoal = HorseFactory.CreateFoal(childTier, childVisual, childTraits, ascensionLevel);
 
+
         if (!preventParentConsumption)
         {
-            SaveSystem.Instance.RemoveHorse(parentA);
-            SaveSystem.Instance.RemoveHorse(parentB);
+            bool immortalA = false;
+            bool immortalB = false;
+
+            foreach (var trait in parentA.Traits)
+                if (trait is AscensionTraitDef ascensionTrait)
+                    if (ascensionTrait.immortal)
+                        immortalA = true;
+
+            foreach (var trait in parentB.Traits)
+                if (trait is AscensionTraitDef ascensionTrait)
+                    if (ascensionTrait.immortal)
+                        immortalB = true;
+
+            if(!immortalA)
+                SaveSystem.Instance.RemoveHorse(parentA);
+            if(!immortalB)
+                SaveSystem.Instance.RemoveHorse(parentB);
         }
         breededFoal.BoostStartingStats(ratio * 0.25f);
 
@@ -259,6 +276,13 @@ public static class BreedingSystem
             // else: skip this trait because it would clash
         }
 
+        bool useAscension = false;
+        int ascensionLevel = Mathf.CeilToInt(parentA.ascensions + parentB.ascensions / 2f);
+        if (ascensionLevel > 0)
+            useAscension = true;
+
+        Debug.Log("USING ASCENSION: " + useAscension);
+
         // Roll mutations if necessary
         float mutMultA = 1;
         float mutMultB = 1;
@@ -270,7 +294,8 @@ public static class BreedingSystem
         float initialChance = parentA.Tier.MutationChance * ((mutMultA + mutMultB) * 0.5f) * itemMutation;
         while(Random.value < initialChance)
         {
-            var t = TraitSystem.PickTraits(foalTraits);
+            Debug.Log("Picking a new TRAIT!");
+            var t = TraitSystem.PickTraits(foalTraits, useAscension);
             if (t != null)
             {
                 foalTraits.Add(t);
